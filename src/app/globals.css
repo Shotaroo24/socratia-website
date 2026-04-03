@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Colors */
-  --color-main: #E8567F;
-  --color-main-dark: #C23B60;
-  --color-main-light: #F7B2C4;
-  --color-ink: #1A1A2E;
-  --color-subtext: #6B6B8D;
-  --color-cream: #FFFBF7;
+  /* Navy palette */
+  --color-navy: #0B1522;
+  --color-navy-mid: #162640;
+  --color-navy-light: #1E3355;
+
+  /* Gold — primary accent (replaces pink) */
+  --color-main: #C9A84C;
+  --color-main-dark: #A07B2E;
+  --color-main-light: #E8D5A8;
+
+  /* Text — light backgrounds */
+  --color-ink: #0B1522;
+  --color-subtext: #5A6A7A;
+
+  /* Text — dark backgrounds */
+  --color-text-light: #F2EDE4;
+  --color-text-muted: #8899AA;
+
+  /* Backgrounds & borders */
+  --color-cream: #FAF7F2;
   --color-white: #FFFFFF;
-  --color-accent: #D4A853;
+  --color-border: #E8E2D6;
 
   /* Fonts */
   --font-heading: var(--font-cormorant);
