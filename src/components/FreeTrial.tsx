@@ -71,8 +71,7 @@ export default function FreeTrial() {
 
         {/* CTA */}
         <Button
-          href={SITE_CONFIG.trialFormUrl}
-          external
+          href="/apply"
           className="text-base w-full sm:w-auto justify-center px-10 py-4 shadow-lg"
         >
           Apply for a Free Trial&ensp;›

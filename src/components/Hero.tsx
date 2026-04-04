@@ -66,8 +66,7 @@ export default function Hero() {
 
         {/* CTA */}
         <Button
-          href={SITE_CONFIG.trialFormUrl}
-          external
+          href="/apply"
           className="text-base px-10 py-4 shadow-lg"
         >
           Apply for a Free Trial&ensp;›

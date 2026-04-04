@@ -50,7 +50,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Button href={SITE_CONFIG.trialFormUrl} external>
+          <Button href="/apply">
             Apply Now
           </Button>
           <span className="text-sm font-medium text-text-muted/40 cursor-not-allowed select-none">
@@ -87,8 +87,7 @@ export default function Nav() {
             </Link>
           ))}
           <Button
-            href={SITE_CONFIG.trialFormUrl}
-            external
+            href="/apply"
             className="w-full justify-center"
           >
             Apply Now
