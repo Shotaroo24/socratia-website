@@ -9,7 +9,7 @@ const faqs = [
     a: (
       <>
         <p className="mb-3 text-subtext">It depends on your plan and goals!</p>
-        <ul className="flex flex-col gap-2 text-subtext text-sm leading-relaxed">
+        <ul className="flex flex-col gap-2 text-subtext text-base leading-relaxed">
           <li>
             <strong className="text-ink">Self-Study Plan:</strong> You have
             complete freedom. Study whenever and however much you like at your
@@ -32,7 +32,7 @@ const faqs = [
         <p className="mb-3 text-subtext">
           The policy differs slightly to ensure the best learning environment.
         </p>
-        <ul className="flex flex-col gap-2 text-subtext text-sm leading-relaxed">
+        <ul className="flex flex-col gap-2 text-subtext text-base leading-relaxed">
           <li>
             <strong className="text-ink">Group Plan:</strong> At the start of
             the course, we coordinate a fixed weekly schedule that works for all
@@ -98,7 +98,7 @@ export default function FAQ() {
                 >
                   <span
                     className="font-semibold text-ink group-hover:text-main transition-colors duration-200 leading-snug"
-                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem' }}
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.35rem' }}
                   >
                     {faq.q}
                   </span>

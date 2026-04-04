@@ -74,17 +74,17 @@ export default function Service() {
           {blocks.map((block) => (
             <div
               key={block.id}
-              className={`flex flex-col overflow-hidden rounded-xl shadow-sm ${
+              className={`flex flex-col overflow-hidden rounded-xl shadow-sm bg-white lg:h-[350px] ${
                 block.imageLeft ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
               {/* Image side */}
-              <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto min-h-[260px]">
+              <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-[400px] min-h-[260px]">
                 <Image
                   src={block.image}
                   alt={block.imageAlt}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Navy gradient overlay */}
@@ -100,7 +100,7 @@ export default function Service() {
 
               {/* Text side */}
               <div
-                className={`w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 ${
+                className={`w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10 ${
                   !block.imageLeft ? "md:text-right" : ""
                 }`}
               >
@@ -111,10 +111,10 @@ export default function Service() {
                   {block.number}
                 </p>
                 <div className={`w-8 h-px bg-main mb-4 ${!block.imageLeft ? "md:ml-auto" : ""}`} aria-hidden="true" />
-                <span className="inline-block font-heading text-ink font-bold mb-5" style={{ fontSize: '1.625rem' }}>
+                <span className="inline-block font-heading text-ink font-bold mb-5 text-2xl md:text-[1.75rem]">
                   {block.label}
                 </span>
-<p className="text-subtext leading-relaxed text-sm md:text-base mb-7">
+                <p className="text-subtext leading-relaxed text-base md:text-lg lg:text-base mb-7">
                   {block.description}
                 </p>
               </div>

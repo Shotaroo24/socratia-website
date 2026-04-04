@@ -62,7 +62,7 @@ export default function FreeTrial() {
           </strong>{" "}
           on Google Meet.
         </p>
-        <p className="text-text-muted leading-relaxed mb-12">
+        <p className="text-text-muted text-lg leading-relaxed mb-12">
           We&rsquo;ll walk you through our teaching method, show you how our
           courses are structured, and answer any questions you have. Let&rsquo;s
           find out if we&rsquo;re a perfect match to achieve your goals

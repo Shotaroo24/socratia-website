@@ -50,7 +50,7 @@ export default function Features() {
                 {feature.title}
               </h3>
               {/* Description */}
-              <p className="text-subtext leading-relaxed text-sm">
+              <p className="text-subtext leading-relaxed text-base md:text-lg lg:text-base">
                 {feature.description}
               </p>
             </div>

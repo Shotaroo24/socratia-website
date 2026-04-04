@@ -10,22 +10,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="bg-cream min-h-screen">
-      {/* Page Header */}
-      <div
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(160deg, #0B1522 0%, #1E3355 100%)" }}
-      >
-        <p className="text-main font-medium text-xs uppercase tracking-[0.28em] mb-4">
-          Legal
-        </p>
-        <h1 className="font-heading text-4xl md:text-5xl text-text-light font-bold">
+      <div className="max-w-3xl mx-auto px-6 pt-14 pb-16 md:pt-16 md:pb-20">
+        <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-8 text-center">
           Privacy Policy
         </h1>
-        <div className="w-10 h-px bg-main mx-auto mt-6" aria-hidden="true" />
-      </div>
-
-      {/* Content */}
-      <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
         <p className="text-subtext text-sm mb-12">
           Shotaro (hereafter referred to as &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
           &ldquo;our&rdquo;), the sole proprietor and operator of socratiaacademy.com
