@@ -49,7 +49,7 @@ export default function Hero() {
 
         {/* Title */}
         <h1
-          className="font-heading text-5xl md:text-6xl lg:text-[4.25rem] text-text-light font-bold leading-[1.1] tracking-tight mb-8"
+          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] text-text-light font-bold leading-[1.1] tracking-tight mb-8"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
         >
           The Premier Japanese Speaking Program

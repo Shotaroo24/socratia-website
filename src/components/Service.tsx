@@ -100,7 +100,7 @@ export default function Service() {
 
               {/* Text side */}
               <div
-                className={`w-full md:w-1/2 bg-white flex flex-col justify-center px-10 py-12 md:px-12 md:py-14 ${
+                className={`w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 ${
                   !block.imageLeft ? "md:text-right" : ""
                 }`}
               >

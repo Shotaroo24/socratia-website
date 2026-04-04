@@ -73,7 +73,7 @@ export default function FreeTrial() {
         <Button
           href={SITE_CONFIG.trialFormUrl}
           external
-          className="text-base px-10 py-4 shadow-lg"
+          className="text-base w-full sm:w-auto justify-center px-10 py-4 shadow-lg"
         >
           Apply for a Free Trial&ensp;›
         </Button>
