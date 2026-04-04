@@ -35,7 +35,11 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.number}
-              className="group bg-white border border-border rounded-2xl p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="group bg-white border border-border rounded-2xl p-8 text-center shadow-md hover:shadow-md hover:-translate-y-1"
+              style={{
+                borderTop: '2px solid #C9A84C',
+                transition: 'all 0.25s ease',
+              }}
             >
               {/* Number */}
               <p className="font-heading text-4xl text-main font-light tracking-widest mb-5 italic">

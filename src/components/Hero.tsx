@@ -4,23 +4,42 @@ import { SITE_CONFIG } from "@/lib/constants";
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden flex items-center justify-center"
       style={{
+        minHeight: 'calc(100vh - 64px)',
         background:
-          "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
+          "radial-gradient(ellipse 120% 80% at 25% 40%, #1E3355 0%, #0B1522 55%, #060D18 100%)",
       }}
     >
-      {/* Subtle radial highlight */}
+      {/* Subtle gold glow — center */}
       <div
-        className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%)",
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '800px',
+          height: '400px',
+          background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 65%)',
+          pointerEvents: 'none',
         }}
       />
 
-      <div className="relative max-w-3xl mx-auto px-6 py-36 md:py-44 text-center">
+      {/* Noise texture overlay */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px 200px',
+          opacity: 0.05,
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div className="relative max-w-3xl mx-auto px-6 py-20 text-center">
         {/* Badge */}
         <p
           className="text-main font-medium text-xs uppercase mb-8 tracking-[0.28em]"
@@ -29,7 +48,10 @@ export default function Hero() {
         </p>
 
         {/* Title */}
-        <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.25rem] text-text-light font-bold leading-[1.1] tracking-tight mb-8">
+        <h1
+          className="font-heading text-5xl md:text-6xl lg:text-[4.25rem] text-text-light font-bold leading-[1.1] tracking-tight mb-8"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
+        >
           The Premier Japanese Speaking Program
         </h1>
 

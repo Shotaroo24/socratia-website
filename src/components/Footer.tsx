@@ -38,7 +38,7 @@ export default function Footer() {
               Our Mission
             </h3>
             <p className="text-text-muted text-sm leading-relaxed">
-              is to bring you the best Japanese learning experience
+              Our mission is to bring you the best Japanese learning experience
             </p>
           </div>
 
