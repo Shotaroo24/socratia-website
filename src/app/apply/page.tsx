@@ -116,7 +116,8 @@ export default function ApplyPage() {
 
         {submitted ? (
           /* ── Thank You ── */
-          <div className="bg-white rounded-2xl shadow-md px-8 py-16 text-center">
+          <div className="min-h-screen flex items-center justify-center -mt-16 md:-mt-24 -mx-4 px-4">
+          <div className="bg-white rounded-2xl shadow-md px-8 py-16 text-center w-full max-w-[700px]">
             <h1 className="font-heading text-4xl md:text-5xl text-ink font-bold mb-6">
               Thank you for your application!
             </h1>
@@ -124,6 +125,7 @@ export default function ApplyPage() {
               We will review your form shortly, and I will send an invitation to
               selected applicants via WhatsApp within 48 hours ✨
             </p>
+          </div>
           </div>
         ) : (
           /* ── Form Card ── */
