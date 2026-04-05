@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Socratia Academy",
-  description:
-    "Terms and Conditions for Socratia Academy — the premier Japanese speaking program.",
+  title: 'Terms & Conditions',
+  openGraph: { url: 'https://socratiaacademy.com/terms' },
 };
 
 export default function TermsPage() {

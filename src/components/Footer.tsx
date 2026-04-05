@@ -20,13 +20,13 @@ export default function Footer() {
               Connect with us
             </h3>
             <div className="flex gap-3">
-              <SocialIcon href="#" label="Instagram">
+              <SocialIcon href="https://www.instagram.com/shotaroo.20" label="Instagram">
                 <InstagramIcon />
               </SocialIcon>
-              <SocialIcon href="#" label="TikTok">
+              <SocialIcon href="https://www.tiktok.com/@shotaro.20" label="TikTok">
                 <TikTokIcon />
               </SocialIcon>
-              <SocialIcon href="#" label="YouTube">
+              <SocialIcon href="https://www.youtube.com/@shotaro.20" label="YouTube">
                 <YouTubeIcon />
               </SocialIcon>
             </div>

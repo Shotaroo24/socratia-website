@@ -117,7 +117,6 @@ export default function ApplyPage() {
         {submitted ? (
           /* ── Thank You ── */
           <div className="bg-white rounded-2xl shadow-md px-8 py-16 text-center">
-            <div className="w-10 h-px bg-main mx-auto mb-8" aria-hidden="true" />
             <h1 className="font-heading text-4xl md:text-5xl text-ink font-bold mb-6">
               Thank you for your application!
             </h1>
@@ -132,27 +131,9 @@ export default function ApplyPage() {
 
             {/* Header */}
             <div className="text-center mb-10">
-              <h1 className="font-heading text-4xl md:text-5xl text-ink font-bold mb-6">
+              <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-6">
                 Book a Free Trial Lesson
               </h1>
-              <div className="w-10 h-px bg-main mx-auto mb-8" aria-hidden="true" />
-              <div className="flex flex-col gap-4 text-subtext text-base leading-relaxed max-w-xl mx-auto text-left">
-                <p>
-                  In my free trial lesson, we&rsquo;ll spend about an hour together
-                  in a relaxed and enjoyable way—practicing simple Japanese greetings
-                  &amp; introductions, learning a little about Japanese culture, and
-                  doing light ice-breaker activities!
-                </p>
-                <p>
-                  I will also explain the course content in detail, so if you&rsquo;re
-                  even a little interested in Japanese language or culture, please feel
-                  free to sign up.
-                </p>
-                <p>
-                  I&rsquo;m truly looking forward to learning Japanese together with
-                  you ✨
-                </p>
-              </div>
             </div>
 
             {/* Form */}
@@ -238,7 +219,7 @@ export default function ApplyPage() {
                   name="occupation"
                   value={formData.occupation}
                   onChange={handleChange}
-                  placeholder="Student / Engineer / Designer..."
+                  placeholder="e.g., Engineer, Designer..."
                   className={inputClass(!!errors.occupation)}
                 />
               </Field>
@@ -273,7 +254,7 @@ export default function ApplyPage() {
                         value={option}
                         checked={formData.howDidYouHear === option}
                         onChange={handleChange}
-                        className="w-4 h-4 accent-[#C9A84C] cursor-pointer"
+                        className="w-4 h-4 accent-[#0B1522] cursor-pointer"
                       />
                       <span className="text-sm text-subtext group-hover:text-ink transition-colors">
                         {option}
@@ -300,8 +281,8 @@ export default function ApplyPage() {
               </Field>
 
               {/* Notice */}
-              <p className="text-subtext text-sm leading-relaxed border-l-2 border-main pl-4">
-                ※ Please note that due to limited availability, we are unable to
+              <p className="text-subtext text-base leading-relaxed border-l-2 border-main pl-4">
+                Please note that due to limited availability, we are unable to
                 accept every applicant. We will review your form and selected
                 candidates will receive an invitation for the trial lesson via
                 WhatsApp within 48 hours ✨
@@ -333,7 +314,7 @@ export default function ApplyPage() {
 
 function inputClass(hasError: boolean) {
   return [
-    "w-full px-4 py-3 rounded-lg text-sm text-ink bg-white",
+    "w-full px-4 py-3 rounded-lg text-base text-ink bg-white",
     "border transition-colors duration-150 outline-none",
     hasError
       ? "border-red-400 focus:border-red-500"
@@ -354,7 +335,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-bold text-ink">
+      <label className="text-base font-bold text-ink">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>

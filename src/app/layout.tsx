@@ -18,8 +18,26 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Socratia Academy",
-  description: "The Premier Japanese Speaking Program for Arabic speakers",
+  metadataBase: new URL('https://socratiaacademy.com'),
+  title: {
+    default: 'Socratia Academy — Japanese for the Arab World',
+    template: '%s | Socratia Academy',
+  },
+  description: 'The premier Japanese speaking program for Arabic speakers. Structured curriculum, live sessions, and expert support — built for Gulf learners.',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
+  openGraph: {
+    siteName: 'Socratia Academy',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Socratia Academy — Japanese for the Arab World',
+    description: 'The premier Japanese speaking program for Arabic speakers.',
+  },
 };
 
 export default function RootLayout({

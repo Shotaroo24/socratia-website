@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Commercial Disclosure | Socratia Academy",
-  description:
-    "Commercial Disclosure for Socratia Academy, provided in accordance with the Japanese Act on Specified Commercial Transactions.",
+  title: '特定商取引法に基づく表記',
+  openGraph: { url: 'https://socratiaacademy.com/commercial-disclosure' },
 };
 
 export default function CommercialDisclosurePage() {

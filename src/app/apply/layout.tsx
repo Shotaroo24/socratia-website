@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Book a Free Trial Lesson | Socratia Academy",
-  description:
-    "Apply for a free 1-hour Japanese trial lesson with Socratia Academy. Limited spots available.",
+  title: 'Apply for a Free Trial',
+  description: 'Apply for a free trial lesson at Socratia Academy. Limited spots available.',
+  openGraph: {
+    title: 'Apply for a Free Trial | Socratia Academy',
+    description: 'Apply for a free trial lesson at Socratia Academy. Limited spots available.',
+    url: 'https://socratiaacademy.com/apply',
+  },
 };
 
 export default function ApplyLayout({

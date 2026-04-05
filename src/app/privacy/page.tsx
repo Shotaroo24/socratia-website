@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Socratia Academy",
-  description:
-    "Privacy Policy for Socratia Academy — how we collect, use, and protect your personal information.",
+  title: 'Privacy Policy',
+  openGraph: { url: 'https://socratiaacademy.com/privacy' },
 };
 
 export default function PrivacyPage() {
