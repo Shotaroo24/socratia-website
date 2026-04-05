@@ -67,7 +67,7 @@ export default function Hero() {
         {/* CTA */}
         <Button
           href="/apply"
-          className="text-base px-10 py-4 shadow-lg"
+          className="text-base w-auto px-8 md:px-10 py-4 shadow-lg"
         >
           Apply for a Free Trial&ensp;›
         </Button>

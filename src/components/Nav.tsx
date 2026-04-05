@@ -86,12 +86,14 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Button
+          <Link
             href="/apply"
-            className="w-full justify-center"
+            className="text-text-light/80 hover:text-main font-medium transition-colors py-1"
+            style={{ color: '#C9A84C' }}
+            onClick={() => setMenuOpen(false)}
           >
             Apply Now
-          </Button>
+          </Link>
         </div>
       </div>
     </header>
