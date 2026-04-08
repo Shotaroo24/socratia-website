@@ -4,6 +4,92 @@ import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import Button from "@/components/ui/Button";
 
+const timelineItems = [
+  {
+    number: "01",
+    title: "Recommended Study Flow & Time Commitment",
+    content: (
+      <div className="space-y-4 text-subtext text-base leading-relaxed">
+        <p>
+          To get the best results, we recommend studying{" "}
+          <strong className="text-ink">5–7 hours per week:</strong>
+        </p>
+        <ul className="space-y-2 pl-0">
+          <li className="flex items-start gap-3">
+            <span
+              className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ background: "#C9A84C", marginTop: "0.55rem" }}
+            />
+            <span>Live conversation sessions: 2 sessions per week</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span
+              className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ background: "#C9A84C", marginTop: "0.55rem" }}
+            />
+            <span>Self-study (videos + textbooks): about 3–5 hours per week</span>
+          </li>
+        </ul>
+        <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
+        <p>
+          <strong className="text-ink">Week 1:</strong> Lesson 1 — Hiragana &amp; Katakana
+        </p>
+        <p>
+          <strong className="text-ink">Week 2 onwards:</strong> Complete 4 Standard Lessons
+          per week (Videos + Textbooks)
+        </p>
+        <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
+        <p className="text-sm text-subtext/70 italic">
+          Optional: Use the Advanced Grammar, Words Summary, and Particle Summary sections
+          to reinforce your understanding.
+        </p>
+      </div>
+    ),
+  },
+  {
+    number: "02",
+    title: "Conversation Lessons",
+    content: (
+      <div className="space-y-3 text-subtext text-base leading-relaxed">
+        <div className="flex items-start gap-3">
+          <span
+            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+            style={{ background: "#C9A84C", marginTop: "0.55rem" }}
+          />
+          <p>
+            You can book and reschedule your 1-on-1 conversation sessions freely
+            during your course period.
+          </p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span
+            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+            style={{ background: "#C9A84C", marginTop: "0.55rem" }}
+          />
+          <p>
+            Please make sure all sessions are completed within your 1-month plan period.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    number: "03",
+    title: "Questions & Support",
+    content: (
+      <div className="space-y-5">
+        <p className="text-subtext text-base leading-relaxed">
+          If you have any questions or need support, please reach out to us anytime
+          via Discord or Email. We are here to help you!
+        </p>
+        <Button href="https://discord.gg/7d376hwSgU" external variant="outline">
+          Ask on Discord
+        </Button>
+      </div>
+    ),
+  },
+];
+
 export default function DashboardPage() {
   const { user, isLoaded } = useUser();
   const firstName = isLoaded && user?.firstName ? user.firstName : null;
@@ -60,7 +146,7 @@ export default function DashboardPage() {
       {/* ─── 2. Join Our Community ───────────────────────────────── */}
       <section className="py-24 md:py-32 bg-cream">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 md:h-[420px]">
+          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
 
             {/* Text */}
             <div className="w-full md:w-1/2 flex flex-col justify-center">
@@ -90,8 +176,8 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Image */}
-            <div className="relative w-full md:w-1/2 min-h-[280px] rounded-xl overflow-hidden shadow-xl">
+            {/* Image — aspect-[4/3] on mobile, stretches to text height on desktop */}
+            <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/discord.jpg"
                 alt="Discord Community"
@@ -113,7 +199,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ─── 3. How to Proceed (white bg, richer cards) ──────────── */}
+      {/* ─── 3. How to Proceed — タイムライン ────────────────────── */}
       <section className="py-24 md:py-32" style={{ background: "#FFFFFF" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -127,146 +213,51 @@ export default function DashboardPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            {/* Card 1 */}
-            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              {/* Navy header bar */}
+          {/* Timeline */}
+          <div className="max-w-3xl mx-auto">
+            <div className="relative">
+              {/* Vertical gold line */}
               <div
-                className="px-8 pt-8 pb-6"
-                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
-              >
-                <p
-                  className="font-heading leading-none mb-2"
-                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
-                >
-                  01
-                </p>
-                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
-                  Recommended Study Flow &amp; Time Commitment
-                </h3>
-              </div>
+                className="absolute top-7 bottom-7"
+                style={{
+                  left: "1.75rem",
+                  width: 1,
+                  background: "linear-gradient(to bottom, #C9A84C 0%, rgba(201,168,76,0.3) 100%)",
+                }}
+                aria-hidden="true"
+              />
 
-              {/* Body */}
-              <div className="bg-white flex-1 flex flex-col px-8 py-7 space-y-4 text-sm text-subtext leading-relaxed">
-                <p>
-                  To get the best results, we recommend{" "}
-                  <strong className="text-ink">5–7 hours per week:</strong>
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-3">
-                    <span
-                      className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
-                      style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
-                    >
-                      ✓
-                    </span>
-                    <span>Live conversation sessions: 2 per week</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span
-                      className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
-                      style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
-                    >
-                      ✓
-                    </span>
-                    <span>Self-study (videos + textbooks): 3–5 hours per week</span>
-                  </li>
-                </ul>
-                <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
-                <div className="space-y-2">
-                  <p>
-                    <strong className="text-ink">Week 1:</strong> Lesson 1 — Hiragana &amp; Katakana
-                  </p>
-                  <p>
-                    <strong className="text-ink">Week 2+:</strong> 4 Standard Lessons per week
-                  </p>
-                </div>
-                <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
-                <p className="text-xs text-subtext/70 italic">
-                  Optional: Advanced Grammar, Words Summary, and Particle Summary sections available for extra reinforcement.
-                </p>
+              <div className="space-y-12">
+                {timelineItems.map((item) => (
+                  <div key={item.number} className="relative flex gap-8 md:gap-12">
+
+                    {/* Number node on the line */}
+                    <div className="flex-shrink-0 relative z-10">
+                      <div
+                        className="w-14 h-14 rounded-full flex items-center justify-center font-heading font-bold text-lg"
+                        style={{
+                          background: "#0B1522",
+                          border: "2px solid #C9A84C",
+                          color: "#C9A84C",
+                          boxShadow: "0 0 0 4px rgba(201,168,76,0.08)",
+                        }}
+                      >
+                        {item.number}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 pt-3 pb-2">
+                      <h3 className="font-heading font-bold text-2xl md:text-3xl text-ink leading-snug mb-4">
+                        {item.title}
+                      </h3>
+                      {item.content}
+                    </div>
+
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* Card 2 */}
-            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div
-                className="px-8 pt-8 pb-6"
-                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
-              >
-                <p
-                  className="font-heading leading-none mb-2"
-                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
-                >
-                  02
-                </p>
-                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
-                  Conversation Lessons
-                </h3>
-              </div>
-
-              <div className="bg-white flex-1 flex flex-col px-8 py-7 space-y-5 text-sm text-subtext leading-relaxed">
-                <div className="flex items-start gap-3">
-                  <span
-                    className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
-                    style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
-                  >
-                    ✓
-                  </span>
-                  <p>
-                    Book and reschedule your 1-on-1 conversation sessions freely
-                    throughout your course period.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span
-                    className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
-                    style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
-                  >
-                    ✓
-                  </span>
-                  <p>
-                    All sessions must be completed within your 1-month plan period.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div
-                className="px-8 pt-8 pb-6"
-                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
-              >
-                <p
-                  className="font-heading leading-none mb-2"
-                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
-                >
-                  03
-                </p>
-                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
-                  Questions &amp; Support
-                </h3>
-              </div>
-
-              <div className="bg-white flex-1 flex flex-col px-8 py-7 text-sm text-subtext leading-relaxed">
-                <p className="flex-1">
-                  If you have any questions or need support, please reach out to
-                  us anytime via Discord or Email. We are here to help you!
-                </p>
-                <div className="mt-8">
-                  <Button
-                    href="https://discord.gg/7d376hwSgU"
-                    external
-                    variant="outline"
-                  >
-                    Ask on Discord
-                  </Button>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -279,7 +270,7 @@ export default function DashboardPage() {
         }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 md:h-[420px]">
+          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
 
             {/* Text */}
             <div className="w-full md:w-1/2 flex flex-col justify-center">
@@ -313,13 +304,17 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Image — Join Our Community と同一スタイル */}
-            <div className="relative w-full md:w-1/2 min-h-[280px] rounded-xl overflow-hidden shadow-xl">
+            {/* Image — Join Our Community と同一コンテナ構造 */}
+            <div
+              className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden shadow-xl"
+              style={{ background: "#0B1522" }}
+            >
               <Image
                 src="/images/socratia-logo.png"
-                alt="Socratia Academy Textbook"
+                alt="Socratia Academy"
                 fill
-                className="object-cover object-center"
+                className="object-contain"
+                style={{ objectPosition: "center center", padding: "2.5rem" }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div
