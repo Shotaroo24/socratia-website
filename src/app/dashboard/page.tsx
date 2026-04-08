@@ -176,8 +176,8 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Image — aspect-[4/3] on mobile, stretches to text height on desktop */}
-            <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden shadow-xl">
+            {/* Image */}
+            <div className="relative w-full md:w-1/2 aspect-video rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/discord.jpg"
                 alt="Discord Community"
@@ -305,10 +305,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Image — Join Our Community と同一コンテナ構造 */}
-            <div
-              className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden shadow-xl"
-              style={{ background: "#0B1522" }}
-            >
+            <div className="relative w-full md:w-1/2 aspect-video rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/socratia-logo.png"
                 alt="Socratia Academy"
