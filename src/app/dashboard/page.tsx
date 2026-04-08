@@ -177,12 +177,13 @@ export default function DashboardPage() {
             </div>
 
             {/* Image */}
-            <div className="relative w-full md:w-1/2 aspect-video rounded-xl overflow-hidden shadow-xl">
+            <div className="relative w-full md:w-1/2 min-h-[260px] max-h-[380px] lg:max-h-[400px] rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/discord.jpg"
                 alt="Discord Community"
                 fill
-                className="object-cover object-top"
+                className="object-cover"
+                style={{ objectPosition: "center center" }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div
@@ -305,13 +306,13 @@ export default function DashboardPage() {
             </div>
 
             {/* Image — Join Our Community と同一コンテナ構造 */}
-            <div className="relative w-full md:w-1/2 aspect-video rounded-xl overflow-hidden shadow-xl">
+            <div className="relative w-full md:w-1/2 min-h-[260px] max-h-[380px] lg:max-h-[400px] rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/socratia-logo.png"
                 alt="Socratia Academy"
                 fill
-                className="object-contain"
-                style={{ objectPosition: "center center", padding: "2.5rem" }}
+                className="object-cover"
+                style={{ objectPosition: "center center" }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div
