@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -46,15 +47,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
+      >
+        <body className="min-h-full flex flex-col">
           <Nav />
           <main className="flex-1 pt-16">{children}</main>
           <Footer />
         </body>
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }

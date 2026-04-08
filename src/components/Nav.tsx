@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const navLinks = [
   { label: "Our Service", href: "#service" },
@@ -13,6 +14,7 @@ const navLinks = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isSignedIn } = useUser();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -53,9 +55,40 @@ export default function Nav() {
           <Button href="/apply">
             Apply Now
           </Button>
-          <span className="text-sm font-medium text-text-muted/40 cursor-not-allowed select-none">
-            Log in
-          </span>
+          {isSignedIn ? (
+            <div className="flex items-center gap-4">
+              <Link
+                href="/dashboard"
+                className="text-sm font-medium transition-colors duration-200"
+                style={{ color: "#8899AA" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}
+              >
+                Dashboard
+              </Link>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "border border-[#E8E2D6] shadow-xl",
+                    userButtonPopoverActionButton: "hover:bg-[#FAF7F2] text-[#0B1522]",
+                    userButtonPopoverActionButtonText: "text-[#0B1522]",
+                    userButtonPopoverFooter: "hidden",
+                  },
+                }}
+              />
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="text-sm font-medium transition-colors duration-200"
+              style={{ color: "#8899AA" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}
+            >
+              Log in
+            </Link>
+          )}
         </nav>
 
         {/* Mobile hamburger */}
@@ -94,6 +127,40 @@ export default function Nav() {
           >
             Apply Now
           </Link>
+          {isSignedIn ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="font-medium transition-colors py-1"
+                style={{ color: "#8899AA" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <div className="py-1">
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-8 h-8",
+                      userButtonPopoverCard: "border border-[#E8E2D6] shadow-xl",
+                      userButtonPopoverActionButton: "hover:bg-[#FAF7F2] text-[#0B1522]",
+                      userButtonPopoverActionButtonText: "text-[#0B1522]",
+                      userButtonPopoverFooter: "hidden",
+                    },
+                  }}
+                />
+              </div>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="font-medium transition-colors py-1"
+              style={{ color: "#8899AA" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </header>
