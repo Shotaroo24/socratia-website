@@ -82,9 +82,6 @@ const timelineItems = [
           If you have any questions or need support, please reach out to us anytime
           via Discord or Email. We are here to help you!
         </p>
-        <Button href="https://discord.gg/7d376hwSgU" external variant="outline">
-          Ask on Discord
-        </Button>
       </div>
     ),
   },
@@ -146,7 +143,7 @@ export default function DashboardPage() {
       {/* ─── 2. Join Our Community ───────────────────────────────── */}
       <section className="py-24 md:py-32 bg-cream">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+          <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
 
             {/* Text */}
             <div className="w-full md:w-1/2 flex flex-col justify-center">
@@ -271,7 +268,7 @@ export default function DashboardPage() {
         }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+          <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
 
             {/* Text */}
             <div className="w-full md:w-1/2 flex flex-col justify-center">
