@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { UserButton, useUser } from "@clerk/nextjs";
 
-const navLinks = [
+const publicNavLinks = [
   { label: "Our Service", href: "#service" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -15,6 +16,9 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { isSignedIn } = useUser();
+  const pathname = usePathname();
+  const isDashboard = pathname?.startsWith("/dashboard");
+  const navLinks = isDashboard ? [] : publicNavLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -52,9 +56,11 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Button href="/apply">
-            Apply Now
-          </Button>
+          {isDashboard ? (
+            <Button href="#">Start Learning</Button>
+          ) : (
+            <Button href="/apply">Apply Now</Button>
+          )}
           {isSignedIn ? (
             <div className="flex items-center gap-4">
               <Link
@@ -119,14 +125,25 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/apply"
-            className="text-text-light/80 hover:text-main font-medium transition-colors py-1"
-            style={{ color: '#C9A84C' }}
-            onClick={() => setMenuOpen(false)}
-          >
-            Apply Now
-          </Link>
+          {isDashboard ? (
+            <Link
+              href="#"
+              className="font-medium transition-colors py-1"
+              style={{ color: "#C9A84C" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Start Learning
+            </Link>
+          ) : (
+            <Link
+              href="/apply"
+              className="font-medium transition-colors py-1"
+              style={{ color: "#C9A84C" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Apply Now
+            </Link>
+          )}
           {isSignedIn ? (
             <>
               <Link

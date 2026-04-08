@@ -6,20 +6,18 @@ import Button from "@/components/ui/Button";
 
 export default function DashboardPage() {
   const { user, isLoaded } = useUser();
-
   const firstName = isLoaded && user?.firstName ? user.firstName : null;
 
   return (
     <div className="bg-cream min-h-screen">
+
       {/* ─── 1. Hero ─────────────────────────────────────────────── */}
       <section
         className="relative py-28 md:py-36 text-center overflow-hidden"
         style={{
-          background:
-            "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
+          background: "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
         }}
       >
-        {/* Subtle radial glow */}
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
@@ -28,14 +26,12 @@ export default function DashboardPage() {
               "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%)",
           }}
         />
-
         <div className="relative max-w-3xl mx-auto px-6">
           {isLoaded && firstName && (
             <p className="text-main text-sm font-semibold tracking-[0.2em] uppercase mb-5">
               Welcome back, {firstName}!
             </p>
           )}
-
           <h1
             className="font-heading font-bold leading-tight text-text-light mb-2"
             style={{ fontSize: "clamp(2.2rem, 6vw, 3.75rem)" }}
@@ -44,82 +40,82 @@ export default function DashboardPage() {
           </h1>
           <h1
             className="font-heading font-bold leading-tight mb-6"
-            style={{
-              fontSize: "clamp(2.2rem, 6vw, 3.75rem)",
-              color: "#C9A84C",
-            }}
+            style={{ fontSize: "clamp(2.2rem, 6vw, 3.75rem)", color: "#C9A84C" }}
           >
             to the Fullest!
           </h1>
-
-          {/* Gold divider */}
           <div
             className="mx-auto mb-7"
             style={{ width: 40, height: 1, background: "#C9A84C", opacity: 0.6 }}
             aria-hidden="true"
           />
-
           <p className="text-text-light/70 text-lg leading-relaxed max-w-xl mx-auto mb-10">
             Before starting, please read through the course details on this
-            page. We can&apos;t wait to start a wonderful Japanese journey with
-            you!
+            page. We can&apos;t wait to start a wonderful Japanese journey with you!
           </p>
-
           <Button href="#">Start Learning</Button>
         </div>
       </section>
 
-      {/* ─── 2. Join Our Community ───────────────────────────────── */}
-      <section className="py-24 md:py-32" style={{ background: "#FFFFFF" }}>
+      {/* ─── 2. Join Our Community (cream bg → Service-style card) ── */}
+      <section className="py-24 md:py-32 bg-cream">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            {/* Text */}
-            <div className="w-full md:w-1/2">
-              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                BEFORE YOU START
-              </span>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-ink leading-tight mb-5">
-                Join Our Community
-              </h2>
-              <div
-                className="mb-6"
-                style={{ width: 40, height: 2, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <p className="text-subtext text-base md:text-lg leading-relaxed mb-8">
-                Our course has set up a private Discord community where you can
-                freely ask questions anytime. So, before starting the course,
-                please join the Discord group via the link below. Rest assured,
-                your personal information will not be disclosed to other members
-                on Discord. If you don&apos;t have Discord, please download it
-                from your app store!
-              </p>
-              <Button
-                href="https://discord.gg/7d376hwSgU"
-                external
-              >
-                Join Now
-              </Button>
-            </div>
-
-            {/* Image */}
-            <div className="w-full md:w-1/2 relative rounded-xl overflow-hidden shadow-xl aspect-[4/3]">
+          <div
+            className="flex flex-col overflow-hidden rounded-xl shadow-sm bg-white md:flex-row lg:h-[400px]"
+          >
+            {/* Image side — Service.tsx スタイル */}
+            <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-none min-h-[260px]">
               <Image
                 src="/images/discord.jpg"
                 alt="Discord Community"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
+              <div
+                className="absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,21,34,0.80) 0%, rgba(11,21,34,0.25) 45%, transparent 100%)",
+                }}
+              />
+            </div>
+
+            {/* Text side */}
+            <div className="w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10">
+              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+                BEFORE YOU START
+              </span>
+              <h2 className="font-heading font-bold text-4xl md:text-[2.25rem] text-ink leading-tight mb-4">
+                Join Our Community
+              </h2>
+              <div
+                className="mb-5"
+                style={{ width: 40, height: 2, background: "#C9A84C" }}
+                aria-hidden="true"
+              />
+              <p className="text-subtext text-base leading-relaxed mb-7">
+                Our course has set up a private Discord community where you can
+                freely ask questions anytime. Please join before starting the
+                course. Your personal information will not be disclosed to other
+                members. If you don&apos;t have Discord, download it from your
+                app store!
+              </p>
+              <div>
+                <Button href="https://discord.gg/7d376hwSgU" external>
+                  Join Now
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── 3. How to Proceed ───────────────────────────────────── */}
-      <section className="py-24 md:py-32 bg-cream">
+      {/* ─── 3. How to Proceed (white bg, richer cards) ──────────── */}
+      <section className="py-24 md:py-32" style={{ background: "#FFFFFF" }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-16">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-ink leading-tight">
               How to Proceed with your Course
             </h2>
@@ -131,135 +127,205 @@ export default function DashboardPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
             {/* Card 1 */}
-            <div className="bg-white rounded-xl border border-border shadow-sm p-8 flex flex-col">
-              <p
-                className="font-heading text-3xl leading-none mb-3"
-                style={{ color: "#C9A84C" }}
-              >
-                01
-              </p>
+            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              {/* Navy header bar */}
               <div
-                className="mb-5"
-                style={{ width: 32, height: 1, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <h3 className="font-heading font-bold text-xl text-ink mb-4 leading-snug">
-                Recommended Study Flow &amp; Time Commitment
-              </h3>
-              <div className="text-subtext text-sm leading-relaxed space-y-3 flex-1">
+                className="px-8 pt-8 pb-6"
+                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
+              >
+                <p
+                  className="font-heading leading-none mb-2"
+                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
+                >
+                  01
+                </p>
+                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
+                  Recommended Study Flow &amp; Time Commitment
+                </h3>
+              </div>
+
+              {/* Body */}
+              <div className="bg-white flex-1 flex flex-col px-8 py-7 space-y-4 text-sm text-subtext leading-relaxed">
                 <p>
-                  To get the best results, we recommend studying{" "}
+                  To get the best results, we recommend{" "}
                   <strong className="text-ink">5–7 hours per week:</strong>
                 </p>
-                <ul className="list-none space-y-1 pl-0">
-                  <li className="flex items-start gap-2">
-                    <span style={{ color: "#C9A84C" }}>—</span>
-                    <span>Live conversation sessions: 2 sessions per week</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span style={{ color: "#C9A84C" }}>—</span>
-                    <span>
-                      Self-study (videos + textbooks): about 3–5 hours per week
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-3">
+                    <span
+                      className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
+                      style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
+                    >
+                      ✓
                     </span>
+                    <span>Live conversation sessions: 2 per week</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span
+                      className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
+                      style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
+                    >
+                      ✓
+                    </span>
+                    <span>Self-study (videos + textbooks): 3–5 hours per week</span>
                   </li>
                 </ul>
-                <div
-                  className="my-4"
-                  style={{ height: 1, background: "#E8E2D6" }}
-                  aria-hidden="true"
-                />
-                <p>
-                  <strong className="text-ink">Week 1:</strong> Lesson 1
-                  (Hiragana &amp; Katakana)
-                </p>
-                <p>
-                  <strong className="text-ink">Week 2 onwards:</strong> Complete
-                  4 Standard Lessons per week (Videos + Textbooks)
-                </p>
-                <div
-                  className="my-4"
-                  style={{ height: 1, background: "#E8E2D6" }}
-                  aria-hidden="true"
-                />
-                <p className="text-xs text-subtext/80 italic">
-                  Optional: Use the Advanced Grammar, Words Summary, and
-                  Particle Summary sections to reinforce your understanding.
+                <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
+                <div className="space-y-2">
+                  <p>
+                    <strong className="text-ink">Week 1:</strong> Lesson 1 — Hiragana &amp; Katakana
+                  </p>
+                  <p>
+                    <strong className="text-ink">Week 2+:</strong> 4 Standard Lessons per week
+                  </p>
+                </div>
+                <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
+                <p className="text-xs text-subtext/70 italic">
+                  Optional: Advanced Grammar, Words Summary, and Particle Summary sections available for extra reinforcement.
                 </p>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white rounded-xl border border-border shadow-sm p-8 flex flex-col">
-              <p
-                className="font-heading text-3xl leading-none mb-3"
-                style={{ color: "#C9A84C" }}
-              >
-                02
-              </p>
+            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <div
-                className="mb-5"
-                style={{ width: 32, height: 1, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <h3 className="font-heading font-bold text-xl text-ink mb-4 leading-snug">
-                Conversation Lessons
-              </h3>
-              <div className="text-subtext text-sm leading-relaxed space-y-4 flex-1">
-                <div className="flex items-start gap-2">
+                className="px-8 pt-8 pb-6"
+                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
+              >
+                <p
+                  className="font-heading leading-none mb-2"
+                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
+                >
+                  02
+                </p>
+                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
+                  Conversation Lessons
+                </h3>
+              </div>
+
+              <div className="bg-white flex-1 flex flex-col px-8 py-7 space-y-5 text-sm text-subtext leading-relaxed">
+                <div className="flex items-start gap-3">
                   <span
-                    className="mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ background: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+                    className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
+                    style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
                   >
                     ✓
                   </span>
                   <p>
-                    You can book and reschedule your 1-on-1 conversation
-                    sessions freely during your course period.
+                    Book and reschedule your 1-on-1 conversation sessions freely
+                    throughout your course period.
                   </p>
                 </div>
-                <div className="flex items-start gap-2">
+                <div className="flex items-start gap-3">
                   <span
-                    className="mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ background: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+                    className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold"
+                    style={{ background: "rgba(201,168,76,0.15)", color: "#C9A84C" }}
                   >
                     ✓
                   </span>
                   <p>
-                    Please make sure all sessions are completed within your
-                    1-month plan period.
+                    All sessions must be completed within your 1-month plan period.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white rounded-xl border border-border shadow-sm p-8 flex flex-col">
-              <p
-                className="font-heading text-3xl leading-none mb-3"
-                style={{ color: "#C9A84C" }}
+            <div className="group flex flex-col rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div
+                className="px-8 pt-8 pb-6"
+                style={{ background: "linear-gradient(135deg, #0B1522 0%, #162640 100%)" }}
               >
-                03
-              </p>
+                <p
+                  className="font-heading leading-none mb-2"
+                  style={{ fontSize: "3.5rem", color: "#C9A84C", opacity: 0.9 }}
+                >
+                  03
+                </p>
+                <h3 className="font-heading font-bold text-xl text-text-light leading-snug">
+                  Questions &amp; Support
+                </h3>
+              </div>
+
+              <div className="bg-white flex-1 flex flex-col px-8 py-7 text-sm text-subtext leading-relaxed">
+                <p className="flex-1">
+                  If you have any questions or need support, please reach out to
+                  us anytime via Discord or Email. We are here to help you!
+                </p>
+                <div className="mt-8">
+                  <Button
+                    href="https://discord.gg/7d376hwSgU"
+                    external
+                    variant="outline"
+                  >
+                    Ask on Discord
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. Here is the Textbook (navy bg → Service-style card) ─ */}
+      <section
+        className="py-24 md:py-32"
+        style={{
+          background: "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div
+            className="flex flex-col overflow-hidden rounded-xl shadow-xl md:flex-row-reverse lg:h-[400px]"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(201,168,76,0.2)" }}
+          >
+            {/* Image side — Service.tsx スタイル */}
+            <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-none min-h-[260px]">
+              <Image
+                src="/images/socratia-logo.png"
+                alt="Socratia Academy Textbook"
+                fill
+                className="object-contain object-center p-12"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div
+                className="absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,21,34,0.60) 0%, rgba(11,21,34,0.10) 50%, transparent 100%)",
+                }}
+              />
+            </div>
+
+            {/* Text side */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10">
+              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+                DOWNLOAD FROM HERE
+              </span>
+              <h2 className="font-heading font-bold text-4xl md:text-[2.25rem] text-text-light leading-tight mb-4">
+                Here is the Textbook
+              </h2>
               <div
                 className="mb-5"
-                style={{ width: 32, height: 1, background: "#C9A84C" }}
+                style={{ width: 40, height: 2, background: "#C9A84C" }}
                 aria-hidden="true"
               />
-              <h3 className="font-heading font-bold text-xl text-ink mb-4 leading-snug">
-                Questions &amp; Support
-              </h3>
-              <p className="text-subtext text-sm leading-relaxed flex-1">
-                If you have any questions or need support, please reach out to
-                us anytime via Discord or Email. We are here to help you!
+              <p className="text-text-light/70 text-base leading-relaxed mb-7">
+                The textbooks (slides) can be accessed via the link below.
+                Compiled on Google Slides — feel free to use it for study prep
+                and review. To add notes, go to &ldquo;File&rdquo; →
+                &ldquo;Make a copy&rdquo;. Questions? Ask anytime in Discord!
               </p>
-              <div className="mt-8">
+              <div>
                 <Button
-                  href="https://discord.gg/7d376hwSgU"
+                  href="https://drive.google.com/drive/folders/1aSVSYPUnArzUteZSITekUfC2KNiu_gvY?usp=drive_link"
                   external
-                  variant="outline"
                 >
-                  Ask on Discord
+                  Check Out
                 </Button>
               </div>
             </div>
@@ -267,68 +333,6 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ─── 4. Here is the Textbook ─────────────────────────────── */}
-      <section
-        className="py-24 md:py-32"
-        style={{
-          background:
-            "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16">
-            {/* Text */}
-            <div className="w-full md:w-1/2">
-              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                DOWNLOAD FROM HERE
-              </span>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-text-light leading-tight mb-5">
-                Here is the Textbook
-              </h2>
-              <div
-                className="mb-6"
-                style={{ width: 40, height: 2, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <p className="text-text-light/70 text-base md:text-lg leading-relaxed mb-8">
-                The textbooks (slides) can be accessed via the link below. It
-                has been compiled on Google Slides, so please feel free to use
-                it for your study preparation and review. If you want to make
-                notes or edits on the Slides, please make a copy of the slides
-                (go to &ldquo;File&rdquo; → &ldquo;Make a copy&rdquo;) and use
-                it freely. If you have any questions or need clarification, feel
-                free to ask anytime in the Discord community!
-              </p>
-              <Button
-                href="https://drive.google.com/drive/folders/1aSVSYPUnArzUteZSITekUfC2KNiu_gvY?usp=drive_link"
-                external
-              >
-                Check Out
-              </Button>
-            </div>
-
-            {/* Image */}
-            <div className="w-full md:w-1/2 relative rounded-xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <Image
-                src="/images/textbook.jpg"
-                alt="Course Textbook"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Subtle overlay */}
-              <div
-                className="absolute inset-0"
-                aria-hidden="true"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(11,21,34,0.4) 0%, transparent 60%)",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
