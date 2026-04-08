@@ -57,14 +57,41 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ─── 2. Join Our Community (cream bg → Service-style card) ── */}
+      {/* ─── 2. Join Our Community ───────────────────────────────── */}
       <section className="py-24 md:py-32 bg-cream">
         <div className="max-w-6xl mx-auto px-6">
-          <div
-            className="flex flex-col overflow-hidden rounded-xl shadow-sm bg-white md:flex-row lg:h-[400px]"
-          >
-            {/* Image side — Service.tsx スタイル */}
-            <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-none min-h-[260px]">
+          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 md:h-[420px]">
+
+            {/* Text */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center">
+              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+                BEFORE YOU START
+              </span>
+              <h2 className="font-heading font-bold text-4xl md:text-5xl text-ink leading-tight mb-4">
+                Join Our Community
+              </h2>
+              <div
+                className="mb-5"
+                style={{ width: 40, height: 2, background: "#C9A84C" }}
+                aria-hidden="true"
+              />
+              <p className="text-subtext text-base md:text-lg leading-relaxed mb-8">
+                Our course has set up a private Discord community where you can
+                freely ask questions anytime. So, before starting the course,
+                please join the Discord group via the link below. Rest assured,
+                your personal information will not be disclosed to other members
+                on Discord. If you don&apos;t have Discord, please download it
+                from your app store!
+              </p>
+              <div>
+                <Button href="https://discord.gg/7d376hwSgU" external>
+                  Join Now
+                </Button>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="relative w-full md:w-1/2 min-h-[280px] rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/images/discord.jpg"
                 alt="Discord Community"
@@ -82,32 +109,6 @@ export default function DashboardPage() {
               />
             </div>
 
-            {/* Text side */}
-            <div className="w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10">
-              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                BEFORE YOU START
-              </span>
-              <h2 className="font-heading font-bold text-4xl md:text-[2.25rem] text-ink leading-tight mb-4">
-                Join Our Community
-              </h2>
-              <div
-                className="mb-5"
-                style={{ width: 40, height: 2, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <p className="text-subtext text-base leading-relaxed mb-7">
-                Our course has set up a private Discord community where you can
-                freely ask questions anytime. Please join before starting the
-                course. Your personal information will not be disclosed to other
-                members. If you don&apos;t have Discord, download it from your
-                app store!
-              </p>
-              <div>
-                <Button href="https://discord.gg/7d376hwSgU" external>
-                  Join Now
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -270,7 +271,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ─── 4. Here is the Textbook (navy bg → Service-style card) ─ */}
+      {/* ─── 4. Here is the Textbook ─────────────────────────────── */}
       <section
         className="py-24 md:py-32"
         style={{
@@ -278,35 +279,14 @@ export default function DashboardPage() {
         }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div
-            className="flex flex-col overflow-hidden rounded-xl shadow-xl md:flex-row-reverse lg:h-[400px]"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(201,168,76,0.2)" }}
-          >
-            {/* Image side — Service.tsx スタイル */}
-            <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-none min-h-[260px]">
-              <Image
-                src="/images/socratia-logo.png"
-                alt="Socratia Academy Textbook"
-                fill
-                className="object-contain object-center p-12"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div
-                className="absolute inset-0"
-                aria-hidden="true"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(11,21,34,0.60) 0%, rgba(11,21,34,0.10) 50%, transparent 100%)",
-                }}
-              />
-            </div>
+          <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16 md:h-[420px]">
 
-            {/* Text side */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10">
+            {/* Text */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center">
               <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
                 DOWNLOAD FROM HERE
               </span>
-              <h2 className="font-heading font-bold text-4xl md:text-[2.25rem] text-text-light leading-tight mb-4">
+              <h2 className="font-heading font-bold text-4xl md:text-5xl text-text-light leading-tight mb-4">
                 Here is the Textbook
               </h2>
               <div
@@ -314,11 +294,14 @@ export default function DashboardPage() {
                 style={{ width: 40, height: 2, background: "#C9A84C" }}
                 aria-hidden="true"
               />
-              <p className="text-text-light/70 text-base leading-relaxed mb-7">
-                The textbooks (slides) can be accessed via the link below.
-                Compiled on Google Slides — feel free to use it for study prep
-                and review. To add notes, go to &ldquo;File&rdquo; →
-                &ldquo;Make a copy&rdquo;. Questions? Ask anytime in Discord!
+              <p className="text-text-light/70 text-base md:text-lg leading-relaxed mb-8">
+                The textbooks (slides) can be accessed via the link below. It
+                has been compiled on Google Slides, so please feel free to use
+                it for your study preparation and review. If you want to make
+                notes or edits on the Slides, please make a copy of the slides
+                (go to &ldquo;File&rdquo; → &ldquo;Make a copy&rdquo;) and use
+                it freely. If you have any questions or need clarification, feel
+                free to ask anytime in the Discord community!
               </p>
               <div>
                 <Button
@@ -329,6 +312,26 @@ export default function DashboardPage() {
                 </Button>
               </div>
             </div>
+
+            {/* Image — Join Our Community と同一スタイル */}
+            <div className="relative w-full md:w-1/2 min-h-[280px] rounded-xl overflow-hidden shadow-xl">
+              <Image
+                src="/images/socratia-logo.png"
+                alt="Socratia Academy Textbook"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div
+                className="absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,21,34,0.80) 0%, rgba(11,21,34,0.25) 45%, transparent 100%)",
+                }}
+              />
+            </div>
+
           </div>
         </div>
       </section>
