@@ -56,11 +56,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          {isDashboard ? (
-            <Button href="#">Start Learning</Button>
-          ) : (
-            <Button href="/apply">Apply Now</Button>
-          )}
+          {!isDashboard && <Button href="/apply">Apply Now</Button>}
           {isSignedIn ? (
             <div className="flex items-center gap-4">
               <Link
@@ -125,16 +121,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          {isDashboard ? (
-            <Link
-              href="#"
-              className="font-medium transition-colors py-1"
-              style={{ color: "#C9A84C" }}
-              onClick={() => setMenuOpen(false)}
-            >
-              Start Learning
-            </Link>
-          ) : (
+          {!isDashboard && (
             <Link
               href="/apply"
               className="font-medium transition-colors py-1"

@@ -1,89 +1,72 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
-import Button from "@/components/ui/Button";
 
-const timelineItems = [
+function PlayIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M8 5.14v14l11-7-11-7z" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm4 0v12h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H8zm2 3h4v1.5h-4V9zm0 3h4v1.5h-4V12z" />
+    </svg>
+  );
+}
+
+function ChatIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7l-4 4V5z" />
+    </svg>
+  );
+}
+
+function DocumentIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H14a1 1 0 0 1-1-1V3.5zM8 13h8v1.5H8V13zm0-3h8v1.5H8V10z" />
+    </svg>
+  );
+}
+
+const cards = [
   {
-    number: "01",
-    title: "Recommended Study Flow & Time Commitment",
-    content: (
-      <div className="space-y-4 text-subtext text-base leading-relaxed">
-        <p>
-          To get the best results, we recommend studying{" "}
-          <strong className="text-ink">5–7 hours per week:</strong>
-        </p>
-        <ul className="space-y-2 pl-0">
-          <li className="flex items-start gap-3">
-            <span
-              className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-              style={{ background: "#C9A84C", marginTop: "0.55rem" }}
-            />
-            <span>Live conversation sessions: 2 sessions per week</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span
-              className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-              style={{ background: "#C9A84C", marginTop: "0.55rem" }}
-            />
-            <span>Self-study (videos + textbooks): about 3–5 hours per week</span>
-          </li>
-        </ul>
-        <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
-        <p>
-          <strong className="text-ink">Week 1:</strong> Lesson 1 — Hiragana &amp; Katakana
-        </p>
-        <p>
-          <strong className="text-ink">Week 2 onwards:</strong> Complete 4 Standard Lessons
-          per week (Videos + Textbooks)
-        </p>
-        <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
-        <p className="text-sm text-subtext/70 italic">
-          Optional: Use the Advanced Grammar, Words Summary, and Particle Summary sections
-          to reinforce your understanding.
-        </p>
-      </div>
-    ),
+    icon: <PlayIcon />,
+    title: "Start learning",
+    description: "Access the video lessons and begin your Japanese learning journey.",
+    buttonLabel: "Watch video",
+    href: "#",
+    external: false,
   },
   {
-    number: "02",
-    title: "Conversation Lessons",
-    content: (
-      <div className="space-y-3 text-subtext text-base leading-relaxed">
-        <div className="flex items-start gap-3">
-          <span
-            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-            style={{ background: "#C9A84C", marginTop: "0.55rem" }}
-          />
-          <p>
-            You can book and reschedule your 1-on-1 conversation sessions freely
-            during your course period.
-          </p>
-        </div>
-        <div className="flex items-start gap-3">
-          <span
-            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-            style={{ background: "#C9A84C", marginTop: "0.55rem" }}
-          />
-          <p>
-            Please make sure all sessions are completed within your 1-month plan period.
-          </p>
-        </div>
-      </div>
-    ),
+    icon: <BookIcon />,
+    title: "Textbook",
+    description: "Download the course slides on Google Slides for study and review.",
+    buttonLabel: "Open textbook",
+    href: "https://drive.google.com/drive/folders/1aSVSYPUnArzUteZSITekUfC2KNiu_gvY?usp=drive_link",
+    external: true,
   },
   {
-    number: "03",
-    title: "Questions & Support",
-    content: (
-      <div className="space-y-5">
-        <p className="text-subtext text-base leading-relaxed">
-          If you have any questions or need support, please reach out to us anytime
-          via Discord or Email. We are here to help you!
-        </p>
-      </div>
-    ),
+    icon: <ChatIcon />,
+    title: "Discord community",
+    description: "Join our private Discord to ask questions and connect with classmates.",
+    buttonLabel: "Join Discord",
+    href: "https://discord.gg/7d376hwSgU",
+    external: true,
+  },
+  {
+    icon: <DocumentIcon />,
+    title: "Course guide",
+    description: "Step-by-step instructions on how to progress through the course effectively.",
+    buttonLabel: "Open course guide",
+    href: "/dashboard/guide",
+    external: false,
   },
 ];
 
@@ -93,239 +76,105 @@ export default function DashboardPage() {
 
   return (
     <div className="bg-cream min-h-screen">
+      <div className="max-w-5xl mx-auto px-6 py-4 md:py-6">
 
-      {/* ─── 1. Hero ─────────────────────────────────────────────── */}
-      <section
-        className="relative py-28 md:py-36 text-center overflow-hidden"
-        style={{
-          background: "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
-        }}
-      >
+        {/* ─── Welcome Banner ─────────────────────────────────────── */}
         <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto px-6">
-          {isLoaded && firstName && (
-            <p className="text-main text-sm font-semibold tracking-[0.2em] uppercase mb-5">
-              Welcome back, {firstName}!
-            </p>
-          )}
-          <h1
-            className="font-heading font-bold leading-tight text-text-light mb-2"
-            style={{ fontSize: "clamp(2.2rem, 6vw, 3.75rem)" }}
+          className="rounded-2xl px-8 py-6 mb-4"
+          style={{ background: "#0B1522" }}
+        >
+          <p
+            className="font-medium uppercase mb-2"
+            style={{
+              color: "#C9A84C",
+              fontSize: "12px",
+              letterSpacing: "0.18em",
+            }}
           >
-            Let&apos;s Enjoy Japanese
-          </h1>
-          <h1
-            className="font-heading font-bold leading-tight mb-6"
-            style={{ fontSize: "clamp(2.2rem, 6vw, 3.75rem)", color: "#C9A84C" }}
-          >
-            to the Fullest!
-          </h1>
-          <div
-            className="mx-auto mb-7"
-            style={{ width: 40, height: 1, background: "#C9A84C", opacity: 0.6 }}
-            aria-hidden="true"
-          />
-          <p className="text-text-light/70 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-            Before starting, please read through the course details on this
-            page. We can&apos;t wait to start a wonderful Japanese journey with you!
+            {isLoaded && firstName
+              ? `WELCOME BACK, ${firstName.toUpperCase()}!`
+              : "WELCOME BACK!"}
           </p>
-          <Button href="#">Start Learning</Button>
+          <h1
+            className="font-heading leading-snug text-2xl md:text-3xl"
+            style={{ color: "#F2EDE4" }}
+          >
+            Let&apos;s Enjoy Japanese <span style={{ color: "#C9A84C" }}>to the Fullest!</span>
+          </h1>
         </div>
-      </section>
 
-      {/* ─── 2. Join Our Community ───────────────────────────────── */}
-      <section className="py-24 md:py-32 bg-cream">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
-
-            {/* Text */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                BEFORE YOU START
-              </span>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-ink leading-tight mb-4">
-                Join Our Community
-              </h2>
-              <div
-                className="mb-5"
-                style={{ width: 40, height: 2, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <p className="text-subtext text-base md:text-lg leading-relaxed mb-8">
-                Our course has set up a private Discord community where you can
-                freely ask questions anytime. So, before starting the course,
-                please join the Discord group via the link below. Rest assured,
-                your personal information will not be disclosed to other members
-                on Discord. If you don&apos;t have Discord, please download it
-                from your app store!
-              </p>
-              <div>
-                <Button href="https://discord.gg/7d376hwSgU" external>
-                  Join Now
-                </Button>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
-              <Image
-                src="/images/discord.jpg"
-                alt="Discord Community"
-                fill
-                className="object-cover"
-                style={{ objectPosition: "center center" }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div
-                className="absolute inset-0"
-                aria-hidden="true"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(11,21,34,0.80) 0%, rgba(11,21,34,0.25) 45%, transparent 100%)",
-                }}
-              />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 3. How to Proceed — タイムライン ────────────────────── */}
-      <section className="py-24 md:py-32" style={{ background: "#FFFFFF" }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-ink leading-tight">
-              How to Proceed with your Course
-            </h2>
+        {/* ─── 4-Card Grid ────────────────────────────────────────── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          {cards.map((card) => (
             <div
-              className="mx-auto mt-5"
-              style={{ width: 40, height: 2, background: "#C9A84C" }}
-              aria-hidden="true"
-            />
-          </div>
-
-          {/* Timeline */}
-          <div className="max-w-3xl mx-auto">
-            <div className="relative">
-              {/* Vertical gold line */}
+              key={card.title}
+              className="rounded-xl flex flex-col gap-3 transition-all duration-200 ease-in-out hover:-translate-y-0.5"
+              style={{
+                background: "#FFFFFF",
+                border: "0.5px solid rgba(27,42,74,0.12)",
+                padding: "16px 20px",
+                boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 8px 24px rgba(11,21,34,0.13)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 2px 8px rgba(11,21,34,0.07)";
+              }}
+            >
+              {/* Icon box */}
               <div
-                className="absolute top-7 bottom-7"
+                className="flex items-center justify-center rounded-lg flex-shrink-0"
                 style={{
-                  left: "1.75rem",
-                  width: 1,
-                  background: "linear-gradient(to bottom, #C9A84C 0%, rgba(201,168,76,0.3) 100%)",
+                  width: 40,
+                  height: 40,
+                  background: "#0B1522",
+                  color: "#C9A84C",
                 }}
-                aria-hidden="true"
-              />
-
-              <div className="space-y-12">
-                {timelineItems.map((item) => (
-                  <div key={item.number} className="relative flex gap-8 md:gap-12">
-
-                    {/* Number node on the line */}
-                    <div className="flex-shrink-0 relative z-10">
-                      <div
-                        className="w-14 h-14 rounded-full flex items-center justify-center font-heading font-bold text-lg"
-                        style={{
-                          background: "#0B1522",
-                          border: "2px solid #C9A84C",
-                          color: "#C9A84C",
-                          boxShadow: "0 0 0 4px rgba(201,168,76,0.08)",
-                        }}
-                      >
-                        {item.number}
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 pt-3 pb-2">
-                      <h3 className="font-heading font-bold text-2xl md:text-3xl text-ink leading-snug mb-4">
-                        {item.title}
-                      </h3>
-                      {item.content}
-                    </div>
-
-                  </div>
-                ))}
+              >
+                {card.icon}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ─── 4. Here is the Textbook ─────────────────────────────── */}
-      <section
-        className="py-24 md:py-32"
-        style={{
-          background: "linear-gradient(175deg, #0B1522 0%, #162640 60%, #1E3355 100%)",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
-
-            {/* Text */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                DOWNLOAD FROM HERE
-              </span>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-text-light leading-tight mb-4">
-                Here is the Textbook
-              </h2>
-              <div
-                className="mb-5"
-                style={{ width: 40, height: 2, background: "#C9A84C" }}
-                aria-hidden="true"
-              />
-              <p className="text-text-light/70 text-base md:text-lg leading-relaxed mb-8">
-                The textbooks (slides) can be accessed via the link below. It
-                has been compiled on Google Slides, so please feel free to use
-                it for your study preparation and review. If you want to make
-                notes or edits on the Slides, please make a copy of the slides
-                (go to &ldquo;File&rdquo; → &ldquo;Make a copy&rdquo;) and use
-                it freely. If you have any questions or need clarification, feel
-                free to ask anytime in the Discord community!
-              </p>
-              <div>
-                <Button
-                  href="https://drive.google.com/drive/folders/1aSVSYPUnArzUteZSITekUfC2KNiu_gvY?usp=drive_link"
-                  external
+              {/* Text */}
+              <div className="flex-1">
+                <h2
+                  className="font-heading font-semibold text-lg md:text-xl mb-1"
+                  style={{ color: "#0B1522" }}
                 >
-                  Check Out
-                </Button>
+                  {card.title}
+                </h2>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: "#5A6A7A" }}>
+                  {card.description}
+                </p>
               </div>
-            </div>
 
-            {/* Image — Join Our Community と同一コンテナ構造 */}
-            <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
-              <Image
-                src="/images/socratia-logo.png"
-                alt="Socratia Academy"
-                fill
-                className="object-cover"
-                style={{ objectPosition: "center center" }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div
-                className="absolute inset-0"
-                aria-hidden="true"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(11,21,34,0.80) 0%, rgba(11,21,34,0.25) 45%, transparent 100%)",
-                }}
-              />
+              {/* Button */}
+              {card.external ? (
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                  style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
+                >
+                  {card.buttonLabel}
+                </a>
+              ) : (
+                <Link
+                  href={card.href}
+                  className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                  style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
+                >
+                  {card.buttonLabel}
+                </Link>
+              )}
             </div>
-
-          </div>
+          ))}
         </div>
-      </section>
 
+      </div>
     </div>
   );
 }
