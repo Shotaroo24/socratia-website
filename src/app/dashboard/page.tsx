@@ -104,8 +104,25 @@ export default function DashboardPage() {
           </h1>
         </div>
 
-        {/* ─── Content: paid vs not paid ──────────────────────────── */}
-        {isLoaded && !paid ? (
+        {/* ─── Content: loading / paid / not paid ─────────────────── */}
+        {!isLoaded ? (
+          /* Loading skeleton */
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="rounded-xl animate-pulse"
+                style={{
+                  background: "#FFFFFF",
+                  border: "0.5px solid rgba(27,42,74,0.12)",
+                  padding: "16px 20px",
+                  height: 160,
+                  boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
+                }}
+              />
+            ))}
+          </div>
+        ) : !paid ? (
           /* Not activated */
           <div
             className="rounded-xl"
@@ -132,9 +149,9 @@ export default function DashboardPage() {
               className="text-sm md:text-base leading-relaxed"
               style={{ color: "#5A6A7A", maxWidth: "56ch" }}
             >
-              Your course has not been activated yet. If you have already completed
-              your payment, please allow a few moments for activation. If you need
-              assistance, feel free to reach out via WhatsApp.
+              Your course access will be activated after purchase. If you have
+              already completed your payment, please allow a few moments for
+              activation. For assistance, please contact Shotaro directly.
             </p>
           </div>
         ) : (
