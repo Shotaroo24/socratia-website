@@ -73,6 +73,7 @@ const cards = [
 export default function DashboardPage() {
   const { user, isLoaded } = useUser();
   const firstName = isLoaded && user?.firstName ? user.firstName : null;
+  const paid = isLoaded && user?.publicMetadata?.paid === true;
 
   return (
     <div className="bg-cream min-h-screen">
@@ -103,76 +104,111 @@ export default function DashboardPage() {
           </h1>
         </div>
 
-        {/* ─── 4-Card Grid ────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {cards.map((card) => (
+        {/* ─── Content: paid vs not paid ──────────────────────────── */}
+        {isLoaded && !paid ? (
+          /* Not activated */
+          <div
+            className="rounded-xl"
+            style={{
+              background: "#FFFFFF",
+              border: "0.5px solid rgba(27,42,74,0.12)",
+              padding: "32px 28px",
+              boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
+            }}
+          >
+            {/* Gold accent bar */}
             <div
-              key={card.title}
-              className="rounded-xl flex flex-col gap-3 transition-all duration-200 ease-in-out hover:-translate-y-0.5"
-              style={{
-                background: "#FFFFFF",
-                border: "0.5px solid rgba(27,42,74,0.12)",
-                padding: "16px 20px",
-                boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 8px 24px rgba(11,21,34,0.13)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 2px 8px rgba(11,21,34,0.07)";
-              }}
+              className="mb-5"
+              style={{ width: 40, height: 3, background: "#C9A84C", borderRadius: 2 }}
+              aria-hidden="true"
+            />
+            <h2
+              className="font-heading font-semibold text-xl md:text-2xl mb-3"
+              style={{ color: "#0B1522" }}
             >
-              {/* Icon box */}
+              Course Not Yet Activated
+            </h2>
+            <p
+              className="text-sm md:text-base leading-relaxed"
+              style={{ color: "#5A6A7A", maxWidth: "56ch" }}
+            >
+              Your course has not been activated yet. If you have already completed
+              your payment, please allow a few moments for activation. If you need
+              assistance, feel free to reach out via WhatsApp.
+            </p>
+          </div>
+        ) : (
+          /* 4-Card Grid */
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+            {cards.map((card) => (
               <div
-                className="flex items-center justify-center rounded-lg flex-shrink-0"
+                key={card.title}
+                className="rounded-xl flex flex-col gap-3 transition-all duration-200 ease-in-out hover:-translate-y-0.5"
                 style={{
-                  width: 40,
-                  height: 40,
-                  background: "#0B1522",
-                  color: "#C9A84C",
+                  background: "#FFFFFF",
+                  border: "0.5px solid rgba(27,42,74,0.12)",
+                  padding: "16px 20px",
+                  boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 8px 24px rgba(11,21,34,0.13)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 2px 8px rgba(11,21,34,0.07)";
                 }}
               >
-                {card.icon}
-              </div>
+                {/* Icon box */}
+                <div
+                  className="flex items-center justify-center rounded-lg flex-shrink-0"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    background: "#0B1522",
+                    color: "#C9A84C",
+                  }}
+                >
+                  {card.icon}
+                </div>
 
-              {/* Text */}
-              <div className="flex-1">
-                <h2
-                  className="font-heading font-semibold text-lg md:text-xl mb-1"
-                  style={{ color: "#0B1522" }}
-                >
-                  {card.title}
-                </h2>
-                <p className="text-sm md:text-base leading-relaxed" style={{ color: "#5A6A7A" }}>
-                  {card.description}
-                </p>
-              </div>
+                {/* Text */}
+                <div className="flex-1">
+                  <h2
+                    className="font-heading font-semibold text-lg md:text-xl mb-1"
+                    style={{ color: "#0B1522" }}
+                  >
+                    {card.title}
+                  </h2>
+                  <p className="text-sm md:text-base leading-relaxed" style={{ color: "#5A6A7A" }}>
+                    {card.description}
+                  </p>
+                </div>
 
-              {/* Button */}
-              {card.external ? (
-                <a
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
-                  style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
-                >
-                  {card.buttonLabel}
-                </a>
-              ) : (
-                <Link
-                  href={card.href}
-                  className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
-                  style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
-                >
-                  {card.buttonLabel}
-                </Link>
-              )}
-            </div>
-          ))}
-        </div>
+                {/* Button */}
+                {card.external ? (
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                    style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
+                  >
+                    {card.buttonLabel}
+                  </a>
+                ) : (
+                  <Link
+                    href={card.href}
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                    style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
+                  >
+                    {card.buttonLabel}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
 
       </div>
     </div>
