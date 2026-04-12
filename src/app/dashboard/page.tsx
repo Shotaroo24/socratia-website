@@ -41,7 +41,7 @@ const cards = [
     title: "Start learning",
     description: "Access the video lessons and begin your Japanese learning journey.",
     buttonLabel: "Watch video",
-    href: "#",
+    href: "/dashboard/lessons",
     external: false,
   },
   {
