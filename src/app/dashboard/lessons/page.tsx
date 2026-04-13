@@ -1,24 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { sections, BUNNY_LIBRARY_ID, type Lesson } from "@/data/lessons";
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function getNextLesson(current: Lesson): Lesson | null {
-  let found = false;
-  for (const section of sections) {
-    for (const lesson of section.lessons) {
-      if (found) return lesson;
-      if (lesson.id === current.id) found = true;
-    }
-  }
-  return null;
-}
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -106,163 +92,6 @@ const BunnyIframe = memo(function BunnyIframe(
   }, []);
   return <iframe ref={ref} {...props} allowFullScreen />;
 });
-
-// ─── Next Lesson Overlay (Udemy-style) ───────────────────────────────────────
-
-const RING_RADIUS = 30;
-const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
-
-function NextLessonOverlay({
-  nextLesson,
-  countdown,
-  onPlayNow,
-  onCancel,
-}: {
-  nextLesson: Lesson | null;
-  countdown: number;
-  onPlayNow: () => void;
-  onCancel: () => void;
-}) {
-  // progress: 0 at overlay open → increases 1/s as countdown decrements
-  const progress = 5 - countdown;
-  const strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress / 5);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        background: "rgba(0, 0, 0, 0.85)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 20,
-        borderRadius: "inherit",
-        gap: 14,
-      }}
-    >
-      {nextLesson === null ? (
-        /* ── Course Complete ── */
-        <div style={{ textAlign: "center", padding: "0 24px" }}>
-          <div
-            style={{
-              fontSize: 30,
-              fontWeight: 700,
-              color: "#C9A84C",
-              marginBottom: 10,
-              fontFamily: "var(--font-cormorant)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            Course Complete!
-          </div>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.8)",
-              fontSize: 14,
-              margin: "0 0 20px",
-            }}
-          >
-            You have finished all lessons. Well done!
-          </p>
-          <button
-            onClick={onCancel}
-            style={{
-              background: "transparent",
-              color: "rgba(255,255,255,0.7)",
-              border: "none",
-              fontSize: 13,
-              cursor: "pointer",
-              padding: "4px 0",
-            }}
-          >
-            Close
-          </button>
-        </div>
-      ) : (
-        /* ── Up Next ── */
-        <>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.7)",
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              margin: 0,
-            }}
-          >
-            UP NEXT
-          </p>
-          <p
-            style={{
-              color: "#FFFFFF",
-              fontSize: 15,
-              fontWeight: 600,
-              margin: 0,
-              textAlign: "center",
-              maxWidth: 280,
-              lineHeight: 1.4,
-              padding: "0 16px",
-            }}
-          >
-            {nextLesson.title}
-          </p>
-
-          {/* Circular progress ring — click to play now */}
-          <svg
-            width="80"
-            height="80"
-            style={{ cursor: "pointer", flexShrink: 0 }}
-            onClick={onPlayNow}
-            aria-label="Play next lesson"
-            role="button"
-          >
-            {/* Background ring */}
-            <circle
-              cx="40"
-              cy="40"
-              r={RING_RADIUS}
-              fill="rgba(255,255,255,0.08)"
-              stroke="rgba(255,255,255,0.2)"
-              strokeWidth="3"
-            />
-            {/* Gold progress ring */}
-            <circle
-              cx="40"
-              cy="40"
-              r={RING_RADIUS}
-              fill="none"
-              stroke="#C9A84C"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray={RING_CIRCUMFERENCE}
-              strokeDashoffset={strokeDashoffset}
-              transform="rotate(-90 40 40)"
-              style={{ transition: "stroke-dashoffset 1s linear" }}
-            />
-            {/* Play triangle */}
-            <polygon points="35,28 35,52 55,40" fill="white" />
-          </svg>
-
-          <button
-            onClick={onCancel}
-            style={{
-              background: "transparent",
-              color: "rgba(255,255,255,0.7)",
-              border: "none",
-              fontSize: 13,
-              cursor: "pointer",
-              padding: "4px 8px",
-            }}
-          >
-            Cancel
-          </button>
-        </>
-      )}
-    </div>
-  );
-}
 
 // ─── Mobile Lesson List ───────────────────────────────────────────────────────
 
@@ -416,7 +245,7 @@ function Sidebar({
         borderRight: "0.5px solid #E8E2D6",
       }}
     >
-      {/* ─── Sticky header ─────────────────────────────────────── */}
+      {/* Sticky header */}
       <div
         className="flex-shrink-0 flex items-center justify-between px-4 py-3"
         style={{ borderBottom: "0.5px solid #E8E2D6" }}
@@ -441,7 +270,7 @@ function Sidebar({
         </button>
       </div>
 
-      {/* ─── Scrollable section list ────────────────────────────── */}
+      {/* Scrollable section list */}
       <nav className="flex-1 overflow-y-auto py-2">
         {sections.map((section) => {
           const isOpen = openSection === section.id;
@@ -522,8 +351,6 @@ function Sidebar({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-const DESKTOP_BREAKPOINT = 768;
-
 export default function LessonsPage() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
@@ -531,143 +358,44 @@ export default function LessonsPage() {
 
   const defaultLesson = sections[0].lessons[0];
   const [activeLesson, setActiveLesson] = useState<Lesson>(defaultLesson);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  // ── Overlay state ──────────────────────────────────────────
-  const [overlayVisible, setOverlayVisible] = useState(false);
-  const [overlayNextLesson, setOverlayNextLesson] = useState<Lesson | null>(null);
-  const [countdown, setCountdown] = useState(5);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const clearTimer = useCallback(() => {
-    if (timerRef.current !== null) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
-
-  // ── Resize handler ─────────────────────────────────────────
-  useEffect(() => {
-    const check = () => {
-      // Skip layout updates while in fullscreen — prevents iframe remount
-      // on orientation change (which would exit the fullscreen video)
-      if (document.fullscreenElement) return;
-      const desktop = window.innerWidth >= DESKTOP_BREAKPOINT;
-      setIsDesktop(desktop);
-      if (desktop) setSidebarOpen(true);
-    };
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  // ── Bunny Player.js API — ended event detection ────────────
-  useEffect(() => {
-    let cancelled = false;
-
-    const timer = setTimeout(() => {
-      if (cancelled) return;
-      const iframe = document.getElementById(
-        "bunny-stream-embed"
-      ) as HTMLIFrameElement | null;
-      if (!iframe || !(window as { playerjs?: { Player: new (el: HTMLIFrameElement) => { on: (event: string, cb: () => void) => void } } }).playerjs) return;
-
-      try {
-        const player = new (window as any).playerjs.Player(iframe);
-        player.on("ended", () => {
-          if (cancelled) return;
-          const next = getNextLesson(activeLesson);
-          setOverlayNextLesson(next);
-          setCountdown(5);
-          setOverlayVisible(true);
-        });
-      } catch (e) {
-        console.warn("Bunny Player.js init failed:", e);
-      }
-    }, 500);
-
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
-  }, [activeLesson]);
-
-  // ── Countdown timer ────────────────────────────────────────
-  useEffect(() => {
-    if (!overlayVisible || overlayNextLesson === null) return;
-    clearTimer();
-
-    let remaining = 5;
-    setCountdown(5);
-
-    timerRef.current = setInterval(() => {
-      remaining -= 1;
-      if (remaining <= 0) {
-        clearTimer();
-        setActiveLesson(overlayNextLesson);
-        setOverlayVisible(false);
-      } else {
-        setCountdown(remaining);
-      }
-    }, 1000);
-
-    return clearTimer;
-  }, [overlayVisible, overlayNextLesson, clearTimer]);
-
-  // ── Clear overlay on manual lesson change ──────────────────
-  useEffect(() => {
-    setOverlayVisible(false);
-    clearTimer();
-    setCountdown(5);
-  }, [activeLesson.id, clearTimer]);
-
-  // ── Handlers ───────────────────────────────────────────────
-  const handlePlayNow = useCallback(() => {
-    if (overlayNextLesson) {
-      clearTimer();
-      setOverlayVisible(false);
-      setActiveLesson(overlayNextLesson);
-    }
-  }, [overlayNextLesson, clearTimer]);
-
-  const handleCancelOverlay = useCallback(() => {
-    clearTimer();
-    setOverlayVisible(false);
-  }, [clearTimer]);
-
-  const handleSelectLesson = useCallback((lesson: Lesson) => {
-    setActiveLesson(lesson);
-  }, []);
-
-  const handleMobileSelectLesson = useCallback((lesson: Lesson) => {
-    setActiveLesson(lesson);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  // Open by default — on mobile the sidebar is hidden via CSS (md:block), so this
+  // only affects the desktop layout. No resize listener needed.
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   if (isLoaded && !paid) {
     router.replace("/dashboard");
     return null;
   }
 
-  // ── Mobile layout (< 768px) ────────────────────────────────
-  if (!isDesktop) {
-    return (
-      <div style={{ minHeight: "100vh", background: "#FAF7F2" }}>
-        <Script
-          src="//assets.mediadelivery.net/playerjs/player-0.1.0.min.js"
-          strategy="afterInteractive"
-        />
+  return (
+    // CSS-only responsive layout: no JS breakpoint detection, no resize listeners.
+    // This prevents orientation-change events from triggering state updates that
+    // would remount the iframe and exit the native fullscreen player on iOS.
+    <div className="flex md:h-screen" style={{ background: "#FAF7F2" }}>
 
-        {/* Top bar */}
+      {/* ── Sidebar (desktop only, toggleable) ─────────────────── */}
+      {/* hidden on mobile via CSS; sidebarOpen controls desktop visibility */}
+      <div className={sidebarOpen ? "hidden md:block flex-shrink-0" : "hidden"}>
+        <Sidebar
+          activeLesson={activeLesson}
+          onSelect={setActiveLesson}
+          onClose={() => setSidebarOpen(false)}
+        />
+      </div>
+
+      {/* ── Main area ───────────────────────────────────────────── */}
+      <div className="flex-1 flex flex-col min-w-0 md:overflow-hidden">
+
+        {/* Mobile: sticky Back to Dashboard bar */}
         <div
+          className="md:hidden"
           style={{
-            padding: "10px 16px",
-            background: "#FFFFFF",
-            borderBottom: "0.5px solid #E8E2D6",
             position: "sticky",
             top: 0,
             zIndex: 10,
+            padding: "10px 16px",
+            background: "#FFFFFF",
+            borderBottom: "0.5px solid #E8E2D6",
           }}
         >
           <Link
@@ -688,37 +416,53 @@ export default function LessonsPage() {
           </Link>
         </div>
 
-        {/* Video player */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            aspectRatio: "16 / 9",
-            background: "#0B1522",
-            overflow: "hidden",
-          }}
-        >
-          <BunnyIframe
-            key={activeLesson.id}
-            id="bunny-stream-embed"
-            src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-            loading="lazy"
-            title={activeLesson.title}
-            style={{ border: "0", width: "100%", height: "100%", display: "block" }}
-          />
-          {overlayVisible && (
-            <NextLessonOverlay
-              nextLesson={overlayNextLesson}
-              countdown={countdown}
-              onPlayNow={handlePlayNow}
-              onCancel={handleCancelOverlay}
-            />
+        {/* Desktop: hamburger button when sidebar is closed.
+            Wrapped in always-present md:block div to keep the video area
+            at a stable position in the children array (avoids reconciliation
+            issues that could remount the iframe). */}
+        <div className="hidden md:block flex-shrink-0">
+          {!sidebarOpen && (
+            <div style={{ padding: "20px 24px 0" }}>
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
+                style={{ color: "#5A6A7A", padding: "2px" }}
+                aria-label="Open sidebar"
+              >
+                <MenuIcon />
+              </button>
+            </div>
           )}
         </div>
 
-        {/* Current lesson info */}
+        {/* ── Video player ──────────────────────────────────────── */}
+        {/* Desktop: flex-1 with padding; Mobile: full-width, no padding */}
+        <div className="md:flex-1 md:flex md:items-start md:overflow-hidden md:px-6 md:py-5">
+          <div
+            className="w-full md:rounded-xl md:overflow-hidden"
+            style={{
+              position: "relative",
+              aspectRatio: "16 / 9",
+              background: "#0B1522",
+              boxShadow: "0 4px 24px rgba(11,21,34,0.2)",
+            }}
+          >
+            {/* Single iframe instance — never conditionally rendered.
+                key changes only when the lesson changes (not on resize/orientation). */}
+            <BunnyIframe
+              key={activeLesson.id}
+              src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              loading="lazy"
+              title={activeLesson.title}
+              style={{ border: "0", width: "100%", height: "100%", display: "block" }}
+            />
+          </div>
+        </div>
+
+        {/* Mobile only: current lesson info */}
         <div
+          className="md:hidden"
           style={{
             padding: "12px 16px",
             background: "#FFFFFF",
@@ -741,86 +485,15 @@ export default function LessonsPage() {
           </p>
         </div>
 
-        {/* Lesson list */}
-        <MobileLessonList
-          activeLesson={activeLesson}
-          onSelect={handleMobileSelectLesson}
-        />
-      </div>
-    );
-  }
-
-  // ── Desktop layout (>= 768px) ──────────────────────────────
-  return (
-    <div
-      className="flex overflow-hidden"
-      style={{ height: "100vh", background: "#FAF7F2" }}
-    >
-      <Script
-        src="//assets.mediadelivery.net/playerjs/player-0.1.0.min.js"
-        strategy="afterInteractive"
-      />
-      {/* Inline sidebar */}
-      {sidebarOpen && (
-        <Sidebar
-          activeLesson={activeLesson}
-          onSelect={handleSelectLesson}
-          onClose={() => setSidebarOpen(false)}
-        />
-      )}
-
-      {/* Main area */}
-      <div
-        className="flex-1 overflow-hidden"
-        style={{ minWidth: 0, position: "relative", height: "100%" }}
-      >
-        <div className="flex flex-col" style={{ height: "100%" }}>
-          {!sidebarOpen && (
-            <div className="flex-shrink-0" style={{ padding: "20px 24px 0" }}>
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
-                style={{ color: "#5A6A7A", padding: "2px" }}
-                aria-label="Open sidebar"
-              >
-                <MenuIcon />
-              </button>
-            </div>
-          )}
-          <div
-            className="flex-1 flex items-start overflow-hidden"
-            style={{ padding: "20px 24px" }}
-          >
-            <div
-              className="w-full overflow-hidden"
-              style={{
-                position: "relative",
-                aspectRatio: "16 / 9",
-                borderRadius: 12,
-                background: "#0B1522",
-                boxShadow: "0 4px 24px rgba(11,21,34,0.2)",
-                overflow: "hidden",
-              }}
-            >
-              <BunnyIframe
-                key={activeLesson.id}
-                id="bunny-stream-embed"
-                src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                loading="lazy"
-                title={activeLesson.title}
-                style={{ border: "0", width: "100%", aspectRatio: "16/9" }}
-              />
-              {overlayVisible && (
-                <NextLessonOverlay
-                  nextLesson={overlayNextLesson}
-                  countdown={countdown}
-                  onPlayNow={handlePlayNow}
-                  onCancel={handleCancelOverlay}
-                />
-              )}
-            </div>
-          </div>
+        {/* Mobile only: lesson list */}
+        <div className="md:hidden">
+          <MobileLessonList
+            activeLesson={activeLesson}
+            onSelect={(lesson) => {
+              setActiveLesson(lesson);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
         </div>
       </div>
     </div>
