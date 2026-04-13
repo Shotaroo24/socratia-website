@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { sections, type Lesson } from "@/data/lessons";
+import { sections, BUNNY_LIBRARY_ID, type Lesson } from "@/data/lessons";
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 
@@ -335,14 +335,12 @@ export default function LessonsPage() {
               >
                 <iframe
                   key={activeLesson.id}
-                  src={`https://player.vimeo.com/video/${activeLesson.vimeoId}?badge=0&autopause=0&player_id=0`}
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
+                  src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen={true}
+                  loading="lazy"
                   title={activeLesson.title}
-                  style={{ display: "block" }}
+                  style={{ border: "0", width: "100%", aspectRatio: "16/9" }}
                 />
               </div>
             </div>
@@ -380,14 +378,12 @@ export default function LessonsPage() {
             >
               <iframe
                 key={activeLesson.id}
-                src={`https://player.vimeo.com/video/${activeLesson.vimeoId}?badge=0&autopause=0&player_id=0`}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
+                src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen={true}
+                loading="lazy"
                 title={activeLesson.title}
-                style={{ display: "block" }}
+                style={{ border: "0", width: "100%", aspectRatio: "16/9" }}
               />
             </div>
           </div>
