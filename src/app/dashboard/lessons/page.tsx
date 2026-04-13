@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { sections, BUNNY_LIBRARY_ID, type Lesson } from "@/data/lessons";
@@ -90,6 +91,18 @@ function ArrowLeftIcon() {
       <path d="M19 12H5M12 5l-7 7 7 7" />
     </svg>
   );
+}
+
+// ─── Bunny Iframe (fullscreen + vendor-prefixed attrs) ────────────────────────
+
+function BunnyIframe(props: React.IframeHTMLAttributes<HTMLIFrameElement>) {
+  const ref = useRef<HTMLIFrameElement>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.setAttribute("webkitallowfullscreen", "true");
+    ref.current.setAttribute("mozallowfullscreen", "true");
+  }, []);
+  return <iframe ref={ref} {...props} allowFullScreen />;
 }
 
 // ─── Next Lesson Overlay ──────────────────────────────────────────────────────
@@ -531,19 +544,35 @@ export default function LessonsPage() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // ── Bunny postMessage listener ─────────────────────────────
+  // ── Bunny Player.js API — ended event detection ────────────
   useEffect(() => {
-    const handler = (e: MessageEvent) => {
-      if (e.origin !== "https://iframe.mediadelivery.net") return;
-      if (e.data?.event === "ended") {
-        const next = getNextLesson(activeLesson);
-        setOverlayNextLesson(next);
-        setCountdown(5);
-        setOverlayVisible(true);
+    let cancelled = false;
+
+    const timer = setTimeout(() => {
+      if (cancelled) return;
+      const iframe = document.getElementById(
+        "bunny-stream-embed"
+      ) as HTMLIFrameElement | null;
+      if (!iframe || !(window as { playerjs?: { Player: new (el: HTMLIFrameElement) => { on: (event: string, cb: () => void) => void } } }).playerjs) return;
+
+      try {
+        const player = new (window as any).playerjs.Player(iframe);
+        player.on("ended", () => {
+          if (cancelled) return;
+          const next = getNextLesson(activeLesson);
+          setOverlayNextLesson(next);
+          setCountdown(5);
+          setOverlayVisible(true);
+        });
+      } catch (e) {
+        console.warn("Bunny Player.js init failed:", e);
       }
+    }, 500);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
     };
-    window.addEventListener("message", handler);
-    return () => window.removeEventListener("message", handler);
   }, [activeLesson]);
 
   // ── Countdown timer ────────────────────────────────────────
@@ -607,6 +636,11 @@ export default function LessonsPage() {
   if (!isDesktop) {
     return (
       <div style={{ minHeight: "100vh", background: "#FAF7F2" }}>
+        <Script
+          src="//assets.mediadelivery.net/playerjs/player-0.1.0.min.js"
+          strategy="afterInteractive"
+        />
+
         {/* Top bar */}
         <div
           style={{
@@ -643,13 +677,14 @@ export default function LessonsPage() {
             width: "100%",
             aspectRatio: "16 / 9",
             background: "#0B1522",
+            overflow: "hidden",
           }}
         >
-          <iframe
+          <BunnyIframe
             key={activeLesson.id}
+            id="bunny-stream-embed"
             src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen={true}
             loading="lazy"
             title={activeLesson.title}
             style={{ border: "0", width: "100%", height: "100%", display: "block" }}
@@ -703,6 +738,10 @@ export default function LessonsPage() {
       className="flex overflow-hidden"
       style={{ height: "100vh", background: "#FAF7F2" }}
     >
+      <Script
+        src="//assets.mediadelivery.net/playerjs/player-0.1.0.min.js"
+        strategy="afterInteractive"
+      />
       {/* Inline sidebar */}
       {sidebarOpen && (
         <Sidebar
@@ -742,13 +781,14 @@ export default function LessonsPage() {
                 borderRadius: 12,
                 background: "#0B1522",
                 boxShadow: "0 4px 24px rgba(11,21,34,0.2)",
+                overflow: "hidden",
               }}
             >
-              <iframe
+              <BunnyIframe
                 key={activeLesson.id}
+                id="bunny-stream-embed"
                 src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen={true}
                 loading="lazy"
                 title={activeLesson.title}
                 style={{ border: "0", width: "100%", aspectRatio: "16/9" }}

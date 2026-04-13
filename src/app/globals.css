@@ -38,3 +38,17 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), serif;
 }
+
+/* Fullscreen iframe — cross-browser fix for mobile landscape */
+iframe:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+iframe:-moz-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+iframe:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
