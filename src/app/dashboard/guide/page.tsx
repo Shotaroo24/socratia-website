@@ -85,7 +85,7 @@ const timelineItems = [
 
 export default function GuidePage() {
   return (
-    <div className="min-h-screen py-12 px-5" style={{ background: "#FAF7F2" }}>
+    <div className="min-h-screen py-12 pb-24 md:pb-12 px-5" style={{ background: "#FAF7F2" }}>
       <div className="max-w-3xl mx-auto">
 
         {/* Back link */}
