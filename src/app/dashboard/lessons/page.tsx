@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, memo } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import { useUser } from "@clerk/nextjs";
@@ -95,7 +95,9 @@ function ArrowLeftIcon() {
 
 // ─── Bunny Iframe (fullscreen + vendor-prefixed attrs) ────────────────────────
 
-function BunnyIframe(props: React.IframeHTMLAttributes<HTMLIFrameElement>) {
+const BunnyIframe = memo(function BunnyIframe(
+  props: React.IframeHTMLAttributes<HTMLIFrameElement>
+) {
   const ref = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -103,9 +105,12 @@ function BunnyIframe(props: React.IframeHTMLAttributes<HTMLIFrameElement>) {
     ref.current.setAttribute("mozallowfullscreen", "true");
   }, []);
   return <iframe ref={ref} {...props} allowFullScreen />;
-}
+});
 
-// ─── Next Lesson Overlay ──────────────────────────────────────────────────────
+// ─── Next Lesson Overlay (Udemy-style) ───────────────────────────────────────
+
+const RING_RADIUS = 30;
+const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
 function NextLessonOverlay({
   nextLesson,
@@ -118,132 +123,142 @@ function NextLessonOverlay({
   onPlayNow: () => void;
   onCancel: () => void;
 }) {
+  // progress: 0 at overlay open → increases 1/s as countdown decrements
+  const progress = 5 - countdown;
+  const strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress / 5);
+
   return (
     <div
       style={{
         position: "absolute",
         inset: 0,
-        background: "rgba(30, 51, 85, 0.92)",
+        background: "rgba(0, 0, 0, 0.85)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         zIndex: 20,
-        padding: 24,
         borderRadius: "inherit",
+        gap: 14,
       }}
     >
       {nextLesson === null ? (
-        <div style={{ textAlign: "center" }}>
+        /* ── Course Complete ── */
+        <div style={{ textAlign: "center", padding: "0 24px" }}>
           <div
             style={{
-              fontSize: 34,
+              fontSize: 30,
               fontWeight: 700,
               color: "#C9A84C",
-              marginBottom: 12,
+              marginBottom: 10,
               fontFamily: "var(--font-cormorant)",
               letterSpacing: "0.04em",
             }}
           >
             Course Complete!
           </div>
-          <p style={{ color: "#F2EDE4", fontSize: 15, marginBottom: 28, margin: "0 0 28px" }}>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.8)",
+              fontSize: 14,
+              margin: "0 0 20px",
+            }}
+          >
             You have finished all lessons. Well done!
           </p>
           <button
             onClick={onCancel}
             style={{
               background: "transparent",
-              color: "#FFFFFF",
-              border: "1px solid rgba(255,255,255,0.55)",
-              padding: "10px 28px",
-              borderRadius: 8,
-              fontSize: 14,
+              color: "rgba(255,255,255,0.7)",
+              border: "none",
+              fontSize: 13,
               cursor: "pointer",
+              padding: "4px 0",
             }}
           >
             Close
           </button>
         </div>
       ) : (
-        <div style={{ textAlign: "center", maxWidth: 360 }}>
+        /* ── Up Next ── */
+        <>
           <p
             style={{
-              color: "#8899AA",
+              color: "rgba(255,255,255,0.7)",
               fontSize: 11,
               textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: 10,
-              margin: "0 0 10px",
+              letterSpacing: "0.12em",
+              margin: 0,
             }}
           >
-            Up Next
+            UP NEXT
           </p>
           <p
             style={{
-              color: "#F2EDE4",
-              fontSize: 16,
+              color: "#FFFFFF",
+              fontSize: 15,
               fontWeight: 600,
-              marginBottom: 20,
+              margin: 0,
+              textAlign: "center",
+              maxWidth: 280,
               lineHeight: 1.4,
-              margin: "0 0 20px",
+              padding: "0 16px",
             }}
           >
             {nextLesson.title}
           </p>
-          <div
-            style={{
-              color: "#C9A84C",
-              fontSize: 60,
-              fontWeight: 700,
-              lineHeight: 1,
-              marginBottom: 8,
-            }}
+
+          {/* Circular progress ring — click to play now */}
+          <svg
+            width="80"
+            height="80"
+            style={{ cursor: "pointer", flexShrink: 0 }}
+            onClick={onPlayNow}
+            aria-label="Play next lesson"
+            role="button"
           >
-            {countdown}
-          </div>
-          <p
+            {/* Background ring */}
+            <circle
+              cx="40"
+              cy="40"
+              r={RING_RADIUS}
+              fill="rgba(255,255,255,0.08)"
+              stroke="rgba(255,255,255,0.2)"
+              strokeWidth="3"
+            />
+            {/* Gold progress ring */}
+            <circle
+              cx="40"
+              cy="40"
+              r={RING_RADIUS}
+              fill="none"
+              stroke="#C9A84C"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray={RING_CIRCUMFERENCE}
+              strokeDashoffset={strokeDashoffset}
+              transform="rotate(-90 40 40)"
+              style={{ transition: "stroke-dashoffset 1s linear" }}
+            />
+            {/* Play triangle */}
+            <polygon points="35,28 35,52 55,40" fill="white" />
+          </svg>
+
+          <button
+            onClick={onCancel}
             style={{
-              color: "#8899AA",
+              background: "transparent",
+              color: "rgba(255,255,255,0.7)",
+              border: "none",
               fontSize: 13,
-              marginBottom: 28,
-              margin: "0 0 28px",
+              cursor: "pointer",
+              padding: "4px 8px",
             }}
           >
-            Playing in {countdown}...
-          </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
-            <button
-              onClick={onPlayNow}
-              style={{
-                background: "#C9A84C",
-                color: "#0B1522",
-                border: "none",
-                padding: "10px 28px",
-                borderRadius: 8,
-                fontWeight: 600,
-                fontSize: 14,
-                cursor: "pointer",
-              }}
-            >
-              Play Now
-            </button>
-            <button
-              onClick={onCancel}
-              style={{
-                background: "transparent",
-                color: "#FFFFFF",
-                border: "1px solid rgba(255,255,255,0.5)",
-                padding: "10px 24px",
-                borderRadius: 8,
-                fontSize: 14,
-                cursor: "pointer",
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+            Cancel
+          </button>
+        </>
       )}
     </div>
   );
@@ -535,6 +550,9 @@ export default function LessonsPage() {
   // ── Resize handler ─────────────────────────────────────────
   useEffect(() => {
     const check = () => {
+      // Skip layout updates while in fullscreen — prevents iframe remount
+      // on orientation change (which would exit the fullscreen video)
+      if (document.fullscreenElement) return;
       const desktop = window.innerWidth >= DESKTOP_BREAKPOINT;
       setIsDesktop(desktop);
       if (desktop) setSidebarOpen(true);
