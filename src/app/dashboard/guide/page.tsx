@@ -137,7 +137,7 @@ export default function GuidePage() {
             aria-hidden="true"
           />
 
-          <div className="space-y-12">
+          <div className="space-y-16 md:space-y-12">
             {timelineItems.map((item) => (
               <div key={item.number} className="relative flex gap-8 md:gap-12">
 
