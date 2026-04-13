@@ -107,7 +107,7 @@ export default function DashboardPage() {
         {/* ─── Content: loading / paid / not paid ─────────────────── */}
         {!isLoaded ? (
           /* Loading skeleton */
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4">
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
@@ -156,7 +156,7 @@ export default function DashboardPage() {
           </div>
         ) : (
           /* 4-Card Grid */
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4">
             {cards.map((card) => (
               <div
                 key={card.title}
