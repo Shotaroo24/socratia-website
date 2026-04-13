@@ -1,12 +1,25 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { sections, BUNNY_LIBRARY_ID, type Lesson } from "@/data/lessons";
 
-// ─── Icons ───────────────────────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function getNextLesson(current: Lesson): Lesson | null {
+  let found = false;
+  for (const section of sections) {
+    for (const lesson of section.lessons) {
+      if (found) return lesson;
+      if (lesson.id === current.id) found = true;
+    }
+  }
+  return null;
+}
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
 
 function ChevronDownIcon({ open }: { open: boolean }) {
   return (
@@ -79,7 +92,276 @@ function ArrowLeftIcon() {
   );
 }
 
-// ─── Sidebar ─────────────────────────────────────────────────────────────────
+// ─── Next Lesson Overlay ──────────────────────────────────────────────────────
+
+function NextLessonOverlay({
+  nextLesson,
+  countdown,
+  onPlayNow,
+  onCancel,
+}: {
+  nextLesson: Lesson | null;
+  countdown: number;
+  onPlayNow: () => void;
+  onCancel: () => void;
+}) {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        background: "rgba(30, 51, 85, 0.92)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 20,
+        padding: 24,
+        borderRadius: "inherit",
+      }}
+    >
+      {nextLesson === null ? (
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              fontSize: 34,
+              fontWeight: 700,
+              color: "#C9A84C",
+              marginBottom: 12,
+              fontFamily: "var(--font-cormorant)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Course Complete!
+          </div>
+          <p style={{ color: "#F2EDE4", fontSize: 15, marginBottom: 28, margin: "0 0 28px" }}>
+            You have finished all lessons. Well done!
+          </p>
+          <button
+            onClick={onCancel}
+            style={{
+              background: "transparent",
+              color: "#FFFFFF",
+              border: "1px solid rgba(255,255,255,0.55)",
+              padding: "10px 28px",
+              borderRadius: 8,
+              fontSize: 14,
+              cursor: "pointer",
+            }}
+          >
+            Close
+          </button>
+        </div>
+      ) : (
+        <div style={{ textAlign: "center", maxWidth: 360 }}>
+          <p
+            style={{
+              color: "#8899AA",
+              fontSize: 11,
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              marginBottom: 10,
+              margin: "0 0 10px",
+            }}
+          >
+            Up Next
+          </p>
+          <p
+            style={{
+              color: "#F2EDE4",
+              fontSize: 16,
+              fontWeight: 600,
+              marginBottom: 20,
+              lineHeight: 1.4,
+              margin: "0 0 20px",
+            }}
+          >
+            {nextLesson.title}
+          </p>
+          <div
+            style={{
+              color: "#C9A84C",
+              fontSize: 60,
+              fontWeight: 700,
+              lineHeight: 1,
+              marginBottom: 8,
+            }}
+          >
+            {countdown}
+          </div>
+          <p
+            style={{
+              color: "#8899AA",
+              fontSize: 13,
+              marginBottom: 28,
+              margin: "0 0 28px",
+            }}
+          >
+            Playing in {countdown}...
+          </p>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
+            <button
+              onClick={onPlayNow}
+              style={{
+                background: "#C9A84C",
+                color: "#0B1522",
+                border: "none",
+                padding: "10px 28px",
+                borderRadius: 8,
+                fontWeight: 600,
+                fontSize: 14,
+                cursor: "pointer",
+              }}
+            >
+              Play Now
+            </button>
+            <button
+              onClick={onCancel}
+              style={{
+                background: "transparent",
+                color: "#FFFFFF",
+                border: "1px solid rgba(255,255,255,0.5)",
+                padding: "10px 24px",
+                borderRadius: 8,
+                fontSize: 14,
+                cursor: "pointer",
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Mobile Lesson List ───────────────────────────────────────────────────────
+
+function MobileLessonList({
+  activeLesson,
+  onSelect,
+}: {
+  activeLesson: Lesson;
+  onSelect: (lesson: Lesson) => void;
+}) {
+  const [openSection, setOpenSection] = useState<string>(() => {
+    return (
+      sections.find((s) => s.lessons.some((l) => l.id === activeLesson.id))
+        ?.id ?? sections[0].id
+    );
+  });
+
+  useEffect(() => {
+    const sec = sections.find((s) =>
+      s.lessons.some((l) => l.id === activeLesson.id)
+    );
+    if (sec) setOpenSection(sec.id);
+  }, [activeLesson.id]);
+
+  return (
+    <div>
+      {sections.map((section) => {
+        const isOpen = openSection === section.id;
+        return (
+          <div key={section.id} style={{ borderBottom: "0.5px solid #E8E2D6" }}>
+            <button
+              onClick={() =>
+                setOpenSection((prev) =>
+                  prev === section.id ? "" : section.id
+                )
+              }
+              style={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "12px 16px",
+                background: "#FFFFFF",
+                border: "none",
+                borderTop: "0.5px solid #E8E2D6",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              <span
+                style={{
+                  color: "#C9A84C",
+                  fontSize: 13,
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {section.title}
+              </span>
+              <ChevronDownIcon open={isOpen} />
+            </button>
+            {isOpen && (
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {section.lessons.map((lesson) => {
+                  const isActive = lesson.id === activeLesson.id;
+                  return (
+                    <li key={lesson.id}>
+                      <button
+                        onClick={() => onSelect(lesson)}
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 8,
+                          padding: "10px 16px",
+                          background: isActive ? "#1E3355" : "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span style={{ marginTop: 3, flexShrink: 0 }}>
+                          <PlayIcon active={isActive} />
+                        </span>
+                        <span
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            flexDirection: "column",
+                            minWidth: 0,
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontSize: 14,
+                              color: isActive ? "#F2EDE4" : "#0B1522",
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {lesson.title}
+                          </span>
+                          <span
+                            style={{
+                              fontSize: 11,
+                              color: "#8899AA",
+                              textAlign: "right",
+                              marginTop: 2,
+                            }}
+                          >
+                            {lesson.duration}
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── Sidebar (desktop) ────────────────────────────────────────────────────────
 
 function Sidebar({
   activeLesson,
@@ -119,7 +401,6 @@ function Sidebar({
           onMouseLeave={(e) => (e.currentTarget.style.color = "#5A6A7A")}
         >
           <ArrowLeftIcon />
-          {/* font-size 14px as specified */}
           <span style={{ fontSize: 14 }}>Back to Dashboard</span>
         </Link>
         <button
@@ -132,7 +413,7 @@ function Sidebar({
         </button>
       </div>
 
-      {/* ─── Scrollable section list ───────────────────────────── */}
+      {/* ─── Scrollable section list ────────────────────────────── */}
       <nav className="flex-1 overflow-y-auto py-2">
         {sections.map((section) => {
           const isOpen = openSection === section.id;
@@ -147,7 +428,6 @@ function Sidebar({
                   borderRadius: 8,
                 }}
               >
-                {/* section label: 13px */}
                 <span
                   className="uppercase"
                   style={{
@@ -182,7 +462,6 @@ function Sidebar({
                             <PlayIcon active={isActive} />
                           </span>
                           <span className="flex-1 flex flex-col min-w-0">
-                            {/* lesson title: 14px */}
                             <span
                               className="leading-snug"
                               style={{
@@ -192,7 +471,6 @@ function Sidebar({
                             >
                               {lesson.title}
                             </span>
-                            {/* duration: 11px */}
                             <span
                               className="text-right tabular-nums"
                               style={{ fontSize: 11, color: "#8899AA" }}
@@ -216,7 +494,7 @@ function Sidebar({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-const DESKTOP_BREAKPOINT = 1024;
+const DESKTOP_BREAKPOINT = 768;
 
 export default function LessonsPage() {
   const { user, isLoaded } = useUser();
@@ -228,6 +506,20 @@ export default function LessonsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // ── Overlay state ──────────────────────────────────────────
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [overlayNextLesson, setOverlayNextLesson] = useState<Lesson | null>(null);
+  const [countdown, setCountdown] = useState(5);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current !== null) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  // ── Resize handler ─────────────────────────────────────────
   useEffect(() => {
     const check = () => {
       const desktop = window.innerWidth >= DESKTOP_BREAKPOINT;
@@ -239,141 +531,217 @@ export default function LessonsPage() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const handleSelectLesson = useCallback(
-    (lesson: Lesson) => {
-      setActiveLesson(lesson);
-      if (!isDesktop) setSidebarOpen(false);
-    },
-    [isDesktop]
-  );
+  // ── Bunny postMessage listener ─────────────────────────────
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      if (e.origin !== "https://iframe.mediadelivery.net") return;
+      if (e.data?.event === "ended") {
+        const next = getNextLesson(activeLesson);
+        setOverlayNextLesson(next);
+        setCountdown(5);
+        setOverlayVisible(true);
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, [activeLesson]);
+
+  // ── Countdown timer ────────────────────────────────────────
+  useEffect(() => {
+    if (!overlayVisible || overlayNextLesson === null) return;
+    clearTimer();
+
+    let remaining = 5;
+    setCountdown(5);
+
+    timerRef.current = setInterval(() => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        clearTimer();
+        setActiveLesson(overlayNextLesson);
+        setOverlayVisible(false);
+      } else {
+        setCountdown(remaining);
+      }
+    }, 1000);
+
+    return clearTimer;
+  }, [overlayVisible, overlayNextLesson, clearTimer]);
+
+  // ── Clear overlay on manual lesson change ──────────────────
+  useEffect(() => {
+    setOverlayVisible(false);
+    clearTimer();
+    setCountdown(5);
+  }, [activeLesson.id, clearTimer]);
+
+  // ── Handlers ───────────────────────────────────────────────
+  const handlePlayNow = useCallback(() => {
+    if (overlayNextLesson) {
+      clearTimer();
+      setOverlayVisible(false);
+      setActiveLesson(overlayNextLesson);
+    }
+  }, [overlayNextLesson, clearTimer]);
+
+  const handleCancelOverlay = useCallback(() => {
+    clearTimer();
+    setOverlayVisible(false);
+  }, [clearTimer]);
+
+  const handleSelectLesson = useCallback((lesson: Lesson) => {
+    setActiveLesson(lesson);
+  }, []);
+
+  const handleMobileSelectLesson = useCallback((lesson: Lesson) => {
+    setActiveLesson(lesson);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (isLoaded && !paid) {
     router.replace("/dashboard");
     return null;
   }
 
+  // ── Mobile layout (< 768px) ────────────────────────────────
+  if (!isDesktop) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#FAF7F2" }}>
+        {/* Top bar */}
+        <div
+          style={{
+            padding: "10px 16px",
+            background: "#FFFFFF",
+            borderBottom: "0.5px solid #E8E2D6",
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+          }}
+        >
+          <Link
+            href="/dashboard"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              color: "#5A6A7A",
+              fontSize: 14,
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#0B1522")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#5A6A7A")}
+          >
+            <ArrowLeftIcon />
+            Back to Dashboard
+          </Link>
+        </div>
+
+        {/* Video player */}
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            background: "#0B1522",
+          }}
+        >
+          <iframe
+            key={activeLesson.id}
+            src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen={true}
+            loading="lazy"
+            title={activeLesson.title}
+            style={{ border: "0", width: "100%", height: "100%", display: "block" }}
+          />
+          {overlayVisible && (
+            <NextLessonOverlay
+              nextLesson={overlayNextLesson}
+              countdown={countdown}
+              onPlayNow={handlePlayNow}
+              onCancel={handleCancelOverlay}
+            />
+          )}
+        </div>
+
+        {/* Current lesson info */}
+        <div
+          style={{
+            padding: "12px 16px",
+            background: "#FFFFFF",
+            borderBottom: "0.5px solid #E8E2D6",
+          }}
+        >
+          <p
+            style={{
+              fontSize: 15,
+              fontWeight: 600,
+              color: "#0B1522",
+              margin: 0,
+              lineHeight: 1.4,
+            }}
+          >
+            {activeLesson.title}
+          </p>
+          <p style={{ fontSize: 12, color: "#8899AA", margin: "4px 0 0" }}>
+            {activeLesson.duration}
+          </p>
+        </div>
+
+        {/* Lesson list */}
+        <MobileLessonList
+          activeLesson={activeLesson}
+          onSelect={handleMobileSelectLesson}
+        />
+      </div>
+    );
+  }
+
+  // ── Desktop layout (>= 768px) ──────────────────────────────
   return (
     <div
       className="flex overflow-hidden"
       style={{ height: "100vh", background: "#FAF7F2" }}
     >
-      {/* ── Backdrop (mobile/tablet) ─────────────────────────────── */}
-      {!isDesktop && sidebarOpen && (
-        <div
-          onClick={() => setSidebarOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.5)",
-            zIndex: 40,
-          }}
-        />
-      )}
-
-      {/* ── Overlay sidebar (mobile/tablet) ─────────────────────── */}
-      {!isDesktop && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            height: "100vh",
-            zIndex: 45,
-            transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)",
-            transition: "transform 0.25s ease",
-          }}
-        >
-          <Sidebar
-            activeLesson={activeLesson}
-            onSelect={handleSelectLesson}
-            onClose={() => setSidebarOpen(false)}
-          />
-        </div>
-      )}
-
-      {/* ── Inline sidebar (desktop) ─────────────────────────────── */}
-      {isDesktop && sidebarOpen && (
+      {/* Inline sidebar */}
+      {sidebarOpen && (
         <Sidebar
           activeLesson={activeLesson}
-          onSelect={setActiveLesson}
+          onSelect={handleSelectLesson}
           onClose={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* ── Main area ────────────────────────────────────────────── */}
+      {/* Main area */}
       <div
         className="flex-1 overflow-hidden"
         style={{ minWidth: 0, position: "relative", height: "100%" }}
       >
-        {isDesktop ? (
-          /* ── Desktop: padding + video fills height ── */
-          <div className="flex flex-col" style={{ height: "100%" }}>
-            {!sidebarOpen && (
-              <div className="flex-shrink-0" style={{ padding: "20px 24px 0" }}>
-                <button
-                  onClick={() => setSidebarOpen(true)}
-                  className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
-                  style={{ color: "#5A6A7A", padding: "2px" }}
-                  aria-label="Open sidebar"
-                >
-                  <MenuIcon />
-                </button>
-              </div>
-            )}
-            <div
-              className="flex-1 flex items-start overflow-hidden"
-              style={{ padding: "20px 24px" }}
-            >
-              <div
-                className="w-full overflow-hidden"
-                style={{
-                  aspectRatio: "16 / 9",
-                  borderRadius: 12,
-                  background: "#0B1522",
-                  boxShadow: "0 4px 24px rgba(11,21,34,0.2)",
-                }}
+        <div className="flex flex-col" style={{ height: "100%" }}>
+          {!sidebarOpen && (
+            <div className="flex-shrink-0" style={{ padding: "20px 24px 0" }}>
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
+                style={{ color: "#5A6A7A", padding: "2px" }}
+                aria-label="Open sidebar"
               >
-                <iframe
-                  key={activeLesson.id}
-                  src={`https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${activeLesson.videoId}?autoplay=false&loop=false&muted=false&preload=true`}
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen={true}
-                  loading="lazy"
-                  title={activeLesson.title}
-                  style={{ border: "0", width: "100%", aspectRatio: "16/9" }}
-                />
-              </div>
+                <MenuIcon />
+              </button>
             </div>
-          </div>
-        ) : (
-          /* ── Mobile/tablet: video centered, hamburger top-left ── */
+          )}
           <div
-            className="flex items-center justify-center"
-            style={{ height: "100%" }}
+            className="flex-1 flex items-start overflow-hidden"
+            style={{ padding: "20px 24px" }}
           >
-            {/* Hamburger — absolute top-left */}
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
-              style={{
-                position: "absolute",
-                top: 16,
-                left: 16,
-                zIndex: 10,
-                color: "#5A6A7A",
-                padding: "4px",
-              }}
-              aria-label="Open sidebar"
-            >
-              <MenuIcon />
-            </button>
-
-            {/* Video — full width, aspect-ratio 16:9 */}
             <div
               className="w-full overflow-hidden"
               style={{
+                position: "relative",
                 aspectRatio: "16 / 9",
+                borderRadius: 12,
                 background: "#0B1522",
+                boxShadow: "0 4px 24px rgba(11,21,34,0.2)",
               }}
             >
               <iframe
@@ -385,9 +753,17 @@ export default function LessonsPage() {
                 title={activeLesson.title}
                 style={{ border: "0", width: "100%", aspectRatio: "16/9" }}
               />
+              {overlayVisible && (
+                <NextLessonOverlay
+                  nextLesson={overlayNextLesson}
+                  countdown={countdown}
+                  onPlayNow={handlePlayNow}
+                  onCancel={handleCancelOverlay}
+                />
+              )}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
