@@ -77,7 +77,7 @@ export default function DashboardPage() {
 
   return (
     <div className="bg-cream min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-4 md:py-6">
+      <div className="max-w-5xl mx-auto px-6 pt-4 pb-20 md:pt-6 md:pb-6">
 
         {/* ─── Welcome Banner ─────────────────────────────────────── */}
         <div
