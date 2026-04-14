@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef, memo } from "react";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 import { sections, BUNNY_LIBRARY_ID, type Lesson } from "@/data/lessons";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -352,20 +350,11 @@ function Sidebar({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function LessonsPage() {
-  const { user, isLoaded } = useUser();
-  const router = useRouter();
-  const paid = isLoaded && user?.publicMetadata?.paid === true;
-
   const defaultLesson = sections[0].lessons[0];
   const [activeLesson, setActiveLesson] = useState<Lesson>(defaultLesson);
   // Open by default — on mobile the sidebar is hidden via CSS (md:block), so this
   // only affects the desktop layout. No resize listener needed.
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  if (isLoaded && !paid) {
-    router.replace("/dashboard");
-    return null;
-  }
 
   return (
     // CSS-only responsive layout: no JS breakpoint detection, no resize listeners.

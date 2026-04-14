@@ -73,7 +73,6 @@ const cards = [
 export default function DashboardPage() {
   const { user, isLoaded } = useUser();
   const firstName = isLoaded && user?.firstName ? user.firstName : null;
-  const paid = isLoaded && user?.publicMetadata?.paid === true;
 
   return (
     <div className="bg-cream min-h-screen">
@@ -104,7 +103,7 @@ export default function DashboardPage() {
           </h1>
         </div>
 
-        {/* ─── Content: loading / paid / not paid ─────────────────── */}
+        {/* ─── Content: loading skeleton / 4-Card Grid ────────────── */}
         {!isLoaded ? (
           /* Loading skeleton */
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4">
@@ -121,38 +120,6 @@ export default function DashboardPage() {
                 }}
               />
             ))}
-          </div>
-        ) : !paid ? (
-          /* Not activated */
-          <div
-            className="rounded-xl"
-            style={{
-              background: "#FFFFFF",
-              border: "0.5px solid rgba(27,42,74,0.12)",
-              padding: "32px 28px",
-              boxShadow: "0 2px 8px rgba(11,21,34,0.07)",
-            }}
-          >
-            {/* Gold accent bar */}
-            <div
-              className="mb-5"
-              style={{ width: 40, height: 3, background: "#C9A84C", borderRadius: 2 }}
-              aria-hidden="true"
-            />
-            <h2
-              className="font-heading font-semibold text-xl md:text-2xl mb-3"
-              style={{ color: "#0B1522" }}
-            >
-              Course Not Yet Activated
-            </h2>
-            <p
-              className="text-sm md:text-base leading-relaxed"
-              style={{ color: "#5A6A7A", maxWidth: "56ch" }}
-            >
-              Your course access will be activated after purchase. If you have
-              already completed your payment, please allow a few moments for
-              activation. For assistance, please contact Shotaro directly.
-            </p>
           </div>
         ) : (
           /* 4-Card Grid */
