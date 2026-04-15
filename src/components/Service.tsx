@@ -106,7 +106,7 @@ export default function Service() {
               >
                 <p
                   className="font-heading text-3xl mb-3 leading-none"
-                  style={{ color: '#C9A84C', fontWeight: 'normal' }}
+                  style={{ color: 'var(--color-main-accessible)', fontWeight: 'normal' }}
                 >
                   {block.number}
                 </p>

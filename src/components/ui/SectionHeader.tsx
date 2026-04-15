@@ -14,7 +14,7 @@ export default function SectionHeader({
   return (
     <div className={`mb-14 ${center ? "text-center" : ""}`}>
       {label && (
-        <span className="inline-block text-main text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: 'var(--color-main-accessible)' }}>
           {label}
         </span>
       )}

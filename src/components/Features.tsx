@@ -42,7 +42,7 @@ export default function Features() {
               }}
             >
               {/* Number */}
-              <p className="font-heading text-4xl text-main font-light tracking-widest mb-5 italic">
+              <p className="font-heading text-4xl font-light tracking-widest mb-5 italic" style={{ color: 'var(--color-main-accessible)' }}>
                 {feature.number}
               </p>
               {/* Title */}

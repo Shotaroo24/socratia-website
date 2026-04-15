@@ -10,6 +10,8 @@
   --color-main: #C9A84C;
   --color-main-dark: #A07B2E;
   --color-main-light: #E8D5A8;
+  /* Accessible gold for text on light backgrounds (white/cream). #896520 = 5.33:1 on white, passes WCAG AA */
+  --color-main-accessible: #896520;
 
   /* Text — light backgrounds */
   --color-ink: #0B1522;

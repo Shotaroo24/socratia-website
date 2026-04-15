@@ -50,6 +50,11 @@ export default function RootLayout({
         lang="en"
         className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
       >
+        <head>
+          {/* Preconnect to Clerk domains to reduce auth SDK latency */}
+          <link rel="preconnect" href="https://grown-dogfish-64.clerk.accounts.dev" />
+          <link rel="preconnect" href="https://img.clerk.com" />
+        </head>
         <body className="min-h-full flex flex-col">
           {children}
         </body>

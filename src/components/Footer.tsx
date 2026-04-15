@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-sm text-text-muted/60 mt-8">
+        <p className="text-center text-sm text-text-muted mt-8">
           Copyright &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
         </p>
       </div>

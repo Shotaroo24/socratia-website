@@ -3,8 +3,41 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
-import { UserButton, useUser } from "@clerk/nextjs";
+
+// Lazy-load Clerk-dependent auth components to avoid blocking the initial paint.
+// A static "Log in" link is shown while the auth state loads.
+const LoginPlaceholder = (
+  <Link
+    href="/login"
+    className="text-sm font-medium transition-colors duration-200"
+    style={{ color: "#8899AA" }}
+  >
+    Log in
+  </Link>
+);
+
+const NavAuthDesktop = dynamic(
+  () => import("./NavAuth").then((m) => m.NavAuthDesktop),
+  { ssr: false, loading: () => LoginPlaceholder }
+);
+
+const NavAuthMobile = dynamic(
+  () => import("./NavAuth").then((m) => m.NavAuthMobile),
+  {
+    ssr: false,
+    loading: () => (
+      <Link
+        href="/login"
+        className="font-medium transition-colors py-1"
+        style={{ color: "#8899AA" }}
+      >
+        Log in
+      </Link>
+    ),
+  }
+);
 
 const publicNavLinks = [
   { label: "Our Service", href: "/#service" },
@@ -14,7 +47,6 @@ const publicNavLinks = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isSignedIn } = useUser();
   const pathname = usePathname();
   const isDashboard = pathname?.startsWith("/dashboard");
   const navLinks = isDashboard ? [] : publicNavLinks;
@@ -56,40 +88,7 @@ export default function Nav() {
             </Link>
           ))}
           {!isDashboard && <Button href="/apply">Apply Now</Button>}
-          {isSignedIn ? (
-            <div className="flex items-center gap-4">
-              <Link
-                href="/dashboard"
-                className="text-sm font-medium transition-colors duration-200"
-                style={{ color: "#8899AA" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}
-              >
-                Dashboard
-              </Link>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-8 h-8",
-                    userButtonPopoverCard: "border border-[#E8E2D6] shadow-xl",
-                    userButtonPopoverActionButton: "hover:bg-[#FAF7F2] text-[#0B1522]",
-                    userButtonPopoverActionButtonText: "text-[#0B1522]",
-                    userButtonPopoverFooter: "hidden",
-                  },
-                }}
-              />
-            </div>
-          ) : (
-            <Link
-              href="/login"
-              className="text-sm font-medium transition-colors duration-200"
-              style={{ color: "#8899AA" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}
-            >
-              Log in
-            </Link>
-          )}
+          <NavAuthDesktop />
         </nav>
 
         {/* Mobile hamburger */}
@@ -130,40 +129,7 @@ export default function Nav() {
               Apply Now
             </Link>
           )}
-          {isSignedIn ? (
-            <>
-              <Link
-                href="/dashboard"
-                className="font-medium transition-colors py-1"
-                style={{ color: "#8899AA" }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Dashboard
-              </Link>
-              <div className="py-1">
-                <UserButton
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-8 h-8",
-                      userButtonPopoverCard: "border border-[#E8E2D6] shadow-xl",
-                      userButtonPopoverActionButton: "hover:bg-[#FAF7F2] text-[#0B1522]",
-                      userButtonPopoverActionButtonText: "text-[#0B1522]",
-                      userButtonPopoverFooter: "hidden",
-                    },
-                  }}
-                />
-              </div>
-            </>
-          ) : (
-            <Link
-              href="/login"
-              className="font-medium transition-colors py-1"
-              style={{ color: "#8899AA" }}
-              onClick={() => setMenuOpen(false)}
-            >
-              Log in
-            </Link>
-          )}
+          <NavAuthMobile onClose={() => setMenuOpen(false)} />
         </div>
       </div>
     </header>
