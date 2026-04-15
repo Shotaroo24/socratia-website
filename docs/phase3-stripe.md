@@ -5,7 +5,7 @@
 ---
 
 ## 運用方針
-- 決済は **Stripe Payment Link** で手動運用
+- 決済は **Stripe Payment Link** で手動運用（サイト側にStripe統合なし）
 - トライアル後、ShotaroがPayment Linkを生徒にWhatsAppで送付
 - 支払い確認後、**Clerkダッシュボードで生徒のアカウントを手動作成**（生徒のGmailアドレスで登録）
 - 生徒にログインURL + 「このGmailでログインしてください」と案内
@@ -32,8 +32,10 @@ Shotaro が Clerk ダッシュボードで手動ユーザー作成（Gmail指定
 ## 3-1. Stripeセットアップ（手動）
 - [x] Stripeアカウント作成
 - [x] 商品作成（Socratia - Japanese Online Course / $399 / ワンタイム）
-- [x] APIキー取得・.env.local に追加
-- [x] Vercelの環境変数にも追加
+- [x] Payment Link 作成・WhatsAppで送付可能な状態
+
+> **注:** サイト側にStripe統合はないため、APIキーの `.env.local` / Vercel への追加は不要。
+> 決済は完全にStripeのホスト画面で完結する。
 
 ## 3-2. ダッシュボードの購入状態分岐
 - [x] ~~Clerk の publicMetadata.paid を取得して表示分岐~~ → **削除済み（手動登録方式により不要）**
