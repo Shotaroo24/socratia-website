@@ -29,15 +29,28 @@
 - [x] ログイン時: ユーザーアイコン + ドロップダウン（Dashboard / Logout）
 - [x] モバイルハンバーガーメニューにも同様の分岐追加
 
+> **注意:** 手動登録方式のため、NavのLoginリンクは非表示にすることを検討中。
+> ログインURLは Shotaro が直接生徒に共有する運用。
+
 ## 2-5. ダッシュボードページ
 - [x] `/dashboard` ページ作成（認証必須）
 - [x] ログイン中ユーザーの名前表示（Welcome back, {name}!）
 - [x] Hero / Discord / Course Guide / Textbook の4セクション実装
 - [x] 画像: C:\Users\syo46\Socratia\images\ から使用
 
-## 2-6. 生徒の事前登録
-- [ ] Clerkダッシュボードから既存生徒のアカウントを手動作成
-- [ ] 生徒への案内メール準備（新サイトURL + Googleログインの手順）
+## 2-6. 生徒の登録（手動）
+- [ ] Clerkダッシュボードから購入済み生徒のアカウントを手動作成
+- [ ] 生徒への案内メッセージ準備（ログインURL + Googleログインの手順）
+
+### 手動登録の手順
+1. 生徒がStripe Payment Linkで支払い完了
+2. Clerkダッシュボード → Users → 「+ Create user」
+3. メールアドレスを入力（生徒がGoogleログインで使うGmailアドレス）
+4. 生徒にWhatsAppで案内:「ログインURL（/login）にアクセスして、このGmailでGoogleログインしてください」
+
+> **ポイント:** Clerkにアカウントが存在するユーザーのみログイン可能。
+> publicMetadata.paid のチェックは不要（コードから削除済み）。
+> 「ログインできる = 登録済み = 支払い済み」が保証される。
 
 ## 2-7. Vercelデプロイ・動作確認
 - [x] Vercelの環境変数に Clerk のキーを追加（`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`）
@@ -53,11 +66,6 @@
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_xxx
 CLERK_SECRET_KEY=sk_xxx
 ```
-
-### Clerkで生徒を事前登録する方法
-1. Clerkダッシュボード → Users → 「+ Create user」
-2. メールアドレスを入力（生徒がGoogleログインで使うGmailアドレス）
-3. 生徒に「このGmailでログインしてください」と案内
 
 ### Google OAuth設定手順
 1. Google Cloud Console（https://console.cloud.google.com）→ APIとサービス → 認証情報
