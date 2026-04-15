@@ -19,14 +19,14 @@ export default function CommercialDisclosurePage() {
           business operating from Japan.
         </p>
 
-        <div className="flex flex-col divide-y divide-border">
+        <dl className="flex flex-col divide-y divide-border">
           <Row label="1. Seller and Responsible Person">Shotaro Yamane</Row>
           <Row label="2. Address">Available upon request.</Row>
           <Row label="3. Phone Number">Available upon request.</Row>
           <Row label="4. Email Address">
             <a
               href="mailto:info@socratiaacademy.com"
-              className="text-main hover:underline"
+              className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}
             >
               info@socratiaacademy.com
             </a>
@@ -45,7 +45,7 @@ export default function CommercialDisclosurePage() {
               add to the price. Please check with your card issuer or financial
               institution for more details. For more information, please refer to
               Section 7 of our{" "}
-              <Link href="/terms" className="text-main hover:underline">
+              <Link href="/terms" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
                 Terms &amp; Conditions
               </Link>
               .
@@ -65,23 +65,23 @@ export default function CommercialDisclosurePage() {
           </Row>
           <Row label="10. Refund Policy">
             For refund details, please refer to the{" "}
-            <Link href="/terms" className="text-main hover:underline">
+            <Link href="/terms" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
               Terms &amp; Conditions
             </Link>
             .
           </Row>
           <Row label="11. Other Terms of Use">
             Please refer to the{" "}
-            <Link href="/privacy" className="text-main hover:underline">
+            <Link href="/privacy" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
               Privacy Policy
             </Link>{" "}
             and{" "}
-            <Link href="/terms" className="text-main hover:underline">
+            <Link href="/terms" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
               Terms &amp; Conditions
             </Link>
             .
           </Row>
-        </div>
+        </dl>
 
         {/* Back link */}
         <div className="mt-16 pt-8 border-t border-border flex gap-6 text-sm text-subtext">

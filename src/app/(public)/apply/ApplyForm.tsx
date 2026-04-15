@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/validation/apply";
+import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/constants/applyOptions";
 
 type FormData = {
   firstName: string;

@@ -16,9 +16,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b border-main-light/20">
           {/* Connect with us */}
           <div>
-            <h3 className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-xl font-semibold text-text-light mb-5">
               Connect with us
-            </h3>
+            </p>
             <div className="flex gap-3">
               <SocialIcon href="https://www.instagram.com/shotaroo.20" label="Instagram">
                 <InstagramIcon />
@@ -34,9 +34,9 @@ export default function Footer() {
 
           {/* Our Mission */}
           <div>
-            <h3 className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-xl font-semibold text-text-light mb-5">
               Our Mission
-            </h3>
+            </p>
             <p className="text-text-muted text-sm leading-relaxed">
               Our mission is to bring you the best Japanese learning experience
             </p>
@@ -44,9 +44,9 @@ export default function Footer() {
 
           {/* Our Policy */}
           <div>
-            <h3 className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-xl font-semibold text-text-light mb-5">
               Our Policy
-            </h3>
+            </p>
             <ul className="space-y-2.5">
               {policyLinks.map((link) => (
                 <li key={link.href} className="flex items-center gap-2">
@@ -64,9 +64,9 @@ export default function Footer() {
 
           {/* Get in Touch */}
           <div>
-            <h3 className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-xl font-semibold text-text-light mb-5">
               Get in Touch
-            </h3>
+            </p>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
               className="flex items-center gap-2.5 text-sm text-text-muted hover:text-main transition-colors duration-200"

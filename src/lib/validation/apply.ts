@@ -1,14 +1,7 @@
 import { z } from "zod";
+import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/constants/applyOptions";
 
-export const HOW_DID_YOU_HEAR_OPTIONS = [
-  "Instagram",
-  "TikTok",
-  "Facebook",
-  "YouTube",
-  "Google Search",
-  "Friend / Family",
-  "Other",
-] as const;
+export { HOW_DID_YOU_HEAR_OPTIONS };
 
 export const applySchema = z.object({
   firstName: z.string().min(1).max(100),

@@ -111,7 +111,7 @@ export default function PrivacyPage() {
                 your personal information. For such requests, please contact us at{" "}
                 <a
                   href="mailto:info@socratiaacademy.com"
-                  className="text-main hover:underline"
+                  className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}
                 >
                   info@socratiaacademy.com
                 </a>
@@ -146,7 +146,7 @@ export default function PrivacyPage() {
               Email:{" "}
               <a
                 href="mailto:info@socratiaacademy.com"
-                className="text-main hover:underline"
+                className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}
               >
                 info@socratiaacademy.com
               </a>

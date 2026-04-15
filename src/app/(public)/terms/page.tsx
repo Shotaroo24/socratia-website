@@ -150,7 +150,7 @@ export default function TermsPage() {
               questions about our service, feel free to contact us at{" "}
               <a
                 href="mailto:info@socratiaacademy.com"
-                className="text-main hover:underline"
+                className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}
               >
                 info@socratiaacademy.com
               </a>
@@ -166,7 +166,7 @@ export default function TermsPage() {
             <p>
               To understand how we collect, use, and protect your personal information,
               please review our{" "}
-              <Link href="/privacy" className="text-main hover:underline">
+              <Link href="/privacy" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
                 Privacy Policy
               </Link>
               . By using this Website, you confirm that you have read, understood, and
@@ -178,7 +178,7 @@ export default function TermsPage() {
             <p>
               For information required by Japanese law regarding our commercial
               operations, please refer to our{" "}
-              <Link href="/commercial-disclosure" className="text-main hover:underline">
+              <Link href="/commercial-disclosure" className="underline underline-offset-2" style={{ color: 'var(--color-main-accessible)' }}>
                 Commercial Disclosure
               </Link>
               .
