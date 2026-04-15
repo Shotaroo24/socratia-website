@@ -1,27 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
 import { applySchema } from "@/lib/validation/apply";
 import type { ApplyData } from "@/lib/validation/apply";
 
-// ── Rate limiting (Upstash Redis) ─────────────────────────────────────────────
-// Sliding window: 3 requests per minute per IP+endpoint.
-// Requires UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN env vars.
-// If not configured (e.g. local dev), rate limiting is skipped with a warning.
+// ── Rate limiting (in-memory) ─────────────────────────────────────────────────
 
-const ratelimit = (() => {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    console.warn("[apply] Upstash env vars not set — rate limiting is disabled.");
-    return null;
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+
+type RateLimitEntry = { count: number; windowStart: number };
+const rateLimitMap = new Map<string, RateLimitEntry>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, windowStart: now });
+    return false;
   }
-  return new Ratelimit({
-    redis: Redis.fromEnv(),
-    limiter: Ratelimit.slidingWindow(3, "1 m"),
-    analytics: false,
-    prefix: "rl:apply",
-  });
-})();
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+
+  entry.count += 1;
+  return false;
+}
 
 // ── Helper: get client IP ─────────────────────────────────────────────────────
 // x-real-ip is set by Vercel and reflects the true client IP.
@@ -74,16 +79,12 @@ export async function POST(req: NextRequest) {
   }
 
   // 2. Rate limiting
-  if (ratelimit) {
-    const ip = getClientIp(req);
-    const identifier = `${ip}:apply`;
-    const { success } = await ratelimit.limit(identifier);
-    if (!success) {
-      return NextResponse.json(
-        { error: "Too many requests. Please try again later." },
-        { status: 429 }
-      );
-    }
+  const ip = getClientIp(req);
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
   }
 
   // 3. Parse body
