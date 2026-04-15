@@ -1,16 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const HOW_DID_YOU_HEAR_OPTIONS = [
-  "Instagram",
-  "TikTok",
-  "Facebook",
-  "YouTube",
-  "Google Search",
-  "Friend / Family",
-  "Other",
-] as const;
+import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/validation/apply";
 
 type FormData = {
   firstName: string;
@@ -52,8 +43,8 @@ function validate(data: FormData): FormErrors {
   if (!data.phone.trim()) errors.phone = "Phone number is required.";
   if (!data.age.trim()) {
     errors.age = "Age is required.";
-  } else if (isNaN(Number(data.age)) || Number(data.age) < 1) {
-    errors.age = "Please enter a valid age.";
+  } else if (isNaN(Number(data.age)) || Number(data.age) < 13) {
+    errors.age = "You must be at least 13 years old to apply.";
   }
   if (!data.occupation.trim()) errors.occupation = "Occupation is required.";
   if (!data.country.trim()) errors.country = "Country of residence is required.";
@@ -63,7 +54,7 @@ function validate(data: FormData): FormErrors {
   return errors;
 }
 
-export default function ApplyPage() {
+export default function ApplyForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -209,7 +200,7 @@ export default function ApplyPage() {
                   value={formData.age}
                   onChange={handleChange}
                   placeholder="25"
-                  min={1}
+                  min={13}
                   className={inputClass(!!errors.age)}
                 />
               </Field>

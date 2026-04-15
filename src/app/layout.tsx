@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import ConditionalLayout from "@/components/ConditionalLayout";
 import { ClerkProvider } from "@clerk/nextjs";
 
 const cormorant = Cormorant_Garamond({
@@ -52,7 +51,7 @@ export default function RootLayout({
         className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
-          <ConditionalLayout>{children}</ConditionalLayout>
+          {children}
         </body>
       </html>
     </ClerkProvider>

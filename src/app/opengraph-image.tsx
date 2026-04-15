@@ -5,14 +5,20 @@ import path from 'path'
 export const alt = 'Socratia Academy'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
+// Cache the OG image at build time; no revalidation needed for a static brand image.
+export const dynamic = 'force-static'
+export const revalidate = false
+
+// Font is read once per server process and cached in this module-level Promise.
+const fontPromise = readFile(
+  path.join(
+    process.cwd(),
+    'node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff'
+  )
+)
 
 export default async function Image() {
-  const font = await readFile(
-    path.join(
-      process.cwd(),
-      'node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff'
-    )
-  )
+  const font = await fontPromise
 
   return new ImageResponse(
     (

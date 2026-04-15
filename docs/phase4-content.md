@@ -7,7 +7,7 @@
 ## 概要
 
 ダッシュボードの「Start Learning」→ `/dashboard/lessons` で動画レッスンページを表示。
-購入済みユーザー（`publicMetadata.paid === true`）のみアクセス可能。
+ログイン済みユーザーのみアクセス可能。
 動画ホスティングは **Bunny Stream**（bunny.net）を使用。
 
 ## セクション構成（全95本）
@@ -104,11 +104,11 @@ export const sections = [
 - [x] `/dashboard/lessons` → `/dashboard` への「Back to Dashboard」導線
 
 ## 4-8. Vercelデプロイ・動作確認
-- [ ] `npm run build` 通過確認
-- [ ] Vercelに再デプロイ（git push）
-- [ ] 本番環境で動画再生確認
-- [ ] 未購入ユーザーでアクセスブロック確認
-- [ ] モバイル実機で動画再生・UI確認
+- [x] `npm run build` 通過確認
+- [x] Vercelに再デプロイ（git push）
+- [x] 本番環境で動画再生確認
+- [x] 未登録ユーザーでアクセスブロック確認
+- [x] モバイル実機で動画再生・UI確認
 
 ---
 

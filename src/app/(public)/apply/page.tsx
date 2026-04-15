@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ApplyForm from "./ApplyForm";
 
 export const metadata: Metadata = {
   title: 'Apply for a Free Trial',
@@ -10,10 +11,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ApplyLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function ApplyPage() {
+  return <ApplyForm />;
 }

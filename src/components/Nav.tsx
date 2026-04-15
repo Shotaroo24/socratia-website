@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Button from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 const publicNavLinks = [
-  { label: "Our Service", href: "#service" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Our Service", href: "/#service" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export default function Nav() {
