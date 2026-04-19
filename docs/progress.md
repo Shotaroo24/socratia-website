@@ -52,10 +52,10 @@
 - [x] favicon 設定
 
 ## 7. 仕上げ
-- [ ] アニメーション動作確認（フェードイン、ホバー等）
-- [ ] 全内部リンクの動作確認
-- [ ] Google Form リンクの動作確認
-- [ ] Lighthouse スコア確認
+- [x] アニメーション動作確認（フェードイン、ホバー等）
+- [x] 全内部リンクの動作確認
+- [x] ~~Google Form リンクの動作確認~~ → /apply に置き換え済みのため不要
+- [x] Lighthouse スコア確認（Performance 74〜88 / Accessibility 100 / SEO 100）
 - [x] Vercel デプロイ（https://socratia-website.vercel.app/）
 
 ---

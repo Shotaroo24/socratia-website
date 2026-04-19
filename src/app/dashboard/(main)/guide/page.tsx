@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Course Guide",
+  description: "Step-by-step guide for your Japanese learning journey",
+  robots: { index: false, follow: false },
+};
 
 const timelineItems = [
   {
