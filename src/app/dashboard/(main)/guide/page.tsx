@@ -30,7 +30,7 @@ const timelineItems = [
               className="rounded-full flex-shrink-0"
               style={{ background: "#C9A84C", width: 6, height: 6, marginTop: "0.55rem" }}
             />
-            <span>Self-study (videos + textbooks): about 3–5 hours per week</span>
+            <span>Independent study (videos + textbooks): about 3–5 hours per week</span>
           </li>
         </ul>
         <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
@@ -70,7 +70,7 @@ const timelineItems = [
             style={{ background: "#C9A84C", width: 6, height: 6, marginTop: "0.55rem" }}
           />
           <p>
-            Please make sure all sessions are completed within your 1-month plan period.
+            Please make sure all sessions are completed within your 1-month course period.
           </p>
         </div>
       </div>

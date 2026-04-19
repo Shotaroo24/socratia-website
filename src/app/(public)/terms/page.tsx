@@ -209,7 +209,7 @@ export default function TermsPage() {
                 experience.
               </li>
               <li>
-                For the Premium Individual Plan, rescheduling is flexible within the
+                Rescheduling is flexible within the
                 1-month course period. Please note that unused lessons do not carry over
                 and will expire at the end of the term. We strongly recommend completing
                 all sessions within the month to maximize your learning.

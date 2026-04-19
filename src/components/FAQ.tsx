@@ -7,48 +7,24 @@ const faqs = [
   {
     q: "How much time per week is required for this course?",
     a: (
-      <>
-        <p className="mb-3 text-subtext">It depends on your plan and goals!</p>
-        <ul className="flex flex-col gap-2 text-subtext text-base leading-relaxed">
-          <li>
-            <strong className="text-ink">Self-Study Plan:</strong> You have
-            complete freedom. Study whenever and however much you like at your
-            own pace.
-          </li>
-          <li>
-            <strong className="text-ink">Group &amp; Premium Plans:</strong> We
-            recommend setting aside about 6–10 hours per week. This includes 2
-            hours of live conversation practice and roughly 4–5 hours of
-            self-study (videos &amp; textbooks) to prepare and review.
-          </li>
-        </ul>
-      </>
+      <p className="text-subtext leading-relaxed">
+        We recommend setting aside about{" "}
+        <strong className="text-ink">6–10 hours per week</strong>. This
+        includes 2 hours of live conversation practice and roughly 4–5 hours of
+        independent study (videos &amp; textbooks) to prepare and review.
+      </p>
     ),
   },
   {
     q: "What if I can't attend a live lesson?",
     a: (
-      <>
-        <p className="mb-3 text-subtext">
-          The policy differs slightly to ensure the best learning environment.
-        </p>
-        <ul className="flex flex-col gap-2 text-subtext text-base leading-relaxed">
-          <li>
-            <strong className="text-ink">Group Plan:</strong> At the start of
-            the course, we coordinate a fixed weekly schedule that works for all
-            3 group members. To maintain the group&apos;s momentum, missed
-            lessons cannot be rescheduled. However, you can always catch up on
-            the content using the textbooks and videos, so you won&apos;t fall
-            behind!
-          </li>
-          <li>
-            <strong className="text-ink">Premium Individual Plan:</strong> You
-            enjoy maximum flexibility! If your schedule changes, you can
-            reschedule your lessons as many times as needed within your 1-month
-            course period.
-          </li>
-        </ul>
-      </>
+      <p className="text-subtext leading-relaxed">
+        No problem—your schedule comes first. If something comes up, you can{" "}
+        <strong className="text-ink">
+          reschedule your lessons as many times as needed
+        </strong>{" "}
+        within your 1-month course period.
+      </p>
     ),
   },
   {
