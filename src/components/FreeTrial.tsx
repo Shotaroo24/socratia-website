@@ -28,82 +28,74 @@ export default function FreeTrial() {
         }}
       />
 
-      <div className="relative max-w-[720px] mx-auto px-6">
-        {/* Invitation card */}
-        <div
-          className="relative text-center px-8 py-[60px] sm:px-[72px] sm:py-[80px]"
+      <div className="relative max-w-6xl mx-auto px-6 text-center">
+
+        {/* Eyebrow */}
+        <p
           style={{
-            background: 'linear-gradient(180deg, rgba(22,38,64,0.4) 0%, rgba(11,21,34,0.6) 100%)',
-            border: '1px solid rgba(201,168,76,0.3)',
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 11,
+            letterSpacing: '0.35em',
+            textTransform: 'uppercase',
+            color: '#C9A84C',
+            margin: 0,
           }}
         >
-          {/* Corner decorations */}
-          <span aria-hidden="true" style={{ position: 'absolute', top: -1, left: -1, width: 24, height: 24, borderTop: '1px solid #C9A84C', borderLeft: '1px solid #C9A84C' }} />
-          <span aria-hidden="true" style={{ position: 'absolute', top: -1, right: -1, width: 24, height: 24, borderTop: '1px solid #C9A84C', borderRight: '1px solid #C9A84C' }} />
-          <span aria-hidden="true" style={{ position: 'absolute', bottom: -1, left: -1, width: 24, height: 24, borderBottom: '1px solid #C9A84C', borderLeft: '1px solid #C9A84C' }} />
-          <span aria-hidden="true" style={{ position: 'absolute', bottom: -1, right: -1, width: 24, height: 24, borderBottom: '1px solid #C9A84C', borderRight: '1px solid #C9A84C' }} />
+          STILL UNSURE?
+        </p>
 
-          {/* Eyebrow */}
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 11,
-              letterSpacing: '0.35em',
-              textTransform: 'uppercase',
-              color: '#C9A84C',
-              margin: 0,
-            }}
-          >
-            STILL UNSURE?
-          </p>
+        {/* Eyebrow divider */}
+        <div
+          aria-hidden="true"
+          style={{ width: 32, height: 1, background: '#C9A84C', margin: '28px auto' }}
+        />
 
-          {/* Eyebrow divider */}
-          <div
-            aria-hidden="true"
-            style={{ width: 32, height: 1, background: '#C9A84C', margin: '28px auto' }}
-          />
+        {/* Title */}
+        <h2
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(32px, 5vw, 48px)',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            margin: 0,
+          }}
+        >
+          <span style={{ color: '#F5F0E8' }}>Apply for a </span>
+          <span style={{ color: '#C9A84C' }}>Free Trial Lesson</span>
+        </h2>
 
-          {/* Title */}
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 'clamp(32px, 5vw, 48px)',
-              fontWeight: 700,
-              lineHeight: 1.1,
-              margin: 0,
-            }}
-          >
-            <span style={{ color: '#F5F0E8' }}>Apply for a </span>
-            <span style={{ color: '#C9A84C' }}>Free Trial Lesson</span>
-          </h2>
+        {/* Section divider */}
+        <div
+          aria-hidden="true"
+          style={{ width: 40, height: 1, background: 'rgba(201,168,76,0.5)', margin: '32px auto' }}
+        />
 
-          {/* Section divider */}
-          <div
-            aria-hidden="true"
-            style={{ width: 40, height: 1, background: 'rgba(201,168,76,0.5)', margin: '32px auto' }}
-          />
+        {/* Body */}
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '0.95rem',
+            color: 'rgba(245,240,232,0.65)',
+            lineHeight: 1.7,
+            maxWidth: 640,
+            margin: '0 auto',
+          }}
+        >
+          A one-hour conversation on Google Meet. Meet your teacher, experience the method, and see if Socratia is right for you.
+        </p>
 
-          {/* Body */}
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '0.95rem',
-              color: 'rgba(245,240,232,0.65)',
-              lineHeight: 1.7,
-              maxWidth: 480,
-              margin: '0 auto',
-            }}
-          >
-            A one-hour conversation on Google Meet. Meet your teacher, experience the method, and see if Socratia is right for you.
-          </p>
-
-          {/* Details */}
+        {/* Details */}
+        <div
+          style={{
+            maxWidth: 720,
+            margin: '40px auto',
+          }}
+        >
           <div
             style={{
               borderTop: '1px solid rgba(245,240,232,0.1)',
               borderBottom: '1px solid rgba(245,240,232,0.1)',
               padding: '24px 0',
-              margin: '40px 0',
             }}
           >
             <div
@@ -139,30 +131,31 @@ export default function FreeTrial() {
               ))}
             </div>
           </div>
-
-          {/* CTA */}
-          <Link
-            href="/apply"
-            className="inline-flex items-center justify-center py-3 px-8 rounded-full text-sm font-medium transition-colors duration-200"
-            style={{ background: '#C9A84C', color: '#0B1522' }}
-          >
-            Apply Now →
-          </Link>
-
-          {/* Note */}
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
-              fontSize: 12,
-              color: 'rgba(245,240,232,0.5)',
-              marginTop: 20,
-              marginBottom: 0,
-            }}
-          >
-            No credit card · No commitment
-          </p>
         </div>
+
+        {/* CTA */}
+        <Link
+          href="/apply"
+          className="inline-flex items-center justify-center py-3 px-8 rounded-full text-sm font-medium transition-colors duration-200"
+          style={{ background: '#C9A84C', color: '#0B1522' }}
+        >
+          Apply Now →
+        </Link>
+
+        {/* Note */}
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: 'italic',
+            fontSize: 12,
+            color: 'rgba(245,240,232,0.5)',
+            marginTop: 20,
+            marginBottom: 0,
+          }}
+        >
+          No credit card · No commitment
+        </p>
+
       </div>
     </section>
   );
