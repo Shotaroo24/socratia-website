@@ -5,6 +5,16 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 const faqs = [
   {
+    q: "How much does the full course cost?",
+    a: (
+      <p className="text-subtext leading-relaxed">
+        The full course is{" "}
+        <strong className="text-ink">$399 for a 1-month program with lifetime access</strong>.
+        We&apos;ll walk you through everything during your free trial lesson — so go ahead and book your trial first.
+      </p>
+    ),
+  },
+  {
     q: "How much time per week is required for this course?",
     a: (
       <p className="text-subtext leading-relaxed">
