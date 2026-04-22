@@ -107,26 +107,112 @@ export default function ApplyForm() {
 
         {submitted ? (
           /* ── Thank You ── */
-          <div className="min-h-screen flex items-center justify-center -mt-16 md:-mt-24 -mx-4 px-4">
-          <div className="bg-white rounded-2xl shadow-md px-8 py-16 text-center w-full max-w-[700px]">
-            <h1 className="font-heading text-4xl md:text-5xl text-ink font-bold mb-6">
-              Thank you for your application!
-            </h1>
-            <p className="text-subtext text-lg leading-relaxed max-w-md mx-auto">
-              We will review your form shortly, and I will send an invitation to
-              selected applicants via WhatsApp within 48 hours ✨
-            </p>
-          </div>
+          <div className="min-h-screen flex items-center justify-center -mt-16 md:-mt-24 -mx-4 px-4 py-16">
+            <div className="text-center w-full max-w-[500px]">
+              {/* Check icon */}
+              <div
+                className="w-[68px] h-[68px] rounded-full flex items-center justify-center mx-auto mb-7 text-[1.6rem]"
+                style={{
+                  background: 'rgba(201,168,76,0.1)',
+                  border: '2px solid #C9A84C',
+                  color: '#C9A84C',
+                }}
+              >
+                ✓
+              </div>
+              {/* Label */}
+              <span
+                className="inline-block text-[0.68rem] font-bold tracking-[0.22em] uppercase mb-3"
+                style={{ color: '#896520' }}
+              >
+                Application Received
+              </span>
+              <h1 className="font-heading font-bold text-ink leading-[1.15] mb-4"
+                style={{ fontSize: 'clamp(2rem,4vw,2.8rem)' }}
+              >
+                You&apos;re all set!
+              </h1>
+              <div className="w-9 h-px bg-main mx-auto mb-5" />
+              <p className="text-subtext text-base leading-[1.75] mb-2">
+                We&apos;ll review your application and selected applicants will receive a{" "}
+                <strong className="text-ink">WhatsApp invitation within 48 hours</strong>.
+              </p>
+              <p className="text-text-muted text-sm mb-0">
+                Keep an eye on your WhatsApp — that&apos;s how we&apos;ll reach you.
+              </p>
+
+              {/* What happens next */}
+              <div
+                className="mt-7 text-left rounded-xl px-6 py-5"
+                style={{ background: '#fff', border: '1px solid #E8E2D6' }}
+              >
+                <p
+                  className="text-[0.68rem] font-bold tracking-[0.18em] uppercase mb-1"
+                  style={{ color: '#896520' }}
+                >
+                  What happens next
+                </p>
+                {[
+                  {
+                    n: '1',
+                    title: 'We review your application',
+                    desc: 'We read every application personally and reach out to selected candidates.',
+                  },
+                  {
+                    n: '2',
+                    title: 'You get a WhatsApp message',
+                    desc: "We\u2019ll send your trial lesson link and confirm the date and time.",
+                  },
+                  {
+                    n: '3',
+                    title: 'Your free lesson on Google Meet',
+                    desc: 'Experience the method, ask every question you have, and decide with clarity.',
+                  },
+                ].map((step, i, arr) => (
+                  <div
+                    key={step.n}
+                    className="flex items-start gap-3 py-2.5"
+                    style={{ borderBottom: i < arr.length - 1 ? '1px solid #E8E2D6' : 'none' }}
+                  >
+                    <div
+                      className="w-[26px] h-[26px] rounded-full flex items-center justify-center flex-shrink-0 mt-[1px] text-[0.72rem] font-bold font-heading"
+                      style={{ background: '#0B1522', color: '#C9A84C' }}
+                    >
+                      {step.n}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-ink mb-0.5">{step.title}</p>
+                      <p className="text-[0.8rem] text-subtext">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Back to site */}
+              <div className="mt-7 flex justify-center">
+                <a
+                  href="/"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-colors"
+                  style={{ background: '#C9A84C', color: '#0B1522' }}
+                >
+                  ← Back to site
+                </a>
+              </div>
+            </div>
           </div>
         ) : (
           /* ── Form Card ── */
           <div className="bg-white rounded-2xl shadow-md px-6 py-12 md:px-12">
 
             {/* Header */}
-            <div className="text-center mb-10">
-              <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-6">
+            <div className="text-center mb-10 pb-8 border-b border-border">
+              <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-4">
                 Book a Free Trial Lesson
               </h1>
+              <div className="w-9 h-px bg-main mx-auto mb-4" />
+              <p className="text-subtext text-base leading-relaxed max-w-sm mx-auto">
+                A free 1-hour Japanese lesson on Google Meet — experience our method and decide with clarity.
+              </p>
             </div>
 
             {/* Form */}
@@ -249,7 +335,14 @@ export default function ApplyForm() {
                         onChange={handleChange}
                         className="w-4 h-4 accent-[#0B1522] cursor-pointer"
                       />
-                      <span className="text-sm text-subtext group-hover:text-ink transition-colors">
+                      <span
+                        className={`text-sm transition-colors ${
+                          formData.howDidYouHear === option
+                            ? 'text-ink font-medium'
+                            : 'group-hover:text-ink'
+                        }`}
+                        style={formData.howDidYouHear === option ? {} : { color: '#9CA3AF' }}
+                      >
                         {option}
                       </span>
                     </label>
@@ -274,11 +367,12 @@ export default function ApplyForm() {
               </Field>
 
               {/* Notice */}
-              <p className="text-subtext text-base leading-relaxed border-l-2 border-main pl-4">
-                Please note that due to limited availability, we are unable to
-                accept every applicant. We will review your form and selected
-                candidates will receive an invitation for the trial lesson via
-                WhatsApp within 48 hours ✨
+              <p
+                className="text-sm text-subtext leading-[1.65] border-l-[3px] border-main pl-4 pr-4 py-[13px] rounded-r-lg"
+                style={{ background: 'rgba(201,168,76,0.05)' }}
+              >
+                Due to limited availability, we review each application personally. Selected candidates will receive a WhatsApp invitation within{" "}
+                <strong className="text-ink">48 hours</strong>.
               </p>
 
               {/* Submit */}
@@ -309,6 +403,7 @@ function inputClass(hasError: boolean) {
   return [
     "w-full px-4 py-3 rounded-lg text-base text-ink bg-white",
     "border transition-colors duration-150 outline-none",
+    "focus:shadow-[0_0_0_3px_rgba(201,168,76,0.12)]",
     hasError
       ? "border-red-400 focus:border-red-500"
       : "border-border focus:border-[#C9A84C]",

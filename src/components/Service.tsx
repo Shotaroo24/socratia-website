@@ -1,122 +1,94 @@
-import Image from "next/image";
-import SectionHeader from "@/components/ui/SectionHeader";
-
-const blocks = [
+const CARDS = [
   {
-    id: "textbook",
-    number: "01",
-    label: "Textbook Learning",
-    image: "/images/textbook.jpg",
-    imageAlt: "Textbook Learning",
-    description:
-      "Our slide-based textbooks provide a balanced mix of practical conversations, detailed grammar, and essential daily vocabulary—plus cultural columns on Japanese food, tourist spots, and real-life insights into everyday life in Japan.",
-    imageLeft: true,
+    num: '01',
+    title: 'Textbook Learning',
+    desc: 'Practical grammar, vocabulary, and cultural context — built for beginners from the ground up.',
+    gradient: 'linear-gradient(135deg,#1E3355 0%,#0B1522 100%)',
+    icon: (
+      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    ),
   },
   {
-    id: "video",
-    number: "02",
-    label: "Video Learning",
-    image: "/images/video.jpg",
-    imageAlt: "Video Learning",
-    description:
-      "Over 94 engaging videos (17+ hours) walk you through every topic with clear explanations, pronunciation tips, and real-life examples—covering all content from the textbooks, step by step.",
-    imageLeft: false,
+    num: '02',
+    title: 'Video Learning',
+    desc: '94 structured videos covering all topics with pronunciation guides and real-life examples.',
+    gradient: 'linear-gradient(135deg,#162640 0%,#0B1522 100%)',
+    icon: (
+      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="5 3 19 12 5 21 5 3" fill="rgba(201,168,76,0.15)" stroke="#C9A84C" />
+      </svg>
+    ),
   },
   {
-    id: "live-lesson",
-    number: "03",
-    label: "Live Lessons",
-    image: "/images/live-lesson.jpg",
-    imageAlt: "Live Lessons",
-    description:
-      "Practice Japanese conversation and pronunciation with us twice a week. Use Japanese in real conversations to strengthen retention—turning passive knowledge into practical communication skills.",
-    imageLeft: true,
+    num: '03',
+    title: 'Live Lessons',
+    desc: '1-on-1 conversation practice twice a week — the fastest path from knowledge to speaking.',
+    gradient: 'linear-gradient(135deg,#1a2d4a 0%,#0B1522 100%)',
+    icon: (
+      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="4" fill="rgba(201,168,76,0.1)" />
+        <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" fill="rgba(201,168,76,0.05)" />
+      </svg>
+    ),
   },
   {
-    id: "support",
-    number: "04",
-    label: "Community Support",
-    image: "/images/support.jpg",
-    imageAlt: "Community Support",
-    description:
-      "Ask questions about Japanese learning anytime—we respond promptly. We track your progress carefully and provide personalized advice tailored to your pace, goals, and learning style.",
-    imageLeft: false,
+    num: '04',
+    title: 'Support',
+    desc: 'Personalized guidance via Discord and Email throughout your entire course period.',
+    gradient: 'linear-gradient(135deg,#162030 0%,#0B1522 100%)',
+    icon: (
+      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+    ),
   },
 ] as const;
 
 export default function Service() {
   return (
-    <section
-      id="service"
-      className="relative py-24 md:py-32"
-      style={{ background: 'linear-gradient(160deg, #FFFFFF 0%, #FDFCFA 60%, #FAF8F4 100%)' }}
-    >
-      {/* Noise texture overlay */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E")`,
-          backgroundSize: '200px 200px',
-          opacity: 0.04,
-          pointerEvents: 'none',
-        }}
-      />
+    <section className="bg-white py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          label="Our Service — $399"
-          title="Everything You Need to Learn Japanese"
-          subtitle="We'll help you go from a complete beginner to being able to engage in simple daily conversations—through textbook learning, video learning, and live lessons, all backed by our support."
-        />
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span
+            className="inline-block text-xs font-semibold tracking-[0.22em] uppercase mb-4"
+            style={{ color: '#896520' }}
+          >
+            What&apos;s Inside
+          </span>
+          <h2 className="font-heading text-4xl md:text-5xl text-ink font-bold leading-tight">
+            Everything You Need to Learn Japanese
+          </h2>
+        </div>
 
-        <div className="flex flex-col gap-14 md:gap-16">
-          {blocks.map((block) => (
+        {/* 2×2 card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {CARDS.map((card) => (
             <div
-              key={block.id}
-              className={`flex flex-col overflow-hidden rounded-xl shadow-sm bg-white lg:h-[350px] ${
-                block.imageLeft ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              key={card.num}
+              className="flex overflow-hidden rounded-xl border border-border bg-cream"
+              style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.04)', minHeight: 140 }}
             >
-              {/* Image side */}
-              <div className="relative w-full md:w-1/2 max-h-[380px] lg:max-h-[400px] min-h-[260px]">
-                <Image
-                  src={block.image}
-                  alt={block.imageAlt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                {/* Navy gradient overlay */}
-                <div
-                  className="absolute inset-0"
-                  aria-hidden="true"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(11,21,34,0.80) 0%, rgba(11,21,34,0.25) 45%, transparent 100%)",
-                  }}
-                />
+              {/* Icon panel */}
+              <div
+                className="flex items-center justify-center flex-shrink-0"
+                style={{ width: 120, background: card.gradient }}
+              >
+                {card.icon}
               </div>
 
-              {/* Text side */}
-              <div
-                className={`w-full md:w-1/2 bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-14 lg:py-10 ${
-                  !block.imageLeft ? "md:text-right" : ""
-                }`}
-              >
+              {/* Text */}
+              <div className="px-6 py-6">
                 <p
-                  className="font-heading text-3xl mb-3 leading-none"
-                  style={{ color: 'var(--color-main-accessible)', fontWeight: 'normal' }}
+                  className="font-heading mb-1"
+                  style={{ fontSize: '1.05rem', color: '#896520', lineHeight: 1 }}
                 >
-                  {block.number}
+                  {card.num}
                 </p>
-                <div className={`w-8 h-px bg-main mb-4 ${!block.imageLeft ? "md:ml-auto" : ""}`} aria-hidden="true" />
-                <span className="inline-block font-heading text-ink font-bold mb-5 text-2xl md:text-[1.75rem]">
-                  {block.label}
-                </span>
-                <p className="text-subtext leading-relaxed text-base md:text-lg lg:text-base mb-7">
-                  {block.description}
-                </p>
+                <h3 className="font-heading text-xl font-bold text-ink mb-2">{card.title}</h3>
+                <p className="text-subtext text-sm leading-relaxed">{card.desc}</p>
               </div>
             </div>
           ))}

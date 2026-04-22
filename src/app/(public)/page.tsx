@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
+import StatsBand from "@/components/StatsBand";
+import HowItWorks from "@/components/HowItWorks";
 import Service from "@/components/Service";
 import FreeTrial from "@/components/FreeTrial";
 import FAQ from "@/components/FAQ";
@@ -19,7 +20,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Features />
+      <StatsBand />
+      <HowItWorks />
       <Service />
       <FreeTrial />
       <FAQ />
