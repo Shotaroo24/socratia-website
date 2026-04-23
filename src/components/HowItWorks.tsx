@@ -17,7 +17,9 @@ export default function HowItWorks() {
             Why Input + Live Practice Works
           </h2>
           <p className="text-subtext text-lg leading-relaxed max-w-lg mx-auto">
-            Most Japanese courses give you one without the other. We give you both — in the right sequence.
+            Most Japanese courses give you one without the other.{" "}
+            <br className="hidden md:block" />
+            We give you both — in the right sequence.
           </p>
         </div>
 

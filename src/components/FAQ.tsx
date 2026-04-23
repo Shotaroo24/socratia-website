@@ -41,7 +41,7 @@ const faqs = [
     q: "Can beginners join the course?",
     a: (
       <p className="text-subtext leading-relaxed">
-        <strong className="text-ink">Absolutely!</strong> This course is
+        <strong className="text-ink">Absolutely!</strong>{" "}This course is
         designed specifically for complete beginners and beginners in Japanese.
         Each lesson is carefully structured to help you build Japanese skills
         from the basics. Plus, you can ask questions at any time during your

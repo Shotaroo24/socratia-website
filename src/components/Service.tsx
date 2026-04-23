@@ -36,7 +36,7 @@ const CARDS = [
   {
     num: '04',
     title: 'Support',
-    desc: 'Personalized guidance via Discord and Email throughout your entire course period.',
+    desc: 'Personalized guidance via WhatsApp throughout your entire course period.',
     gradient: 'linear-gradient(135deg,#162030 0%,#0B1522 100%)',
     icon: (
       <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
