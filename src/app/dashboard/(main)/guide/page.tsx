@@ -82,8 +82,8 @@ const timelineItems = [
     content: (
       <div>
         <p className="text-base leading-relaxed" style={{ color: "#5A6A7A" }}>
-          If you have any questions or need support, please reach out to us anytime
-          via Discord or Email. We are here to help you!
+          If you have any questions or need support, please reach out to us anytime via
+          WhatsApp. We are here to help you!
         </p>
       </div>
     ),

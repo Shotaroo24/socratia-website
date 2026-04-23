@@ -55,7 +55,7 @@ const cards = [
   {
     icon: <ChatIcon />,
     title: "Discord community",
-    description: "Join our private Discord to ask questions and connect with classmates.",
+    description: "Join our private Discord to ask questions.",
     buttonLabel: "Join Discord",
     href: "https://discord.gg/7d376hwSgU",
     external: true,
