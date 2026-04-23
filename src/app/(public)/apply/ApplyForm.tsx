@@ -232,8 +232,9 @@ export default function ApplyForm() {
 
               {/* Name — first / last */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label="First Name" required error={errors.firstName}>
+                <Field label="First Name" required error={errors.firstName} htmlFor="apply-firstName">
                   <input
+                    id="apply-firstName"
                     type="text"
                     name="firstName"
                     value={formData.firstName}
@@ -242,8 +243,9 @@ export default function ApplyForm() {
                     className={inputClass(!!errors.firstName)}
                   />
                 </Field>
-                <Field label="Last Name" required error={errors.lastName}>
+                <Field label="Last Name" required error={errors.lastName} htmlFor="apply-lastName">
                   <input
+                    id="apply-lastName"
                     type="text"
                     name="lastName"
                     value={formData.lastName}
@@ -255,8 +257,9 @@ export default function ApplyForm() {
               </div>
 
               {/* Email */}
-              <Field label="Email" required error={errors.email}>
+              <Field label="Email" required error={errors.email} htmlFor="apply-email">
                 <input
+                  id="apply-email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -267,8 +270,9 @@ export default function ApplyForm() {
               </Field>
 
               {/* Phone */}
-              <Field label="Phone Number" required error={errors.phone}>
+              <Field label="Phone Number" required error={errors.phone} htmlFor="apply-phone">
                 <input
+                  id="apply-phone"
                   type="tel"
                   name="phone"
                   value={formData.phone}
@@ -279,8 +283,9 @@ export default function ApplyForm() {
               </Field>
 
               {/* Age */}
-              <Field label="Age" required error={errors.age}>
+              <Field label="Age" required error={errors.age} htmlFor="apply-age">
                 <input
+                  id="apply-age"
                   type="number"
                   name="age"
                   value={formData.age}
@@ -292,8 +297,9 @@ export default function ApplyForm() {
               </Field>
 
               {/* Occupation */}
-              <Field label="Occupation" required error={errors.occupation}>
+              <Field label="Occupation" required error={errors.occupation} htmlFor="apply-occupation">
                 <input
+                  id="apply-occupation"
                   type="text"
                   name="occupation"
                   value={formData.occupation}
@@ -304,8 +310,9 @@ export default function ApplyForm() {
               </Field>
 
               {/* Country */}
-              <Field label="Country of Residence" required error={errors.country}>
+              <Field label="Country of Residence" required error={errors.country} htmlFor="apply-country">
                 <input
+                  id="apply-country"
                   type="text"
                   name="country"
                   value={formData.country}
@@ -355,8 +362,10 @@ export default function ApplyForm() {
                 label="Preferred Date & Time"
                 required
                 error={errors.preferredDateTime}
+                htmlFor="apply-preferredDateTime"
               >
                 <textarea
+                  id="apply-preferredDateTime"
                   name="preferredDateTime"
                   value={formData.preferredDateTime}
                   onChange={handleChange}
@@ -414,16 +423,18 @@ function Field({
   label,
   required,
   error,
+  htmlFor,
   children,
 }: {
   label: string;
   required?: boolean;
   error?: string;
+  htmlFor?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-base font-bold text-ink">
+      <label htmlFor={htmlFor} className="text-base font-bold text-ink">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
