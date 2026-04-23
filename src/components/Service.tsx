@@ -73,8 +73,8 @@ export default function Service() {
             >
               {/* Icon panel */}
               <div
-                className="flex items-center justify-center flex-shrink-0"
-                style={{ width: 120, background: card.gradient }}
+                className="flex items-center justify-center flex-shrink-0 w-20 md:w-[120px]"
+                style={{ background: card.gradient }}
               >
                 {card.icon}
               </div>
