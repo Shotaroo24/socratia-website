@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const DETAILS = [
-  { label: 'Duration', value: '60 min' },
+const DETAILS: { label: string; value: string; highlight?: true }[] = [
+  { label: 'Duration', value: '45 min' },
   { label: 'Platform', value: 'Google Meet' },
-  { label: 'Cost', value: 'Free' },
-] as const;
+  { label: 'Cost', value: 'Free', highlight: true },
+];
 
 export default function FreeTrial() {
   return (
@@ -64,12 +64,6 @@ export default function FreeTrial() {
           <span style={{ color: '#C9A84C' }}>Free Trial Lesson</span>
         </h2>
 
-        {/* Section divider */}
-        <div
-          aria-hidden="true"
-          style={{ width: 40, height: 1, background: 'rgba(201,168,76,0.5)', margin: '32px auto' }}
-        />
-
         {/* Body */}
         <p
           style={{
@@ -78,10 +72,10 @@ export default function FreeTrial() {
             color: 'rgba(245,240,232,0.65)',
             lineHeight: 1.7,
             maxWidth: 640,
-            margin: '0 auto',
+            margin: '32px auto 0',
           }}
         >
-          A one-hour conversation on Google Meet. Meet your teacher, experience the method, and see if Socratia is right for you.
+          Meet with us, experience our method, and see if Socratia is right for you.
         </p>
 
         {/* Details */}
@@ -102,7 +96,7 @@ export default function FreeTrial() {
               className="flex flex-col sm:flex-row items-center justify-center"
               style={{ gap: 'clamp(20px, 5vw, 48px)' }}
             >
-              {DETAILS.map(({ label, value }) => (
+              {DETAILS.map(({ label, value, highlight }) => (
                 <div key={label} className="text-center">
                   <p
                     style={{
@@ -120,7 +114,7 @@ export default function FreeTrial() {
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
                       fontSize: 20,
-                      color: '#F5F0E8',
+                      color: highlight ? '#C9A84C' : '#F5F0E8',
                       lineHeight: 1,
                       margin: 0,
                     }}
