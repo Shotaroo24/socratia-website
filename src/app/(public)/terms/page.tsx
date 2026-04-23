@@ -113,8 +113,9 @@ export default function TermsPage() {
                   </li>
                   <li>
                     We do not store or have access to your card or payment information;
-                    all transactions are handled securely by Stripe and your issuing bank
-                    or financial institution.
+                    all transactions are processed through Stripe Payment Links and
+                    handled securely by Stripe and your issuing bank or financial
+                    institution.
                   </li>
                 </ul>
               </Subsection>
