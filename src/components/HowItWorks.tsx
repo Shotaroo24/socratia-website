@@ -53,7 +53,7 @@ export default function HowItWorks() {
             <span className="text-main text-2xl leading-none">→</span>
           </div>
           <div className="flex md:hidden items-center justify-center py-5" aria-hidden="true">
-            <span className="text-main text-2xl leading-none rotate-90">↓</span>
+            <span className="text-main text-2xl leading-none">↓</span>
           </div>
 
           {/* Practice */}
