@@ -40,7 +40,7 @@ const NavAuthMobile = dynamic(
 );
 
 const publicNavLinks = [
-  { label: "Our Service", href: "/#howto" },
+  { label: "Our Service", href: "/#service" },
   { label: "FAQ", href: "/#faq" },
 ];
 

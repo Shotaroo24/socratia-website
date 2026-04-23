@@ -48,7 +48,7 @@ const CARDS = [
 
 export default function Service() {
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section id="service" className="bg-white py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
