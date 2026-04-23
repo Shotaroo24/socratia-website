@@ -64,13 +64,18 @@ function buildEmailText(data: ApplyData): string {
 const SEND_TIMEOUT_MS = 10_000;
 
 export async function POST(req: NextRequest) {
-  // 1. Origin check (CSRF)
+  // 1. Origin check (CSRF) — fail-closed: missing or mismatched origin → 403
   const origin = req.headers.get("origin");
   const host = req.headers.get("host");
-  if (origin && host) {
+  // Allow requests without an origin only from localhost (dev server)
+  const isLocalhost = host?.startsWith("localhost") || host?.startsWith("127.0.0.1");
+  if (!origin && !isLocalhost) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+  if (origin) {
     try {
       const originHost = new URL(origin).host;
-      if (originHost !== host) {
+      if (!host || originHost !== host) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
     } catch {
