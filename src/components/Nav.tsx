@@ -87,7 +87,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          {!isDashboard && <Button href="/apply">Apply Now</Button>}
+          {!isDashboard && <Button href="/apply">Book Now</Button>}
           <NavAuthDesktop />
         </nav>
 
@@ -126,7 +126,7 @@ export default function Nav() {
               style={{ color: "#C9A84C" }}
               onClick={() => setMenuOpen(false)}
             >
-              Apply Now
+              Book Now
             </Link>
           )}
           <NavAuthMobile onClose={() => setMenuOpen(false)} />

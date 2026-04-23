@@ -68,7 +68,7 @@ export default function Hero() {
           href="/apply"
           className="text-base w-auto px-8 md:px-10 py-4 shadow-lg"
         >
-          Apply for a Free Trial&ensp;›
+          Book a Free Trial&ensp;›
         </Button>
       </div>
     </section>
