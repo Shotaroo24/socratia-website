@@ -60,7 +60,7 @@ export default function FreeTrial() {
             margin: 0,
           }}
         >
-          <span style={{ color: '#F5F0E8' }}>Apply for a </span>
+          <span style={{ color: '#F5F0E8' }}>Book a </span>
           <span style={{ color: '#C9A84C' }}>Free Trial Lesson</span>
         </h2>
 
@@ -133,7 +133,7 @@ export default function FreeTrial() {
           className="inline-flex items-center justify-center py-3 px-8 rounded-full text-sm font-medium transition-colors duration-200"
           style={{ background: '#C9A84C', color: '#0B1522' }}
         >
-          Apply Now →
+          Book Now →
         </Link>
 
         {/* Note */}
