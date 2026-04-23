@@ -75,12 +75,14 @@ export default function FAQ() {
         <div className="flex flex-col divide-y divide-border">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
+            const panelId = `faq-panel-${i}`;
             return (
               <div key={i}>
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="w-full text-left py-6 flex items-start justify-between gap-4 group"
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                 >
                   <span
                     className="font-semibold text-ink group-hover:text-main transition-colors duration-200 leading-snug"
@@ -99,6 +101,7 @@ export default function FAQ() {
                 </button>
 
                 <div
+                  id={panelId}
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
                     isOpen ? "max-h-[600px] opacity-100 pb-6" : "max-h-0 opacity-0"
                   }`}
