@@ -93,10 +93,11 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 text-text-light/80 hover:text-main transition-colors"
+          className="md:hidden inline-flex items-center justify-center min-h-11 min-w-11 p-2 text-text-light/80 hover:text-main transition-colors"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
+          aria-controls="nav-mobile-menu"
         >
           {menuOpen ? <XIcon /> : <MenuIcon />}
         </button>
@@ -104,6 +105,7 @@ export default function Nav() {
 
       {/* Mobile dropdown */}
       <div
+        id="nav-mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         } bg-navy border-t border-main-light/20`}

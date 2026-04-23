@@ -266,8 +266,8 @@ function Sidebar({
         </Link>
         <button
           onClick={onClose}
-          className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
-          style={{ color: "#5A6A7A", padding: "2px" }}
+          className="inline-flex items-center justify-center min-h-11 min-w-11 rounded transition-opacity hover:opacity-60"
+          style={{ color: "#5A6A7A" }}
           aria-label="Close sidebar"
         >
           <MenuIcon />
@@ -427,8 +427,8 @@ export default function LessonsClient({
             <div style={{ padding: "20px 24px 0" }}>
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="flex items-center justify-center rounded transition-opacity hover:opacity-60"
-                style={{ color: "#5A6A7A", padding: "2px" }}
+                className="inline-flex items-center justify-center min-h-11 min-w-11 rounded transition-opacity hover:opacity-60"
+                style={{ color: "#5A6A7A" }}
                 aria-label="Open sidebar"
               >
                 <MenuIcon />

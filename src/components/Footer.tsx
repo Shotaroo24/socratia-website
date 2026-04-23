@@ -98,7 +98,7 @@ function SocialIcon({
     <a
       href={href}
       aria-label={label}
-      className="w-10 h-10 rounded-full bg-navy-mid border border-main-light/30 text-text-muted flex items-center justify-center hover:bg-main hover:text-navy hover:border-main transition-all duration-200 hover:-translate-y-0.5"
+      className="w-10 h-10 min-h-11 min-w-11 rounded-full bg-navy-mid border border-main-light/30 text-text-muted flex items-center justify-center hover:bg-main hover:text-navy hover:border-main transition-all duration-200 hover:-translate-y-0.5"
     >
       {children}
     </a>
