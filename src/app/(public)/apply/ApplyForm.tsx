@@ -101,14 +101,10 @@ export default function ApplyForm() {
     }
   }
 
-  return (
-    <div className="bg-cream min-h-screen py-16 md:py-24 px-4">
-      <div className="max-w-[700px] mx-auto">
-
-        {submitted ? (
-          /* ── Thank You ── */
-          <div className="min-h-screen flex items-center justify-center -mt-16 md:-mt-24 -mx-4 px-4 py-16">
-            <div className="text-center w-full max-w-[500px]">
+  if (submitted) {
+    return (
+      <div className="bg-cream min-h-screen flex items-center justify-center px-4">
+        <div className="text-center w-full max-w-[500px] py-16">
               {/* Check icon */}
               <div
                 className="w-[68px] h-[68px] rounded-full flex items-center justify-center mx-auto mb-7 text-[1.6rem]"
@@ -133,75 +129,19 @@ export default function ApplyForm() {
                 You&apos;re all set!
               </h1>
               <div className="w-9 h-px bg-main mx-auto mb-5" />
-              <p className="text-subtext text-base leading-[1.75] mb-2">
+              <p className="text-subtext text-base leading-[1.75]">
                 We&apos;ll review your application and selected applicants will receive a{" "}
                 <strong className="text-ink">WhatsApp invitation within 48 hours</strong>.
               </p>
-              <p className="text-text-muted text-sm mb-0">
-                Keep an eye on your WhatsApp — that&apos;s how we&apos;ll reach you.
-              </p>
+        </div>
+      </div>
+    );
+  }
 
-              {/* What happens next */}
-              <div
-                className="mt-7 text-left rounded-xl px-6 py-5"
-                style={{ background: '#fff', border: '1px solid #E8E2D6' }}
-              >
-                <p
-                  className="text-[0.68rem] font-bold tracking-[0.18em] uppercase mb-1"
-                  style={{ color: '#896520' }}
-                >
-                  What happens next
-                </p>
-                {[
-                  {
-                    n: '1',
-                    title: 'We review your application',
-                    desc: 'We read every application personally and reach out to selected candidates.',
-                  },
-                  {
-                    n: '2',
-                    title: 'You get a WhatsApp message',
-                    desc: "We\u2019ll send your trial lesson link and confirm the date and time.",
-                  },
-                  {
-                    n: '3',
-                    title: 'Your free lesson on Google Meet',
-                    desc: 'Experience the method, ask every question you have, and decide with clarity.',
-                  },
-                ].map((step, i, arr) => (
-                  <div
-                    key={step.n}
-                    className="flex items-start gap-3 py-2.5"
-                    style={{ borderBottom: i < arr.length - 1 ? '1px solid #E8E2D6' : 'none' }}
-                  >
-                    <div
-                      className="w-[26px] h-[26px] rounded-full flex items-center justify-center flex-shrink-0 mt-[1px] text-[0.72rem] font-bold font-heading"
-                      style={{ background: '#0B1522', color: '#C9A84C' }}
-                    >
-                      {step.n}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-ink mb-0.5">{step.title}</p>
-                      <p className="text-[0.8rem] text-subtext">{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Back to site */}
-              <div className="mt-7 flex justify-center">
-                <a
-                  href="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-colors"
-                  style={{ background: '#C9A84C', color: '#0B1522' }}
-                >
-                  ← Back to site
-                </a>
-              </div>
-            </div>
-          </div>
-        ) : (
-          /* ── Form Card ── */
+  return (
+    <div className="bg-cream min-h-screen py-16 md:py-24 px-4">
+      <div className="max-w-[700px] mx-auto">
+          {/* ── Form Card ── */}
           <div className="bg-white rounded-2xl shadow-md px-6 py-12 md:px-12">
 
             {/* Header */}
@@ -399,8 +339,6 @@ export default function ApplyForm() {
 
             </form>
           </div>
-        )}
-
       </div>
     </div>
   );
