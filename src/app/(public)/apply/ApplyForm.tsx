@@ -236,7 +236,7 @@ export default function ApplyForm() {
                   name="age"
                   value={formData.age}
                   onChange={handleChange}
-                  placeholder="25"
+                  placeholder="35"
                   min={13}
                   className={inputClass(!!errors.age)}
                 />
