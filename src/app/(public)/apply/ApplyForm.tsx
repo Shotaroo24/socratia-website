@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/constants/applyOptions";
 
 type FormData = {
@@ -60,6 +60,12 @@ export default function ApplyForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (submitted) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [submitted]);
+
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -103,7 +109,7 @@ export default function ApplyForm() {
 
   if (submitted) {
     return (
-      <div className="bg-cream min-h-screen flex items-center justify-center px-4">
+      <div className="bg-cream min-h-screen -mt-16 flex items-center justify-center px-4">
         <div className="text-center w-full max-w-[500px] py-16">
               {/* Check icon */}
               <div
