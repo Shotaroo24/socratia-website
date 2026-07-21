@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
+import { SITE_CONFIG } from "@/lib/constants";
 
 // Lazy-load Clerk-dependent auth components to avoid blocking the initial paint.
 // A static "Log in" link is shown while the auth state loads.
@@ -87,7 +88,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          {!isDashboard && <Button href="/apply">Book Now</Button>}
+          {!isDashboard && <Button href="/apply">{SITE_CONFIG.ctaLabel}</Button>}
           <NavAuthDesktop />
         </nav>
 
@@ -128,7 +129,7 @@ export default function Nav() {
               style={{ color: "#C9A84C" }}
               onClick={() => setMenuOpen(false)}
             >
-              Book Now
+              {SITE_CONFIG.ctaLabel}
             </Link>
           )}
           <NavAuthMobile onClose={() => setMenuOpen(false)} />

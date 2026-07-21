@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function Hero() {
   return (
@@ -68,7 +69,7 @@ export default function Hero() {
           href="/apply"
           className="text-base w-auto px-8 md:px-10 py-4 shadow-lg"
         >
-          Book a Free Trial&ensp;›
+          {SITE_CONFIG.ctaLabel}&ensp;›
         </Button>
       </div>
     </section>
