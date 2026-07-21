@@ -9,8 +9,10 @@ const faqs = [
     a: (
       <p className="text-subtext leading-relaxed">
         The full course is{" "}
-        <strong className="text-ink">$399 for a 1-month program with lifetime access</strong>.
-        We&apos;ll walk you through everything during your free trial lesson — so go ahead and book your trial first.
+        <strong className="text-ink">
+          $399 — a one-month program with 8 live 1-on-1 sessions and lifetime access to all materials
+        </strong>
+        . Payment is one-time; there&apos;s no subscription. You can try a free trial lesson first.
       </p>
     ),
   },
