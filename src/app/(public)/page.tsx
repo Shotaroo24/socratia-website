@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import StatsBand from "@/components/StatsBand";
 import HowItWorks from "@/components/HowItWorks";
 import Service from "@/components/Service";
-import FreeTrial from "@/components/FreeTrial";
+import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function Home() {
       <StatsBand />
       <HowItWorks />
       <Service />
-      <FreeTrial />
+      <Pricing />
       <FAQ />
     </>
   );
