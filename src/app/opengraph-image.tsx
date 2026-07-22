@@ -10,11 +10,12 @@ export const dynamic = 'force-static'
 export const revalidate = false
 
 // Font is read once per server process and cached in this module-level Promise.
+// Uses the repo-vendored static weight-500 font (src/app/fonts/) rather than a
+// node_modules internal path, so it doesn't break if the package layout changes.
+// A static (non-variable) .woff file is used: satori does not interpolate
+// variable font weight axes, and does not support the .woff2 signature.
 const fontPromise = readFile(
-  path.join(
-    process.cwd(),
-    'node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff'
-  )
+  path.join(process.cwd(), 'src/app/fonts/cormorant-garamond-latin-500.woff')
 )
 
 export default async function Image() {

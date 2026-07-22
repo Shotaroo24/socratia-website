@@ -107,7 +107,7 @@ function MobileLessonList({
   const [openSection, setOpenSection] = useState<string>(() => {
     return (
       sections.find((s) => s.lessons.some((l) => l.id === activeLesson.id))
-        ?.id ?? sections[0].id
+        ?.id ?? sections[0]?.id ?? ""
     );
   });
 
@@ -233,7 +233,7 @@ function Sidebar({
   onSelect: (lesson: Lesson) => void;
   onClose: () => void;
 }) {
-  const [openSection, setOpenSection] = useState<string>(sections[0].id);
+  const [openSection, setOpenSection] = useState<string>(sections[0]?.id ?? "");
 
   const toggleSection = (id: string) => {
     setOpenSection((prev) => (prev === id ? "" : id));
@@ -362,11 +362,22 @@ export default function LessonsClient({
   sections: Section[];
   bunnyLibraryId: string;
 }) {
-  const defaultLesson = sections[0].lessons[0];
-  const [activeLesson, setActiveLesson] = useState<Lesson>(defaultLesson);
+  const defaultLesson = sections[0]?.lessons[0];
+  const [activeLesson, setActiveLesson] = useState<Lesson | undefined>(defaultLesson);
   // Open by default — on mobile the sidebar is hidden via CSS (md:block), so this
   // only affects the desktop layout. No resize listener needed.
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  if (!activeLesson) {
+    return (
+      <div
+        className="flex items-center justify-center min-h-screen text-center px-6"
+        style={{ background: "#FAF7F2", color: "#5A6A7A" }}
+      >
+        <p>No lessons are available yet. Please check back soon.</p>
+      </div>
+    );
+  }
 
   return (
     // CSS-only responsive layout: no JS breakpoint detection, no resize listeners.

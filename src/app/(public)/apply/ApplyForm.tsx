@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { HOW_DID_YOU_HEAR_OPTIONS } from "@/lib/constants/applyOptions";
+import { HOW_DID_YOU_HEAR_OPTIONS, applySchema } from "@/lib/validation/apply";
 
 type FormData = {
   firstName: string;
@@ -31,27 +31,22 @@ const initialFormData: FormData = {
   website: "",
 };
 
-function validate(data: FormData): FormErrors {
+function fieldErrorsFrom(
+  fieldErrors: Partial<Record<keyof FormData, string[] | undefined>>
+): FormErrors {
   const errors: FormErrors = {};
-  if (!data.firstName.trim()) errors.firstName = "First name is required.";
-  if (!data.lastName.trim()) errors.lastName = "Last name is required.";
-  if (!data.email.trim()) {
-    errors.email = "Email is required.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = "Please enter a valid email address.";
+  for (const key of Object.keys(fieldErrors) as (keyof FormData)[]) {
+    if (key === "website") continue;
+    const message = fieldErrors[key]?.[0];
+    if (message) errors[key as keyof FormErrors] = message;
   }
-  if (!data.phone.trim()) errors.phone = "Phone number is required.";
-  if (!data.age.trim()) {
-    errors.age = "Age is required.";
-  } else if (isNaN(Number(data.age)) || Number(data.age) < 13) {
-    errors.age = "You must be at least 13 years old to apply.";
-  }
-  if (!data.occupation.trim()) errors.occupation = "Occupation is required.";
-  if (!data.country.trim()) errors.country = "Country of residence is required.";
-  if (!data.howDidYouHear) errors.howDidYouHear = "Please select an option.";
-  if (!data.preferredDateTime.trim())
-    errors.preferredDateTime = "Please enter your preferred date & time.";
   return errors;
+}
+
+function validate(data: FormData): FormErrors {
+  const parsed = applySchema.safeParse(data);
+  if (parsed.success) return {};
+  return fieldErrorsFrom(parsed.error.flatten().fieldErrors);
 }
 
 export default function ApplyForm() {
@@ -98,7 +93,13 @@ export default function ApplyForm() {
       if (res.ok) {
         setSubmitted(true);
       } else {
-        setErrors({ email: "Something went wrong. Please try again." });
+        const body: { error?: string; issues?: Partial<Record<keyof FormData, string[]>> } =
+          await res.json().catch(() => ({}));
+        if (body.issues) {
+          setErrors(fieldErrorsFrom(body.issues));
+        } else {
+          setErrors({ email: body.error ?? "Something went wrong. Please try again." });
+        }
       }
     } catch {
       setErrors({ email: "Something went wrong. Please try again." });

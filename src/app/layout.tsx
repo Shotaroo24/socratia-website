@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { getClerkFrontendApiHost } from "@/lib/clerkFrontendApi";
 
-const cormorant = Cormorant_Garamond({
+// Self-hosted (repo-vendored) variable fonts — see src/app/fonts/.
+// Avoids fetching from Google Fonts at build time (next/font/google requires
+// network access during `next build`, which fails in network-restricted CI).
+const cormorant = localFont({
+  src: "./fonts/cormorant-garamond-latin-variable.woff2",
   variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "300 700",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const dmSans = localFont({
+  src: "./fonts/dm-sans-latin-variable.woff2",
   variable: "--font-dm-sans",
-  subsets: ["latin"],
+  weight: "100 1000",
   display: "swap",
 });
 
@@ -44,6 +49,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const clerkFapi = getClerkFrontendApiHost();
+
   return (
     <ClerkProvider>
       <html
@@ -52,7 +59,7 @@ export default function RootLayout({
       >
         <head>
           {/* Preconnect to Clerk domains to reduce auth SDK latency */}
-          <link rel="preconnect" href="https://grown-dogfish-64.clerk.accounts.dev" />
+          <link rel="preconnect" href={`https://${clerkFapi}`} />
           <link rel="preconnect" href="https://img.clerk.com" />
         </head>
         <body className="min-h-full flex flex-col">
