@@ -10,10 +10,10 @@ export default function CommercialDisclosurePage() {
   return (
     <div className="bg-cream min-h-screen">
       <div className="max-w-3xl mx-auto px-6 pt-14 pb-16 md:pt-16 md:pb-20">
-        <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-8 text-center">
+        <h1 className="font-heading text-display-page text-ink font-bold mb-8 text-center">
           Commercial Disclosure
         </h1>
-        <p className="text-subtext text-sm mb-12">
+        <p className="text-subtext text-body mb-12">
           This commercial disclosure is provided in accordance with the Japanese Act on
           Specified Commercial Transactions and applies to services offered by a
           business operating from Japan.
@@ -84,7 +84,7 @@ export default function CommercialDisclosurePage() {
         </dl>
 
         {/* Back link */}
-        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-sm text-subtext">
+        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-body text-subtext">
           <Link href="/terms" className="hover:text-main transition-colors">
             Terms &amp; Conditions
           </Link>
@@ -106,10 +106,10 @@ function Row({
 }) {
   return (
     <div className="py-5 flex flex-col md:flex-row md:gap-8">
-      <dt className="font-heading text-base font-bold text-ink md:w-64 flex-shrink-0 mb-2 md:mb-0">
+      <dt className="font-heading text-title font-bold text-ink md:w-64 flex-shrink-0 mb-2 md:mb-0">
         {label}
       </dt>
-      <dd className="text-subtext leading-relaxed text-sm md:text-base">{children}</dd>
+      <dd className="text-subtext text-body">{children}</dd>
     </div>
   );
 }

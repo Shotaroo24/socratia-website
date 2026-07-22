@@ -22,7 +22,7 @@ export function NavAuthDesktop() {
       <div className="flex items-center gap-4">
         <Link
           href="/dashboard"
-          className="text-sm md:text-base font-medium transition-colors duration-200"
+          className="text-body font-medium transition-colors duration-200"
           style={{ color: "#8899AA" }}
           onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}
@@ -37,7 +37,7 @@ export function NavAuthDesktop() {
   return (
     <Link
       href="/login"
-      className="text-sm md:text-base font-medium transition-colors duration-200"
+      className="text-body font-medium transition-colors duration-200"
       style={{ color: "#8899AA" }}
       onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
       onMouseLeave={(e) => (e.currentTarget.style.color = "#8899AA")}

@@ -10,10 +10,10 @@ export default function TermsPage() {
   return (
     <div className="bg-cream min-h-screen">
       <div className="max-w-3xl mx-auto px-6 pt-14 pb-16 md:pt-16 md:pb-20">
-        <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-8 text-center">
+        <h1 className="font-heading text-display-page text-ink font-bold mb-8 text-center">
           Terms &amp; Conditions
         </h1>
-        <p className="text-subtext text-sm mb-12">
+        <p className="text-subtext text-body mb-12">
           This agreement applies as between you, the user of socratiaacademy.com (this
           &ldquo;Website&rdquo;) and Shotaro (referred to as &ldquo;we,&rdquo;
           &ldquo;us,&rdquo; or &ldquo;our&rdquo;), the owner of this Website. By
@@ -128,7 +128,7 @@ export default function TermsPage() {
                   totaling between 2% and 5%. Please check with your card issuer or
                   financial institution for more specific information.
                 </p>
-                <p className="text-sm italic text-subtext">
+                <p className="text-body italic text-subtext">
                   Note: All currency conversion fees, foreign transaction fees mentioned
                   above are determined by your payment provider (e.g., your bank, or
                   your card issuer) and are not part of the product price. We do not
@@ -289,7 +289,7 @@ export default function TermsPage() {
         </div>
 
         {/* Back link */}
-        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-sm text-subtext">
+        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-body text-subtext">
           <Link href="/privacy" className="hover:text-main transition-colors">
             Privacy Policy
           </Link>
@@ -314,8 +314,8 @@ function Section({
 }) {
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold text-ink mb-4">{title}</h2>
-      <div className="text-subtext leading-relaxed text-sm md:text-base">{children}</div>
+      <h2 className="font-heading text-title-lg font-bold text-ink mb-4">{title}</h2>
+      <div className="text-subtext text-body">{children}</div>
     </div>
   );
 }
@@ -329,8 +329,8 @@ function Subsection({
 }) {
   return (
     <div>
-      <h3 className="font-heading text-lg font-semibold text-ink mb-2">{title}</h3>
-      <div className="text-subtext leading-relaxed text-sm md:text-base">{children}</div>
+      <h3 className="font-heading text-title font-semibold text-ink mb-2">{title}</h3>
+      <div className="text-subtext text-body">{children}</div>
     </div>
   );
 }

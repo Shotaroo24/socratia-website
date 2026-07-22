@@ -10,10 +10,10 @@ export default function PrivacyPage() {
   return (
     <div className="bg-cream min-h-screen">
       <div className="max-w-3xl mx-auto px-6 pt-14 pb-16 md:pt-16 md:pb-20">
-        <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-8 text-center">
+        <h1 className="font-heading text-display-page text-ink font-bold mb-8 text-center">
           Privacy Policy
         </h1>
-        <p className="text-subtext text-sm mb-12">
+        <p className="text-subtext text-body mb-12">
           Shotaro (hereafter referred to as &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
           &ldquo;our&rdquo;), the sole proprietor and operator of socratiaacademy.com
           (the &ldquo;Site&rdquo;), respects your privacy and hereby declares that we
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* Back link */}
-        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-sm text-subtext">
+        <div className="mt-16 pt-8 border-t border-border flex gap-6 text-body text-subtext">
           <Link href="/terms" className="hover:text-main transition-colors">
             Terms &amp; Conditions
           </Link>
@@ -180,8 +180,8 @@ function Section({
 }) {
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold text-ink mb-4">{title}</h2>
-      <div className="text-subtext leading-relaxed text-sm md:text-base">{children}</div>
+      <h2 className="font-heading text-title-lg font-bold text-ink mb-4">{title}</h2>
+      <div className="text-subtext text-body">{children}</div>
     </div>
   );
 }

@@ -125,18 +125,16 @@ export default function ApplyForm() {
               </div>
               {/* Label */}
               <span
-                className="inline-block text-[0.68rem] font-bold tracking-[0.22em] uppercase mb-3"
+                className="inline-block font-bold uppercase mb-3 text-label"
                 style={{ color: '#896520' }}
               >
                 Application Received
               </span>
-              <h1 className="font-heading font-bold text-ink leading-[1.15] mb-4"
-                style={{ fontSize: 'clamp(2rem,4vw,2.8rem)' }}
-              >
+              <h1 className="font-heading font-bold text-ink mb-4 text-display-page">
                 You&apos;re all set!
               </h1>
               <div className="w-9 h-px bg-main mx-auto mb-5" />
-              <p className="text-subtext text-base md:text-lg leading-[1.75]">
+              <p className="text-subtext text-body-lg">
                 We&apos;ll review your application and selected applicants will receive a{" "}
                 <strong className="text-ink">WhatsApp invitation within 48 hours</strong>.
               </p>
@@ -153,11 +151,11 @@ export default function ApplyForm() {
 
             {/* Header */}
             <div className="text-center mb-10 pb-8 border-b border-border">
-              <h1 className="font-heading text-3xl md:text-4xl text-ink font-bold mb-4">
+              <h1 className="font-heading text-display-page text-ink font-bold mb-4">
                 Book a Free Trial Lesson
               </h1>
               <div className="w-9 h-px bg-main mx-auto mb-4" />
-              <p className="text-subtext text-base md:text-lg leading-relaxed max-w-sm mx-auto">
+              <p className="text-subtext text-body-lg max-w-sm mx-auto">
                 A free 1-hour Japanese lesson on Google Meet — experience our method and decide with clarity.
               </p>
             </div>
@@ -290,7 +288,7 @@ export default function ApplyForm() {
                         className="w-4 h-4 accent-[#0B1522] cursor-pointer"
                       />
                       <span
-                        className={`text-sm md:text-base transition-colors ${
+                        className={`text-body transition-colors ${
                           formData.howDidYouHear === option
                             ? 'text-ink font-medium'
                             : 'group-hover:text-ink'
@@ -324,7 +322,7 @@ export default function ApplyForm() {
 
               {/* Notice */}
               <p
-                className="text-sm md:text-base text-subtext leading-[1.65] border-l-[3px] border-main pl-4 pr-4 py-[13px] rounded-r-lg"
+                className="text-body text-subtext border-l-[3px] border-main pl-4 pr-4 py-[13px] rounded-r-lg"
                 style={{ background: 'rgba(201,168,76,0.05)' }}
               >
                 Due to limited availability, we review each application personally. Selected candidates will receive a WhatsApp invitation within{" "}
@@ -335,7 +333,7 @@ export default function ApplyForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="mt-2 w-full py-4 rounded-full font-medium text-base tracking-wide transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
+                className="mt-2 w-full py-4 rounded-full font-medium text-body tracking-wide transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
                 style={{
                   background: isSubmitting ? "#A07B2E" : "#C9A84C",
                   color: "#0B1522",
@@ -379,12 +377,12 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-base md:text-lg font-bold text-ink">
+      <label htmlFor={htmlFor} className="text-body font-bold text-ink">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       {children}
-      {error && <p className="text-red-500 text-xs">{error}</p>}
+      {error && <p className="text-red-500 text-caption">{error}</p>}
     </div>
   );
 }
