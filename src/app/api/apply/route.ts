@@ -9,6 +9,11 @@ const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 
 type RateLimitEntry = { count: number; windowStart: number };
+// NOTE: This in-memory rate limiter is best-effort only.
+// On serverless (Vercel), each invocation may run in a separate instance,
+// so this Map is not shared across requests and the limit is not reliably enforced.
+// The primary abuse defenses are the Origin check, honeypot, and Zod validation above.
+// For robust distributed rate limiting, migrate to Upstash Redis (@upstash/ratelimit).
 const rateLimitMap = new Map<string, RateLimitEntry>();
 
 function isRateLimited(ip: string): boolean {
@@ -132,11 +137,12 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(apiKey);
+  const fromAddress = process.env.RESEND_FROM ?? "Socratia Academy <onboarding@resend.dev>";
 
   let sendResult: { data: unknown; error: { message: string } | null };
   try {
     const sendPromise = resend.emails.send({
-      from: "Socratia Academy <onboarding@resend.dev>",
+      from: fromAddress,
       to: "info@socratiaacademy.com",
       subject: `New Trial Lesson Application from ${data.firstName} ${data.lastName}`,
       text: buildEmailText(data),

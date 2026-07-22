@@ -29,6 +29,10 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Environment Variables
+
+See `.env.example` for the full list. In production, set `RESEND_FROM` to a verified custom domain address (e.g. `noreply@socratiaacademy.com`) — complete domain authentication (SPF/DKIM) in the Resend dashboard first, or delivery may fail or land in spam.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

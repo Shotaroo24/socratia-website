@@ -42,3 +42,6 @@ next-env.d.ts
 
 # large media files (use Vimeo embedding instead)
 public/images/*.mp4
+
+# review artifacts
+/reports/

@@ -21,9 +21,9 @@ export default function Button({
     "inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm md:text-base tracking-wide transition-all duration-200 cursor-pointer";
   const variants = {
     primary:
-      "bg-main text-navy hover:bg-main-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0",
+      "bg-main text-navy hover:bg-main-dark hover:shadow-lg [@media(hover:hover)]:hover:-translate-y-0.5 active:translate-y-0",
     outline:
-      "border-2 border-main text-main hover:bg-main hover:text-navy hover:-translate-y-0.5 active:translate-y-0",
+      "border-2 border-main text-main hover:bg-main hover:text-navy [@media(hover:hover)]:hover:-translate-y-0.5 active:translate-y-0",
   };
   const cls = `${base} ${variants[variant]} ${className}`;
 
