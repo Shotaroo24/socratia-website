@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const FEATURES: { icon: React.ReactNode; text: string }[] = [
@@ -40,124 +40,56 @@ export default function Pricing() {
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         {/* Eyebrow */}
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "#C9A84C",
-            margin: 0,
-          }}
-        >
+        <p className="inline-block text-xs font-semibold tracking-[0.22em] uppercase mb-4 text-main">
           PRICING &amp; FREE TRIAL
         </p>
 
         {/* Eyebrow divider */}
-        <div
-          aria-hidden="true"
-          style={{ width: 34, height: 1, background: "#C9A84C", margin: "16px auto" }}
-        />
+        <div aria-hidden="true" className="w-[34px] h-px bg-main mx-auto my-4" />
 
         {/* Title */}
-        <h2
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(24px, 4vw, 28px)",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            margin: 0,
-          }}
-        >
-          <span style={{ color: "#F5F0E8" }}>One program. </span>
-          <span style={{ color: "#C9A84C" }}>Everything included.</span>
+        <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight">
+          <span className="text-text-light">One program. </span>
+          <span className="text-main">Everything included.</span>
         </h2>
 
         {/* Price */}
-        <p
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(32px, 6vw, 40px)",
-            fontWeight: 700,
-            color: "#C9A84C",
-            lineHeight: 1,
-            margin: "28px 0 0",
-          }}
-        >
+        <p className="font-heading text-3xl md:text-4xl font-bold leading-none text-main mt-8">
           {SITE_CONFIG.price}
         </p>
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 13,
-            color: "rgba(245,240,232,0.5)",
-            margin: "10px 0 0",
-          }}
-        >
+        <p className="text-text-muted text-sm mt-3">
           &asymp; 1,496 SAR &middot; one-time payment &middot; no subscription
         </p>
 
         {/* Feature list */}
-        <div className="mx-auto mt-10 flex flex-col items-start" style={{ maxWidth: 400, gap: 13 }}>
+        <div className="mx-auto mt-10 flex flex-col items-start gap-3 max-w-[400px]">
           {FEATURES.map(({ icon, text }) => (
             <div key={text} className="flex items-center gap-3">
-              <span style={{ color: "#C9A84C", flexShrink: 0 }}>{icon}</span>
-              <span
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  color: "#F5F0E8",
-                }}
-              >
-                {text}
-              </span>
+              <span className="text-main flex-shrink-0">{icon}</span>
+              <span className="text-text-light text-sm">{text}</span>
             </div>
           ))}
         </div>
 
         {/* Trial band */}
         <div
-          className="mx-auto mt-12"
+          className="mx-auto mt-12 max-w-[620px] p-6"
           style={{
-            maxWidth: 620,
             borderTop: "0.5px solid rgba(201,168,76,0.22)",
             borderBottom: "0.5px solid rgba(201,168,76,0.22)",
-            padding: "24px",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 19,
-              color: "#F5F0E8",
-              margin: "0 0 20px",
-            }}
-          >
+          <h3 className="font-heading text-2xl font-bold text-text-light mb-5">
             Try it free before you decide
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-10">
             {TRIAL_DETAILS.map(({ label, value, highlight }) => (
               <div key={label} className="text-center">
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 10,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(245,240,232,0.5)",
-                    marginBottom: 6,
-                  }}
-                >
+                <p className="text-xs tracking-[0.12em] uppercase text-text-muted mb-1.5">
                   {label}
                 </p>
                 <p
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 17,
-                    color: highlight ? "#C9A84C" : "#F5F0E8",
-                    lineHeight: 1,
-                    margin: 0,
-                  }}
+                  className={`font-heading text-xl ${highlight ? "text-main" : "text-text-light"}`}
                 >
                   {value}
                 </p>
@@ -167,25 +99,12 @@ export default function Pricing() {
         </div>
 
         {/* CTA */}
-        <Link
-          href="/apply"
-          className="inline-flex items-center justify-center py-3 px-8 rounded-full text-sm font-medium transition-colors duration-200 mt-12"
-          style={{ background: "#C9A84C", color: "#0B1522" }}
-        >
+        <Button href="/apply" className="mt-12">
           {SITE_CONFIG.ctaLabel}&ensp;&rarr;
-        </Link>
+        </Button>
 
         {/* Note */}
-        <p
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            fontSize: 11,
-            color: "rgba(245,240,232,0.5)",
-            marginTop: 20,
-            marginBottom: 0,
-          }}
-        >
+        <p className="font-heading italic text-xs text-text-muted mt-5">
           No credit card &middot; No commitment
         </p>
       </div>
