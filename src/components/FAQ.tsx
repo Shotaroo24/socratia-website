@@ -87,8 +87,7 @@ export default function FAQ() {
                   aria-controls={panelId}
                 >
                   <span
-                    className="font-semibold text-ink group-hover:text-main transition-colors duration-200 leading-snug"
-                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.35rem' }}
+                    className="font-heading font-semibold text-ink group-hover:text-main transition-colors duration-200 leading-snug text-lg md:text-xl"
                   >
                     {faq.q}
                   </span>
