@@ -84,11 +84,9 @@ export default function DashboardClient() {
           style={{ background: "#0B1522" }}
         >
           <p
-            className="font-medium uppercase mb-2"
+            className="font-medium uppercase mb-2 text-label"
             style={{
               color: "#C9A84C",
-              fontSize: "12px",
-              letterSpacing: "0.18em",
             }}
           >
             {isLoaded && firstName
@@ -96,7 +94,7 @@ export default function DashboardClient() {
               : "WELCOME BACK!"}
           </p>
           <h1
-            className="font-heading leading-snug text-2xl md:text-3xl"
+            className="font-heading text-title-lg"
             style={{ color: "#F2EDE4" }}
           >
             Let&apos;s Enjoy Japanese <span style={{ color: "#C9A84C" }}>to the Fullest!</span>
@@ -159,12 +157,12 @@ export default function DashboardClient() {
                 {/* Text */}
                 <div className="flex-1">
                   <h2
-                    className="font-heading font-bold text-lg md:text-2xl mb-1"
+                    className="font-heading font-bold text-title mb-1"
                     style={{ color: "#0B1522" }}
                   >
                     {card.title}
                   </h2>
-                  <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#5A6A7A" }}>
+                  <p className="text-body-lg" style={{ color: "#5A6A7A" }}>
                     {card.description}
                   </p>
                 </div>
@@ -175,7 +173,7 @@ export default function DashboardClient() {
                     href={card.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-md text-sm md:text-base font-medium transition-opacity hover:opacity-80 self-start"
+                    className="inline-flex items-center justify-center rounded-md text-body font-medium transition-opacity hover:opacity-80 self-start"
                     style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
                   >
                     {card.buttonLabel}
@@ -183,7 +181,7 @@ export default function DashboardClient() {
                 ) : (
                   <Link
                     href={card.href}
-                    className="inline-flex items-center justify-center rounded-md text-sm md:text-base font-medium transition-opacity hover:opacity-80 self-start"
+                    className="inline-flex items-center justify-center rounded-md text-body font-medium transition-opacity hover:opacity-80 self-start"
                     style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
                   >
                     {card.buttonLabel}

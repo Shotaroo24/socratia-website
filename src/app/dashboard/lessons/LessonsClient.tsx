@@ -144,11 +144,10 @@ function MobileLessonList({
               }}
             >
               <span
+                className="text-label"
                 style={{
                   color: "#C9A84C",
-                  fontSize: 13,
                   fontWeight: 500,
-                  letterSpacing: "0.05em",
                   textTransform: "uppercase",
                 }}
               >
@@ -188,17 +187,16 @@ function MobileLessonList({
                           }}
                         >
                           <span
+                            className="text-body-sm"
                             style={{
-                              fontSize: 14,
                               color: isActive ? "#F2EDE4" : "#0B1522",
-                              lineHeight: 1.4,
                             }}
                           >
                             {lesson.title}
                           </span>
                           <span
+                            className="text-caption"
                             style={{
-                              fontSize: 11,
                               color: "#8899AA",
                               textAlign: "right",
                               marginTop: 2,
@@ -262,7 +260,7 @@ function Sidebar({
           onMouseLeave={(e) => (e.currentTarget.style.color = "#5A6A7A")}
         >
           <ArrowLeftIcon />
-          <span style={{ fontSize: 14 }}>Back to Dashboard</span>
+          <span className="text-body-sm">Back to Dashboard</span>
         </Link>
         <button
           onClick={onClose}
@@ -290,12 +288,10 @@ function Sidebar({
                 }}
               >
                 <span
-                  className="uppercase"
+                  className="uppercase text-label"
                   style={{
                     color: "#C9A84C",
-                    fontSize: 13,
                     fontWeight: 500,
-                    letterSpacing: "0.05em",
                   }}
                 >
                   {section.title}
@@ -324,17 +320,16 @@ function Sidebar({
                           </span>
                           <span className="flex-1 flex flex-col min-w-0">
                             <span
-                              className="leading-snug"
+                              className="text-body-sm"
                               style={{
-                                fontSize: 14,
                                 color: isActive ? "#F2EDE4" : "#0B1522",
                               }}
                             >
                               {lesson.title}
                             </span>
                             <span
-                              className="text-right tabular-nums"
-                              style={{ fontSize: 11, color: "#8899AA" }}
+                              className="text-right tabular-nums text-caption"
+                              style={{ color: "#8899AA" }}
                             >
                               {lesson.duration}
                             </span>
@@ -413,12 +408,12 @@ export default function LessonsClient({
         >
           <Link
             href="/dashboard"
+            className="text-body-sm"
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
               color: "#5A6A7A",
-              fontSize: 14,
               textDecoration: "none",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#0B1522")}
@@ -483,17 +478,15 @@ export default function LessonsClient({
           }}
         >
           <p
+            className="text-body font-semibold"
             style={{
-              fontSize: 15,
-              fontWeight: 600,
               color: "#0B1522",
               margin: 0,
-              lineHeight: 1.4,
             }}
           >
             {activeLesson.title}
           </p>
-          <p style={{ fontSize: 12, color: "#8899AA", margin: "4px 0 0" }}>
+          <p className="text-caption" style={{ color: "#8899AA", margin: "4px 0 0" }}>
             {activeLesson.duration}
           </p>
         </div>

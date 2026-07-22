@@ -12,7 +12,7 @@ const timelineItems = [
     number: "01",
     title: "Recommended Study Flow & Time Commitment",
     content: (
-      <div className="space-y-4 text-base md:text-lg leading-relaxed" style={{ color: "#5A6A7A" }}>
+      <div className="space-y-4 text-body-lg" style={{ color: "#5A6A7A" }}>
         <p>
           To get the best results, we recommend studying{" "}
           <strong style={{ color: "#0B1522" }}>5–7 hours per week:</strong>
@@ -42,7 +42,7 @@ const timelineItems = [
           per week (Videos + Textbooks)
         </p>
         <div style={{ height: 1, background: "#E8E2D6" }} aria-hidden="true" />
-        <p className="text-sm md:text-base italic" style={{ color: "rgba(90,106,122,0.7)" }}>
+        <p className="text-body-sm italic" style={{ color: "rgba(90,106,122,0.7)" }}>
           Optional: Use the Advanced Grammar, Words Summary, and Particle Summary sections
           to reinforce your understanding.
         </p>
@@ -53,7 +53,7 @@ const timelineItems = [
     number: "02",
     title: "Conversation Lessons",
     content: (
-      <div className="space-y-3 text-base md:text-lg leading-relaxed" style={{ color: "#5A6A7A" }}>
+      <div className="space-y-3 text-body-lg" style={{ color: "#5A6A7A" }}>
         <div className="flex items-start gap-3">
           <span
             className="rounded-full flex-shrink-0"
@@ -81,7 +81,7 @@ const timelineItems = [
     title: "Questions & Support",
     content: (
       <div>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#5A6A7A" }}>
+        <p className="text-body-lg" style={{ color: "#5A6A7A" }}>
           If you have any questions or need support, please reach out to us anytime via
           WhatsApp. We are here to help you!
         </p>
@@ -98,7 +98,7 @@ export default function GuidePage() {
         {/* Back link */}
         <Link
           href="/dashboard"
-          className="inline-flex items-center gap-2 text-sm md:text-base font-medium mb-10 transition-opacity hover:opacity-70"
+          className="inline-flex items-center gap-2 text-body-sm font-medium mb-10 transition-opacity hover:opacity-70"
           style={{ color: "#5A6A7A" }}
         >
           <svg
@@ -119,7 +119,7 @@ export default function GuidePage() {
         {/* Page heading */}
         <div className="mb-14">
           <h1
-            className="font-heading font-bold leading-tight text-4xl md:text-5xl"
+            className="font-heading font-bold text-title-lg"
             style={{ color: "#0B1522" }}
           >
             How to Proceed with your Course
@@ -151,7 +151,7 @@ export default function GuidePage() {
                 {/* Number node */}
                 <div className="flex-shrink-0 relative z-10">
                   <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center font-heading font-bold text-lg"
+                    className="w-14 h-14 rounded-full flex items-center justify-center font-heading font-bold text-title"
                     style={{
                       background: "#0B1522",
                       border: "2px solid #C9A84C",
@@ -166,8 +166,8 @@ export default function GuidePage() {
                 {/* Content */}
                 <div className="flex-1 pt-3 pb-2">
                   <h3
-                    className="font-heading font-bold leading-snug mb-4"
-                    style={{ color: "#0B1522", fontSize: "clamp(1.2rem, 3vw, 1.5rem)" }}
+                    className="font-heading font-bold text-title mb-4"
+                    style={{ color: "#0B1522" }}
                   >
                     {item.title}
                   </h3>
