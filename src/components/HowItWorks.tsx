@@ -16,7 +16,7 @@ export default function HowItWorks() {
           <h2 className="font-heading text-4xl md:text-5xl text-ink font-bold leading-tight mb-3">
             Why Input + Live Practice Works
           </h2>
-          <p className="text-subtext text-lg leading-relaxed max-w-lg mx-auto">
+          <p className="text-subtext text-lg md:text-xl leading-relaxed max-w-lg mx-auto">
             Most Japanese courses give you one without the other.{" "}
             <br className="hidden md:block" />
             We give you both — in the right sequence.
@@ -39,13 +39,13 @@ export default function HowItWorks() {
               </span>
               <h3 className="font-heading text-[1.75rem] font-bold text-ink mt-1.5">Input</h3>
             </div>
-            <p className="text-subtext text-sm md:text-base leading-relaxed mb-5">
+            <p className="text-subtext text-sm md:text-lg leading-relaxed mb-5">
               Build vocabulary, grammar, and comprehension through our textbooks and 94 videos — at your own pace.
             </p>
             {INPUT_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-2.5 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-main flex-shrink-0" />
-                <span className="text-subtext text-sm md:text-base">{item}</span>
+                <span className="text-subtext text-sm md:text-lg">{item}</span>
               </div>
             ))}
           </div>
@@ -77,13 +77,13 @@ export default function HowItWorks() {
                 Practice
               </h3>
             </div>
-            <p className="text-text-muted text-sm md:text-base leading-relaxed mb-5">
+            <p className="text-text-muted text-sm md:text-lg leading-relaxed mb-5">
               Apply your knowledge in real 1-on-1 conversation. Live sessions activate what you&rsquo;ve learned &mdash; the fastest path to fluency.
             </p>
             {PRAC_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-2.5 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-main flex-shrink-0" />
-                <span className="text-text-muted text-sm md:text-base">{item}</span>
+                <span className="text-text-muted text-sm md:text-lg">{item}</span>
               </div>
             ))}
           </div>

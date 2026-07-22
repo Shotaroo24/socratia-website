@@ -7,7 +7,7 @@ const faqs = [
   {
     q: "How much does the full course cost?",
     a: (
-      <p className="text-subtext leading-relaxed">
+      <p className="text-subtext text-base md:text-lg leading-relaxed">
         The full course is{" "}
         <strong className="text-ink">
           $399 — a one-month program with 8 live 1-on-1 sessions and lifetime access to all materials
@@ -19,7 +19,7 @@ const faqs = [
   {
     q: "How much time per week is required for this course?",
     a: (
-      <p className="text-subtext leading-relaxed">
+      <p className="text-subtext text-base md:text-lg leading-relaxed">
         We recommend setting aside about{" "}
         <strong className="text-ink">6–10 hours per week</strong>. This
         includes 2 hours of live conversation practice and roughly 4–5 hours of
@@ -30,7 +30,7 @@ const faqs = [
   {
     q: "What if I can't attend a live lesson?",
     a: (
-      <p className="text-subtext leading-relaxed">
+      <p className="text-subtext text-base md:text-lg leading-relaxed">
         No problem—your schedule comes first. If something comes up, you can{" "}
         <strong className="text-ink">
           reschedule your lessons as many times as needed
@@ -42,7 +42,7 @@ const faqs = [
   {
     q: "Can beginners join the course?",
     a: (
-      <p className="text-subtext leading-relaxed">
+      <p className="text-subtext text-base md:text-lg leading-relaxed">
         <strong className="text-ink">Absolutely!</strong>{" "}This course is
         designed specifically for complete beginners and beginners in Japanese.
         Each lesson is carefully structured to help you build Japanese skills
@@ -55,7 +55,7 @@ const faqs = [
   {
     q: "What happens after the course period ends?",
     a: (
-      <p className="text-subtext leading-relaxed">
+      <p className="text-subtext text-base md:text-lg leading-relaxed">
         Even after completing the course, you will have{" "}
         <strong className="text-ink">
           unlimited, lifetime access to all textbooks and video materials

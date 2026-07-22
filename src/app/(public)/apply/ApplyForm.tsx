@@ -135,7 +135,7 @@ export default function ApplyForm() {
                 You&apos;re all set!
               </h1>
               <div className="w-9 h-px bg-main mx-auto mb-5" />
-              <p className="text-subtext text-base leading-[1.75]">
+              <p className="text-subtext text-base md:text-lg leading-[1.75]">
                 We&apos;ll review your application and selected applicants will receive a{" "}
                 <strong className="text-ink">WhatsApp invitation within 48 hours</strong>.
               </p>
@@ -156,7 +156,7 @@ export default function ApplyForm() {
                 Book a Free Trial Lesson
               </h1>
               <div className="w-9 h-px bg-main mx-auto mb-4" />
-              <p className="text-subtext text-base leading-relaxed max-w-sm mx-auto">
+              <p className="text-subtext text-base md:text-lg leading-relaxed max-w-sm mx-auto">
                 A free 1-hour Japanese lesson on Google Meet — experience our method and decide with clarity.
               </p>
             </div>
@@ -289,7 +289,7 @@ export default function ApplyForm() {
                         className="w-4 h-4 accent-[#0B1522] cursor-pointer"
                       />
                       <span
-                        className={`text-sm transition-colors ${
+                        className={`text-sm md:text-base transition-colors ${
                           formData.howDidYouHear === option
                             ? 'text-ink font-medium'
                             : 'group-hover:text-ink'
@@ -323,7 +323,7 @@ export default function ApplyForm() {
 
               {/* Notice */}
               <p
-                className="text-sm text-subtext leading-[1.65] border-l-[3px] border-main pl-4 pr-4 py-[13px] rounded-r-lg"
+                className="text-sm md:text-base text-subtext leading-[1.65] border-l-[3px] border-main pl-4 pr-4 py-[13px] rounded-r-lg"
                 style={{ background: 'rgba(201,168,76,0.05)' }}
               >
                 Due to limited availability, we review each application personally. Selected candidates will receive a WhatsApp invitation within{" "}
@@ -378,7 +378,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-base font-bold text-ink">
+      <label htmlFor={htmlFor} className="text-base md:text-lg font-bold text-ink">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>

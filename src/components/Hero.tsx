@@ -59,7 +59,7 @@ export default function Hero() {
         <div className="w-10 h-px bg-main mx-auto mb-8" aria-hidden="true" />
 
         {/* Subtext */}
-        <p className="text-text-muted text-lg leading-relaxed mb-12 max-w-lg mx-auto">
+        <p className="text-text-muted text-lg md:text-xl leading-relaxed mb-12 max-w-lg mx-auto">
           Our &ldquo;Input + Live Practice&rdquo; method turns your knowledge
           into usable Japanese speaking skills in just 30 days.
         </p>

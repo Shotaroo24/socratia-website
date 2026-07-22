@@ -37,7 +37,7 @@ export default function Footer() {
             <p className="font-heading text-xl font-semibold text-text-light mb-5">
               Our Mission
             </p>
-            <p className="text-text-muted text-sm leading-relaxed">
+            <p className="text-text-muted text-sm md:text-base leading-relaxed">
               Our mission is to bring you the best Japanese learning experience
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function Footer() {
                   <ChevronRightIcon />
                   <Link
                     href={link.href}
-                    className="text-sm text-text-muted hover:text-main transition-colors duration-200"
+                    className="text-sm md:text-base text-text-muted hover:text-main transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -69,7 +69,7 @@ export default function Footer() {
             </p>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
-              className="flex items-center gap-2.5 text-sm text-text-muted hover:text-main transition-colors duration-200"
+              className="flex items-center gap-2.5 text-sm md:text-base text-text-muted hover:text-main transition-colors duration-200"
             >
               <MailIcon />
               <span>{SITE_CONFIG.email}</span>
@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-sm text-text-muted mt-8">
+        <p className="text-center text-sm md:text-base text-text-muted mt-8">
           Copyright &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
         </p>
       </div>

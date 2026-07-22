@@ -12,7 +12,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 const LoginPlaceholder = (
   <Link
     href="/login"
-    className="text-sm font-medium transition-colors duration-200"
+    className="text-sm md:text-base font-medium transition-colors duration-200"
     style={{ color: "#8899AA" }}
   >
     Log in
@@ -70,7 +70,7 @@ export default function Nav() {
         {/* Text logo */}
         <Link href="/" className="flex-shrink-0 group">
           <span
-            className="font-heading font-medium text-xl uppercase transition-opacity duration-200 group-hover:opacity-80"
+            className="font-heading font-medium text-xl md:text-2xl uppercase transition-opacity duration-200 group-hover:opacity-80"
             style={{ color: "#E8DFD0", letterSpacing: "0.12em" }}
           >
             Socratia
@@ -83,7 +83,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-text-light/70 hover:text-main transition-colors duration-200"
+              className="text-sm md:text-base font-medium text-text-light/70 hover:text-main transition-colors duration-200"
             >
               {link.label}
             </Link>
