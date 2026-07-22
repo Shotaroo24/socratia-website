@@ -159,7 +159,7 @@ export default function DashboardClient() {
                 {/* Text */}
                 <div className="flex-1">
                   <h2
-                    className="font-heading font-semibold text-lg md:text-xl mb-1"
+                    className="font-heading font-bold text-lg md:text-2xl mb-1"
                     style={{ color: "#0B1522" }}
                   >
                     {card.title}
