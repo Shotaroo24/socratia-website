@@ -40,7 +40,7 @@ export default function Pricing() {
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         {/* Eyebrow */}
-        <p className="inline-block text-xs font-semibold tracking-[0.22em] uppercase mb-4 text-main">
+        <p className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4 text-main">
           PRICING &amp; FREE TRIAL
         </p>
 
@@ -102,11 +102,6 @@ export default function Pricing() {
         <Button href="/apply" className="mt-12">
           {SITE_CONFIG.ctaLabel}&ensp;&rarr;
         </Button>
-
-        {/* Note */}
-        <p className="font-heading italic text-xs text-text-muted mt-5">
-          No credit card &middot; No commitment
-        </p>
       </div>
     </section>
   );

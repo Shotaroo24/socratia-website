@@ -42,7 +42,7 @@ export default function Hero() {
       <div className="relative max-w-3xl mx-auto px-6 py-20 text-center">
         {/* Badge */}
         <p
-          className="text-main font-medium text-xs uppercase mb-8 tracking-[0.28em]"
+          className="text-main font-medium text-xs md:text-[13px] uppercase mb-8 tracking-[0.28em]"
         >
           — For Complete Beginners —
         </p>

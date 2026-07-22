@@ -8,7 +8,7 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-14">
           <span
-            className="inline-block text-xs font-semibold tracking-[0.22em] uppercase mb-4"
+            className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4"
             style={{ color: '#896520' }}
           >
             How It Works

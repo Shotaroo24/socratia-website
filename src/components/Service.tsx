@@ -53,7 +53,7 @@ export default function Service() {
         {/* Header */}
         <div className="text-center mb-12">
           <span
-            className="inline-block text-xs font-semibold tracking-[0.22em] uppercase mb-4"
+            className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4"
             style={{ color: '#896520' }}
           >
             What&apos;s Inside
