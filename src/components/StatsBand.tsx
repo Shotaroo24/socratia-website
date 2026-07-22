@@ -30,8 +30,8 @@ export default function StatsBand() {
               >
                 {s.num}
               </p>
-              <p className="text-text-light font-medium text-sm md:text-base mb-1">{s.label}</p>
-              <p className="text-text-muted text-xs md:text-sm">{s.sub}</p>
+              <p className="text-text-light text-body font-medium mb-1">{s.label}</p>
+              <p className="text-text-muted text-caption">{s.sub}</p>
             </div>
           ))}
         </div>

@@ -7,7 +7,7 @@ const faqs = [
   {
     q: "How much does the full course cost?",
     a: (
-      <p className="text-subtext text-base md:text-lg leading-relaxed">
+      <p className="text-subtext text-body-lg">
         The full course is{" "}
         <strong className="text-ink">
           $399 — a one-month program with 8 live 1-on-1 sessions and lifetime access to all materials
@@ -19,7 +19,7 @@ const faqs = [
   {
     q: "How much time per week is required for this course?",
     a: (
-      <p className="text-subtext text-base md:text-lg leading-relaxed">
+      <p className="text-subtext text-body-lg">
         We recommend setting aside about{" "}
         <strong className="text-ink">6–10 hours per week</strong>. This
         includes 2 hours of live conversation practice and roughly 4–5 hours of
@@ -30,7 +30,7 @@ const faqs = [
   {
     q: "What if I can't attend a live lesson?",
     a: (
-      <p className="text-subtext text-base md:text-lg leading-relaxed">
+      <p className="text-subtext text-body-lg">
         No problem—your schedule comes first. If something comes up, you can{" "}
         <strong className="text-ink">
           reschedule your lessons as many times as needed
@@ -42,7 +42,7 @@ const faqs = [
   {
     q: "Can beginners join the course?",
     a: (
-      <p className="text-subtext text-base md:text-lg leading-relaxed">
+      <p className="text-subtext text-body-lg">
         <strong className="text-ink">Absolutely!</strong>{" "}This course is
         designed specifically for complete beginners and beginners in Japanese.
         Each lesson is carefully structured to help you build Japanese skills
@@ -55,7 +55,7 @@ const faqs = [
   {
     q: "What happens after the course period ends?",
     a: (
-      <p className="text-subtext text-base md:text-lg leading-relaxed">
+      <p className="text-subtext text-body-lg">
         Even after completing the course, you will have{" "}
         <strong className="text-ink">
           unlimited, lifetime access to all textbooks and video materials
@@ -70,7 +70,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-cream py-24 md:py-32">
+    <section id="faq" className="bg-cream py-24 md:py-32 scroll-mt-24">
       <div className="max-w-3xl mx-auto px-6">
         <SectionHeader label="FAQ" title="Frequently Asked Questions" />
 
@@ -87,7 +87,7 @@ export default function FAQ() {
                   aria-controls={panelId}
                 >
                   <span
-                    className="font-heading font-semibold text-ink group-hover:text-main transition-colors duration-200 leading-snug text-lg md:text-xl"
+                    className="font-heading text-title font-semibold text-ink group-hover:text-main transition-colors duration-200"
                   >
                     {faq.q}
                   </span>

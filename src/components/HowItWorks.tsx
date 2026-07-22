@@ -8,15 +8,15 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-14">
           <span
-            className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4"
+            className="inline-block text-label uppercase mb-4"
             style={{ color: '#896520' }}
           >
             How It Works
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl text-ink font-bold leading-tight mb-3">
+          <h2 className="font-heading text-display-section text-ink font-bold mb-3">
             Why Input + Live Practice Works
           </h2>
-          <p className="text-subtext text-lg md:text-xl leading-relaxed max-w-lg mx-auto">
+          <p className="text-subtext text-body-lg max-w-lg mx-auto">
             Most Japanese courses give you one without the other.{" "}
             <br className="hidden md:block" />
             We give you both — in the right sequence.
@@ -37,15 +37,15 @@ export default function HowItWorks() {
               >
                 01
               </span>
-              <h3 className="font-heading text-[1.75rem] font-bold text-ink mt-1.5">Input</h3>
+              <h3 className="font-heading text-title-lg font-semibold text-ink mt-1.5">Input</h3>
             </div>
-            <p className="text-subtext text-sm md:text-lg leading-relaxed mb-5">
+            <p className="text-subtext text-body-lg mb-5">
               Build vocabulary, grammar, and comprehension through our textbooks and 94 videos — at your own pace.
             </p>
             {INPUT_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-2.5 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-main flex-shrink-0" />
-                <span className="text-subtext text-sm md:text-lg">{item}</span>
+                <span className="text-subtext text-body-lg">{item}</span>
               </div>
             ))}
           </div>
@@ -71,19 +71,19 @@ export default function HowItWorks() {
                 02
               </span>
               <h3
-                className="font-heading text-[1.75rem] font-bold mt-1.5"
+                className="font-heading text-title-lg font-semibold mt-1.5"
                 style={{ color: '#C9A84C' }}
               >
                 Practice
               </h3>
             </div>
-            <p className="text-text-muted text-sm md:text-lg leading-relaxed mb-5">
+            <p className="text-text-muted text-body-lg mb-5">
               Apply your knowledge in real 1-on-1 conversation. Live sessions activate what you&rsquo;ve learned &mdash; the fastest path to fluency.
             </p>
             {PRAC_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-2.5 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-main flex-shrink-0" />
-                <span className="text-text-muted text-sm md:text-lg">{item}</span>
+                <span className="text-text-muted text-body-lg">{item}</span>
               </div>
             ))}
           </div>

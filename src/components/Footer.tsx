@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b border-main-light/20">
           {/* Connect with us */}
           <div>
-            <p className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-title font-semibold text-text-light mb-5">
               Connect with us
             </p>
             <div className="flex gap-3">
@@ -34,17 +34,17 @@ export default function Footer() {
 
           {/* Our Mission */}
           <div>
-            <p className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-title font-semibold text-text-light mb-5">
               Our Mission
             </p>
-            <p className="text-text-muted text-sm md:text-base leading-relaxed">
+            <p className="text-text-muted text-body-sm">
               Our mission is to bring you the best Japanese learning experience
             </p>
           </div>
 
           {/* Our Policy */}
           <div>
-            <p className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-title font-semibold text-text-light mb-5">
               Our Policy
             </p>
             <ul className="space-y-2.5">
@@ -53,7 +53,7 @@ export default function Footer() {
                   <ChevronRightIcon />
                   <Link
                     href={link.href}
-                    className="text-sm md:text-base text-text-muted hover:text-main transition-colors duration-200"
+                    className="text-body text-text-muted hover:text-main transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -64,12 +64,12 @@ export default function Footer() {
 
           {/* Get in Touch */}
           <div>
-            <p className="font-heading text-xl font-semibold text-text-light mb-5">
+            <p className="font-heading text-title font-semibold text-text-light mb-5">
               Get in Touch
             </p>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
-              className="flex items-center gap-2.5 text-sm md:text-base text-text-muted hover:text-main transition-colors duration-200"
+              className="flex items-center gap-2.5 text-body-sm text-text-muted hover:text-main transition-colors duration-200"
             >
               <MailIcon />
               <span>{SITE_CONFIG.email}</span>
@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-sm md:text-base text-text-muted mt-8">
+        <p className="text-center text-body-sm text-text-muted mt-8">
           Copyright &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
         </p>
       </div>

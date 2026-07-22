@@ -53,12 +53,12 @@ export default function Service() {
         {/* Header */}
         <div className="text-center mb-12">
           <span
-            className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4"
+            className="inline-block text-label uppercase mb-4"
             style={{ color: '#896520' }}
           >
             What&apos;s Inside
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl text-ink font-bold leading-tight">
+          <h2 className="font-heading text-display-section text-ink font-bold">
             Everything You Need to Learn Japanese
           </h2>
         </div>
@@ -82,13 +82,13 @@ export default function Service() {
               {/* Text */}
               <div className="px-6 py-6">
                 <p
-                  className="font-heading mb-1"
-                  style={{ fontSize: '1.05rem', color: '#896520', lineHeight: 1 }}
+                  className="font-heading text-label uppercase mb-2"
+                  style={{ color: '#896520' }}
                 >
                   {card.num}
                 </p>
-                <h3 className="font-heading text-xl font-bold text-ink mb-2">{card.title}</h3>
-                <p className="text-subtext text-sm md:text-lg leading-relaxed">{card.desc}</p>
+                <h3 className="font-heading text-title font-semibold text-ink mb-2">{card.title}</h3>
+                <p className="text-subtext text-body-lg">{card.desc}</p>
               </div>
             </div>
           ))}

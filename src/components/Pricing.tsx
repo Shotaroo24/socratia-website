@@ -40,7 +40,7 @@ export default function Pricing() {
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         {/* Eyebrow */}
-        <p className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.22em] uppercase mb-4 text-main">
+        <p className="inline-block text-label uppercase mb-4 text-main">
           PRICING &amp; FREE TRIAL
         </p>
 
@@ -48,16 +48,16 @@ export default function Pricing() {
         <div aria-hidden="true" className="w-[34px] h-px bg-main mx-auto my-4" />
 
         {/* Title */}
-        <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight">
+        <h2 className="font-heading text-display-section font-bold">
           <span className="text-text-light">One program. </span>
           <span className="text-main">Everything included.</span>
         </h2>
 
         {/* Price */}
-        <p className="font-heading text-3xl md:text-4xl font-bold leading-none text-main mt-8">
+        <p className="font-heading text-display-section font-bold text-main mt-8">
           {SITE_CONFIG.price}
         </p>
-        <p className="text-text-muted text-sm md:text-lg mt-3">
+        <p className="text-text-muted text-body-lg mt-3">
           &asymp; 1,496 SAR &middot; one-time payment &middot; no subscription
         </p>
 
@@ -66,7 +66,7 @@ export default function Pricing() {
           {FEATURES.map(({ icon, text }) => (
             <div key={text} className="flex items-center gap-3">
               <span className="text-main flex-shrink-0">{icon}</span>
-              <span className="text-text-light text-sm md:text-lg">{text}</span>
+              <span className="text-text-light text-body-lg">{text}</span>
             </div>
           ))}
         </div>
@@ -79,17 +79,17 @@ export default function Pricing() {
             borderBottom: "0.5px solid rgba(201,168,76,0.22)",
           }}
         >
-          <h3 className="font-heading text-2xl font-bold text-text-light mb-5">
+          <h3 className="font-heading text-title-lg font-semibold text-text-light mb-5">
             Try it free before you decide
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-10">
             {TRIAL_DETAILS.map(({ label, value, highlight }) => (
               <div key={label} className="text-center">
-                <p className="text-xs tracking-[0.12em] uppercase text-text-muted mb-1.5">
+                <p className="text-label uppercase text-text-muted mb-1.5">
                   {label}
                 </p>
                 <p
-                  className={`font-heading text-xl ${highlight ? "text-main" : "text-text-light"}`}
+                  className={`font-heading text-title font-semibold ${highlight ? "text-main" : "text-text-light"}`}
                 >
                   {value}
                 </p>
