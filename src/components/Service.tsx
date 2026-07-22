@@ -88,7 +88,7 @@ export default function Service() {
                   {card.num}
                 </p>
                 <h3 className="font-heading text-xl font-bold text-ink mb-2">{card.title}</h3>
-                <p className="text-subtext text-sm leading-relaxed">{card.desc}</p>
+                <p className="text-subtext text-sm md:text-base leading-relaxed">{card.desc}</p>
               </div>
             </div>
           ))}

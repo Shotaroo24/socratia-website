@@ -57,16 +57,16 @@ export default function Pricing() {
         <p className="font-heading text-3xl md:text-4xl font-bold leading-none text-main mt-8">
           {SITE_CONFIG.price}
         </p>
-        <p className="text-text-muted text-sm mt-3">
+        <p className="text-text-muted text-sm md:text-base mt-3">
           &asymp; 1,496 SAR &middot; one-time payment &middot; no subscription
         </p>
 
         {/* Feature list */}
-        <div className="mx-auto mt-10 flex flex-col items-start gap-3 max-w-[400px]">
+        <div className="mx-auto mt-10 flex flex-col items-start gap-3.5 max-w-[400px]">
           {FEATURES.map(({ icon, text }) => (
             <div key={text} className="flex items-center gap-3">
               <span className="text-main flex-shrink-0">{icon}</span>
-              <span className="text-text-light text-sm">{text}</span>
+              <span className="text-text-light text-sm md:text-base">{text}</span>
             </div>
           ))}
         </div>
