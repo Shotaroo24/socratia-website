@@ -164,7 +164,7 @@ export default function DashboardClient() {
                   >
                     {card.title}
                   </h2>
-                  <p className="text-sm md:text-base leading-relaxed" style={{ color: "#5A6A7A" }}>
+                  <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#5A6A7A" }}>
                     {card.description}
                   </p>
                 </div>
@@ -175,7 +175,7 @@ export default function DashboardClient() {
                     href={card.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                    className="inline-flex items-center justify-center rounded-md text-sm md:text-base font-medium transition-opacity hover:opacity-80 self-start"
                     style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
                   >
                     {card.buttonLabel}
@@ -183,7 +183,7 @@ export default function DashboardClient() {
                 ) : (
                   <Link
                     href={card.href}
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-opacity hover:opacity-80 self-start"
+                    className="inline-flex items-center justify-center rounded-md text-sm md:text-base font-medium transition-opacity hover:opacity-80 self-start"
                     style={{ background: "#C9A84C", color: "#0B1522", padding: "8px 18px" }}
                   >
                     {card.buttonLabel}
