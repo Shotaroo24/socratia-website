@@ -18,7 +18,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm md:text-base tracking-wide transition-all duration-200 cursor-pointer";
+    "inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-body tracking-wide transition-all duration-200 cursor-pointer";
   const variants = {
     primary:
       "bg-main text-navy hover:bg-main-dark hover:shadow-lg [@media(hover:hover)]:hover:-translate-y-0.5 active:translate-y-0",

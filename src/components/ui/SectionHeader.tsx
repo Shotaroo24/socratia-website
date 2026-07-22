@@ -14,16 +14,16 @@ export default function SectionHeader({
   return (
     <div className={`mb-14 ${center ? "text-center" : ""}`}>
       {label && (
-        <span className="inline-block text-xs md:text-[13px] font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: 'var(--color-main-accessible)' }}>
+        <span className="inline-block text-label uppercase mb-4" style={{ color: 'var(--color-main-accessible)' }}>
           {label}
         </span>
       )}
-      <h2 className="font-heading text-4xl md:text-5xl text-ink font-bold leading-tight">
+      <h2 className="font-heading text-display-section text-ink font-bold">
         {title}
       </h2>
       {subtitle && (
         <p
-          className={`mt-5 text-subtext text-lg leading-relaxed ${
+          className={`mt-5 text-subtext text-body-lg ${
             center ? "max-w-2xl mx-auto" : ""
           }`}
         >

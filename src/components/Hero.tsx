@@ -42,14 +42,14 @@ export default function Hero() {
       <div className="relative max-w-3xl mx-auto px-6 py-20 text-center">
         {/* Badge */}
         <p
-          className="text-main font-medium text-xs md:text-[13px] uppercase mb-8 tracking-[0.28em]"
+          className="text-main text-label uppercase mb-8"
         >
           — For Complete Beginners —
         </p>
 
         {/* Title */}
         <h1
-          className="font-heading text-[2.5rem] md:text-5xl lg:text-6xl xl:text-[4.25rem] text-text-light font-bold leading-[1.1] tracking-tight mb-8"
+          className="font-heading text-display-hero text-text-light font-bold mb-8"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
         >
           The Premier Japanese Speaking Program
@@ -59,7 +59,7 @@ export default function Hero() {
         <div className="w-10 h-px bg-main mx-auto mb-8" aria-hidden="true" />
 
         {/* Subtext */}
-        <p className="text-text-muted text-lg md:text-xl leading-relaxed mb-12 max-w-lg mx-auto">
+        <p className="text-text-muted text-body-lg mb-12 max-w-lg mx-auto">
           Our &ldquo;Input + Live Practice&rdquo; method turns your knowledge
           into usable Japanese speaking skills in just 30 days.
         </p>
@@ -67,7 +67,7 @@ export default function Hero() {
         {/* CTA */}
         <Button
           href="/apply"
-          className="text-base w-auto px-8 md:px-10 py-4 shadow-lg"
+          className="w-auto px-8 md:px-10 py-4 shadow-lg"
         >
           {SITE_CONFIG.ctaLabel}&ensp;›
         </Button>

@@ -12,7 +12,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 const LoginPlaceholder = (
   <Link
     href="/login"
-    className="text-sm md:text-base font-medium transition-colors duration-200"
+    className="text-body font-medium transition-colors duration-200"
     style={{ color: "#8899AA" }}
   >
     Log in
@@ -83,7 +83,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm md:text-base font-medium text-text-light/70 hover:text-main transition-colors duration-200"
+              className="text-body font-medium text-text-light/70 hover:text-main transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -116,7 +116,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-text-light/80 hover:text-main font-medium transition-colors py-1"
+              className="text-body text-text-light/80 hover:text-main font-medium transition-colors py-1"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
@@ -125,7 +125,7 @@ export default function Nav() {
           {!isDashboard && (
             <Link
               href="/apply"
-              className="font-medium transition-colors py-1"
+              className="text-body font-medium transition-colors py-1"
               style={{ color: "#C9A84C" }}
               onClick={() => setMenuOpen(false)}
             >
